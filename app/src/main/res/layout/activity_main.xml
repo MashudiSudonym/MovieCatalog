@@ -19,6 +19,8 @@
                 style="@style/Widget.MaterialComponents.TabLayout.Colored"
                 app:tabGravity="fill"
                 app:tabIndicatorGravity="bottom"
+                app:tabMode="fixed"
+                app:tabMaxWidth="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
     </com.google.android.material.appbar.AppBarLayout>

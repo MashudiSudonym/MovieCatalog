@@ -1,4 +1,4 @@
-package c.dicodingmade.fragment.movie
+package c.dicodingmade.fragment.tvshow
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,23 +11,22 @@ import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_list_movie_tv_show.*
 
-class MovieAdapter(
-    private val movieTvShowData: List<MovieTvShowData>,
+class TvShowAdapter(
+    private val tvShowData: List<MovieTvShowData>,
     private val listener: (MovieTvShowData) -> Unit
-) :
-    RecyclerView.Adapter<MovieViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder = MovieViewHolder(
+) : RecyclerView.Adapter<TvShowViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvShowViewHolder = TvShowViewHolder(
         LayoutInflater.from(parent.context)
             .inflate(R.layout.item_list_movie_tv_show, parent, false)
     )
 
-    override fun getItemCount(): Int = movieTvShowData.size
+    override fun getItemCount(): Int = tvShowData.size
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) =
-        holder.bindItem(movieTvShowData[position], listener)
+    override fun onBindViewHolder(holder: TvShowViewHolder, position: Int) =
+        holder.bindItem(tvShowData[position], listener)
 }
 
-class MovieViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+class TvShowViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
     fun bindItem(movieTvShowData: MovieTvShowData, listener: (MovieTvShowData) -> Unit) {
         layout_item_movie_tv_show.setOnClickListener { listener(movieTvShowData) }
 

@@ -10,17 +10,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import c.dicodingmade.R
 import c.dicodingmade.activity.detail.DetailActivity
-import c.dicodingmade.model.MovieData
+import c.dicodingmade.model.MovieTvShowData
 import kotlinx.android.synthetic.main.fragment_movie.*
 
 class MovieFragment : Fragment() {
-    private var listMovies: MutableList<MovieData> = mutableListOf()
+    private var listMovieTvShows: MutableList<MovieTvShowData> = mutableListOf()
     private lateinit var movieAdapter: MovieAdapter
     private lateinit var moviePosterData: TypedArray
     private var movieTitleData: Array<String> = arrayOf()
     private var movieReleaseDateData: Array<String> = arrayOf()
     private var movieDescriptionData: Array<String> = arrayOf()
-    private var movies: ArrayList<MovieData> = arrayListOf()
+    private var movies: ArrayList<MovieTvShowData> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,12 +39,12 @@ class MovieFragment : Fragment() {
     }
 
     private fun movieRecyclerView() {
-        movieAdapter = MovieAdapter(listMovies) {
-            val singleMovieData = MovieData().apply {
-                moviePoster = it.moviePoster
-                movieTitle = it.movieTitle
-                movieReleaseDate = it.movieReleaseDate
-                movieDescription = it.movieDescription
+        movieAdapter = MovieAdapter(listMovieTvShows) {
+            val singleMovieData = MovieTvShowData().apply {
+                movieTvShowPoster = it.movieTvShowPoster
+                movieTvShowTitle = it.movieTvShowTitle
+                movieTvShowReleaseDate = it.movieTvShowReleaseDate
+                movieTvShowDescription = it.movieTvShowDescription
             }
             val detailMovieWithObjectIntent = Intent(context, DetailActivity::class.java)
                 .putExtra(DetailActivity.EXTRA_DATA, singleMovieData)
@@ -56,16 +56,16 @@ class MovieFragment : Fragment() {
 
     private fun addDataMovie() {
         for (i in 0 until movieTitleData.size) {
-            val movieData = MovieData()
-            movieData.moviePoster = moviePosterData.getResourceId(i, -i)
-            movieData.movieTitle = movieTitleData[i]
-            movieData.movieReleaseDate = movieReleaseDateData[i]
-            movieData.movieDescription = movieDescriptionData[i]
+            val movieData = MovieTvShowData()
+            movieData.movieTvShowPoster = moviePosterData.getResourceId(i, -i)
+            movieData.movieTvShowTitle = movieTitleData[i]
+            movieData.movieTvShowReleaseDate = movieReleaseDateData[i]
+            movieData.movieTvShowDescription = movieDescriptionData[i]
             movies.add(movieData)
         }
 
-        listMovies.clear()
-        listMovies.addAll(movies)
+        listMovieTvShows.clear()
+        listMovieTvShows.addAll(movies)
         movieAdapter.notifyDataSetChanged()
     }
 
