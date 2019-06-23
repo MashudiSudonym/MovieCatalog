@@ -1,7 +1,8 @@
-package c.dicodingmade
+package c.dicodingmade.activity.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import c.dicodingmade.R
 
 class MainActivity : AppCompatActivity() {
 
