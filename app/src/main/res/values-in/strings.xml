@@ -195,7 +195,7 @@
     </string-array>
 
     <!--String Data Movie-->
-    <array name="poster_data">
+    <array name="poster_movie_data">
         <item>@drawable/poster_a_start_is_born</item>
         <item>@drawable/poster_alita</item>
         <item>@drawable/poster_aquaman</item>
