@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">Dicoding MADE</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="img_movie_tv_show_poster_description">Poster Movie or TV Show</string>
-    <string name="title_movie_tv_show_description">Title Movie or TV Show</string>
-    <string name="movie_tv_show_release_date_description">Movie or TV Show Release Date</string>
-    <string name="movie_tv_show_overview_description">Movie or TV Show Overview</string>
-    <string name="title_movie_tv_show">Title Movie or TV Show</string>
-    <string name="movie_tv_show_release_date">Movie or TV Show Release Date</string>
+    <string name="hello_blank_fragment">Halo Fragment Kosong</string>
+    <string name="img_movie_tv_show_poster_description">Poster Film atau Acara TV</string>
+    <string name="title_movie_tv_show_description">Judul Film atau Acara TV</string>
+    <string name="movie_tv_show_release_date_description">Tanggal Rilis Film atau Acara TV</string>
+    <string name="movie_tv_show_overview_description">Ikhtisar Film atau Acara TV</string>
+    <string name="title_movie_tv_show">Judul Film atau Acara TV</string>
+    <string name="movie_tv_show_release_date">Tanggal Rilis Film atau Acara TV</string>
     <string name="lorem">lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum
         dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet.\nlorem ipsum dolor sit amet lorem ipsum
         dolor sit amet lorem ipsum dolor sit amet. lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum
@@ -17,10 +17,10 @@
         dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet.\nlorem ipsum dolor sit amet lorem ipsum
         dolor sit amet lorem ipsum dolor sit amet.
     </string>
-    <string name="overview">Overview</string>
-    <string name="choose_language_menu">Choose Language</string>
-    <string name="title_tab_movie">Movies</string>
-    <string name="title_tab_tv_show">TV Show</string>
+    <string name="overview">Ikhtisar</string>
+    <string name="choose_language_menu">Pilih Bahasa</string>
+    <string name="title_tab_movie">Film</string>
+    <string name="title_tab_tv_show">Acara TV</string>
 
     <!--String Data Tv Show-->
     <array name="poster_tv_show_data">

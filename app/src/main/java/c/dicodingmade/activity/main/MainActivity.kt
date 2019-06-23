@@ -1,9 +1,10 @@
 package c.dicodingmade.activity.main
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import c.dicodingmade.R
 import c.dicodingmade.fragment.movie.MovieFragment
@@ -38,7 +39,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            R.id.choose_language -> Toast.makeText(this, "Choose Languege", Toast.LENGTH_SHORT).show()
+            R.id.choose_language -> {
+                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+            }
         }
         return super.onOptionsItemSelected(item)
     }
