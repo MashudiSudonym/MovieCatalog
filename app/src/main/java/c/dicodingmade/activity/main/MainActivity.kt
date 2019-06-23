@@ -1,6 +1,9 @@
 package c.dicodingmade.activity.main
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import c.dicodingmade.R
 import c.dicodingmade.fragment.movie.MovieFragment
@@ -26,5 +29,17 @@ class MainActivity : AppCompatActivity() {
         }
         view_pager_main.adapter = tabViewPagerAdapter
         layout_tab_main.setupWithViewPager(view_pager_main)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.language_setting_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.choose_language -> Toast.makeText(this, "Choose Languege", Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
