@@ -19,8 +19,8 @@
     </string>
     <string name="overview">Overview</string>
     <string name="choose_language_menu">Choose Language</string>
-    <style name="title_tab_movie">Movies</style>
-    <style name="title_tab_tv_show">TV Show</style>
+    <string name="title_tab_movie">Movies</string>
+    <string name="title_tab_tv_show">TV Show</string>
 
     <!--String Data Tv Show-->
     <array name="poster_tv_show_data">
