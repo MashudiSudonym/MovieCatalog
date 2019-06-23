@@ -30,6 +30,7 @@ class MovieAdapter(
 class MovieViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
     fun bindItem(movieData: MovieData, listener: (MovieData) -> Unit) {
         layout_item_movie_tv_show.setOnClickListener { listener(movieData) }
+
         Glide.with(img_poster.context)
             .load(movieData.moviePoster)
             .apply(
@@ -38,6 +39,7 @@ class MovieViewHolder(override val containerView: View) : RecyclerView.ViewHolde
                     .error(R.drawable.ic_error)
             )
             .into(img_poster)
+
         tv_title.text = movieData.movieTitle
         tv_release_date.text = movieData.movieReleaseDate
         tv_description.text = movieData.movieDescription

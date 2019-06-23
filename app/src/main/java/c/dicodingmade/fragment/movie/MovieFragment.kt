@@ -1,6 +1,7 @@
 package c.dicodingmade.fragment.movie
 
 
+import android.content.Intent
 import android.content.res.TypedArray
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import c.dicodingmade.R
+import c.dicodingmade.activity.detail.DetailActivity
 import c.dicodingmade.model.MovieData
 import kotlinx.android.synthetic.main.fragment_movie.*
 
@@ -38,10 +40,17 @@ class MovieFragment : Fragment() {
 
     private fun movieRecyclerView() {
         movieAdapter = MovieAdapter(listMovies) {
-
+            val singleMovieData = MovieData().apply {
+                moviePoster = it.moviePoster
+                movieTitle = it.movieTitle
+                movieReleaseDate = it.movieReleaseDate
+                movieDescription = it.movieDescription
+            }
+            val detailMovieWithObjectIntent = Intent(context, DetailActivity::class.java)
+                .putExtra(DetailActivity.EXTRA_DATA, singleMovieData)
+            startActivity(detailMovieWithObjectIntent)
         }
         rv_movie.adapter = movieAdapter
-        //rv_movie.layoutManager = LinearLayoutManager(context)
         rv_movie.isNestedScrollingEnabled = false
     }
 
