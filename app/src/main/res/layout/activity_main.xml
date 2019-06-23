@@ -12,19 +12,19 @@
         <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar_main"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"/>
+                android:layout_height="?attr/actionBarSize"
+                app:titleTextColor="@android:color/white"/>
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/layout_tab_main"
+                style="@style/Widget.MaterialComponents.TabLayout.Colored"
+                app:tabGravity="fill"
+                app:tabIndicatorGravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
     </com.google.android.material.appbar.AppBarLayout>
     <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-        <com.google.android.material.tabs.TabLayout
-                android:id="@+id/layout_tab_main"
-                style="@style/Widget.MaterialComponents.TabLayout.Colored"
-                app:tabGravity="fill"
-                app:tabIndicatorGravity="stretch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-    </androidx.viewpager.widget.ViewPager>
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

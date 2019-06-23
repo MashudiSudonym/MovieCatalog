@@ -25,5 +25,6 @@ class MainActivity : AppCompatActivity() {
             addFragment(TvShowFragment(), resources.getString(R.string.title_tab_tv_show))
         }
         view_pager_main.adapter = tabViewPagerAdapter
+        layout_tab_main.setupWithViewPager(view_pager_main)
     }
 }
