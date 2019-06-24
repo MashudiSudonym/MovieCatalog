@@ -40,9 +40,10 @@ class TvShowFragment : Fragment() {
                 movieTvShowReleaseDate = it.movieTvShowReleaseDate
                 movieTvShowDescription = it.movieTvShowDescription
             }
-            val detailTvShowWithObjectIntent = Intent(context, DetailActivity::class.java)
-                .putExtra(DetailActivity.EXTRA_DATA, singleTvShowData)
-            startActivity(detailTvShowWithObjectIntent)
+            Intent(context, DetailActivity::class.java)
+                .putExtra(DetailActivity.EXTRA_DATA, singleTvShowData).also {
+                    startActivity(it)
+                }
         }
         rv_tv_show.adapter = tvShowAdapter
         rv_tv_show.isNestedScrollingEnabled = false
@@ -51,7 +52,7 @@ class TvShowFragment : Fragment() {
     }
 
     private fun addDataTvShow() {
-        for (i in 0 until tvShowTitleData.size) {
+        for (i in tvShowTitleData.indices) {
             val tvShowData = MovieTvShowData()
             tvShowData.movieTvShowPoster = tvShowPosterData.getResourceId(i, -1)
             tvShowData.movieTvShowTitle = tvShowTitleData[i]

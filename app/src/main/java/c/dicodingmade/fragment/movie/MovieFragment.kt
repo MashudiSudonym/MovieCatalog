@@ -46,16 +46,17 @@ class MovieFragment : Fragment() {
                 movieTvShowReleaseDate = it.movieTvShowReleaseDate
                 movieTvShowDescription = it.movieTvShowDescription
             }
-            val detailMovieWithObjectIntent = Intent(context, DetailActivity::class.java)
-                .putExtra(DetailActivity.EXTRA_DATA, singleMovieData)
-            startActivity(detailMovieWithObjectIntent)
+            Intent(context, DetailActivity::class.java)
+                .putExtra(DetailActivity.EXTRA_DATA, singleMovieData).also {
+                    startActivity(it)
+                }
         }
         rv_movie.adapter = movieAdapter
         rv_movie.isNestedScrollingEnabled = false
     }
 
     private fun addDataMovie() {
-        for (i in 0 until movieTitleData.size) {
+        for (i in movieTitleData.indices) {
             val movieData = MovieTvShowData()
             movieData.movieTvShowPoster = moviePosterData.getResourceId(i, -i)
             movieData.movieTvShowTitle = movieTitleData[i]
