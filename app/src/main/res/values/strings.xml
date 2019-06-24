@@ -21,6 +21,7 @@
     <string name="choose_language_menu">Choose Language</string>
     <string name="title_tab_movie">Movies</string>
     <string name="title_tab_tv_show">TV Show</string>
+    <string name="img_description">Image Description</string>
 
     <!--String Data Tv Show-->
     <array name="poster_tv_show_data">

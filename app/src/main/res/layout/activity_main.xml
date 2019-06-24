@@ -15,10 +15,13 @@
                 android:id="@+id/toolbar_main"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:titleTextColor="@android:color/white"/>
+                app:titleTextColor="@android:color/black"/>
         <com.google.android.material.tabs.TabLayout
                 android:id="@+id/layout_tab_main"
                 style="@style/Widget.MaterialComponents.TabLayout.Colored"
+                app:tabIndicatorColor="@android:color/black"
+                app:tabIndicatorFullWidth="true"
+                app:tabTextColor="@android:color/black"
                 app:tabGravity="fill"
                 app:tabIndicatorGravity="bottom"
                 app:tabMode="fixed"
