@@ -31,7 +31,7 @@ class MovieViewHolder(override val containerView: View) : RecyclerView.ViewHolde
     fun bindItem(movieTvShowData: MovieTvShowData, listener: (MovieTvShowData) -> Unit) {
         layout_item_movie_tv_show.setOnClickListener { listener(movieTvShowData) }
 
-        Glide.with(img_poster.context)
+        Glide.with(itemView.context)
             .load(movieTvShowData.movieTvShowPoster)
             .apply(
                 RequestOptions()

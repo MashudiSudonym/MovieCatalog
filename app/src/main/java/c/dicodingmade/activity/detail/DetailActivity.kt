@@ -1,5 +1,6 @@
 package c.dicodingmade.activity.detail
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import c.dicodingmade.R
@@ -26,7 +27,20 @@ class DetailActivity : AppCompatActivity() {
             setDisplayShowHomeEnabled(true)
         }
 
-        Glide.with(img_detail_poster.context)
+        collapsing_toolbar_detail.apply {
+            setExpandedTitleColor(Color.WHITE)
+        }
+
+        Glide.with(this)
+            .load(dataMovieTvShow.movieTvShowPoster)
+            .apply(
+                RequestOptions()
+                    .placeholder(R.drawable.loading_animation)
+                    .error(R.drawable.ic_error)
+            )
+            .into(img_poster_toolbar)
+
+        Glide.with(this)
             .load(dataMovieTvShow.movieTvShowPoster)
             .apply(
                 RequestOptions()
