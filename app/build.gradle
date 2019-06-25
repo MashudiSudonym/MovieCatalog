@@ -15,6 +15,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        // Base URL for API
+        buildConfigField "String", "BASE_URL_API", "\"https://api.themoviedb.org/3/discover/\""
+        buildConfigField "String", "BASE_URL_POSTER", "\"https://image.tmdb.org/t/p/\""
+        buildConfigField "String", "TOKEN", "\"9dfbe852b12abc0e1c44183b62a972d2\""
     }
     buildTypes {
         release {
