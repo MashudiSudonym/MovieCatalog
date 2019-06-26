@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import c.dicodingmade.BuildConfig
+import c.dicodingmade.model.ApiStatus
 import c.dicodingmade.model.MovieResult
 import c.dicodingmade.webservice.ApiService
 import c.dicodingmade.webservice.RetrofitBuilder
@@ -19,6 +20,9 @@ class MovieViewModel : ViewModel() {
     private val _movies = MutableLiveData<List<MovieResult>>()
     val movies: LiveData<List<MovieResult>>
         get() = _movies
+    private val _status = MutableLiveData<ApiStatus>()
+    val status: LiveData<ApiStatus>
+        get() = _status
 
     init {
         getMovieList()
@@ -29,10 +33,13 @@ class MovieViewModel : ViewModel() {
             val services = RetrofitBuilder.getInstance(BuildConfig.BASE_URL_API)
                 .create(ApiService::class.java)
             try {
-                val movieListResult = services.getMovieList(BuildConfig.TOKEN, "id-ID").results
+                _status.value = ApiStatus.LOADING
+                val movieListResult = services.getMovieList(BuildConfig.TOKEN, "en-US").results
+                _status.value = ApiStatus.DONE
                 _movies.value = movieListResult
             } catch (e: Exception) {
                 Log.d("Error", e.localizedMessage)
+                _status.value = ApiStatus.ERROR
             }
         }
     }
