@@ -9,14 +9,22 @@ import androidx.recyclerview.widget.RecyclerView
 import c.dicodingmade.BuildConfig
 import c.dicodingmade.R
 import c.dicodingmade.fragment.movie.MovieAdapter
+import c.dicodingmade.fragment.tvshow.TvShowAdapter
 import c.dicodingmade.model.ApiStatusConnection
 import c.dicodingmade.model.MovieResult
+import c.dicodingmade.model.TvShowResult
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
 @BindingAdapter("listDataMovie")
 fun bindMovieRecyclerView(recyclerView: RecyclerView, data: List<MovieResult>?) {
     val adapter = recyclerView.adapter as MovieAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("listDataTvShow")
+fun bindTvShowRecyclerView(recyclerView: RecyclerView, data: List<TvShowResult>?) {
+    val adapter = recyclerView.adapter as TvShowAdapter
     adapter.submitList(data)
 }
 
@@ -33,8 +41,8 @@ fun bindPoster(imgView: ImageView, imgPath: String?) {
         .into(imgView)
 }
 
-@BindingAdapter("movieApiStatusProgressBar")
-fun bindMovieApiStatusImageErrorConnection(progressBarStatus: ProgressBar, status: ApiStatusConnection?) {
+@BindingAdapter("apiStatusProgressBar")
+fun bindApiStatusImageErrorConnection(progressBarStatus: ProgressBar, status: ApiStatusConnection?) {
     when (status) {
         ApiStatusConnection.LOADING -> progressBarStatus.visible()
         ApiStatusConnection.ERROR -> progressBarStatus.gone()
@@ -42,8 +50,8 @@ fun bindMovieApiStatusImageErrorConnection(progressBarStatus: ProgressBar, statu
     }
 }
 
-@BindingAdapter("movieApiStatusImageErrorConnection")
-fun bindMovieApiStatusImageErrorConnection(imgStatus: ImageView, status: ApiStatusConnection?) {
+@BindingAdapter("apiStatusImageErrorConnection")
+fun bindApiStatusImageErrorConnection(imgStatus: ImageView, status: ApiStatusConnection?) {
     when (status) {
         ApiStatusConnection.LOADING -> imgStatus.gone()
         ApiStatusConnection.ERROR -> {

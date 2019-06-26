@@ -5,14 +5,14 @@
 
     <data>
         <variable
-                name="movie"
-                type="c.dicodingmade.model.MovieResult"/>
+                name="tvShow"
+                type="c.dicodingmade.model.TvShowResult"/>
     </data>
 
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/layout_item_movie"
+            android:id="@+id/layout_item_tv_show"
             app:cardCornerRadius="4dp"
             android:layout_marginBottom="4dp"
             android:layout_marginStart="8dp"
@@ -26,7 +26,7 @@
                     android:layout_width="0dp"
                     android:layout_height="203dp"
                     app:srcCompat="@drawable/poster_spiderman"
-                    app:imageUrl="@{movie.backdropPath}"
+                    app:imageUrl="@{tvShow.backdropPath}"
                     android:adjustViewBounds="true"
                     android:id="@+id/img_poster"
                     app:layout_constraintTop_toTopOf="parent"
@@ -63,7 +63,7 @@
                     tools:srcCompat="@drawable/ic_star"
                     android:contentDescription="@string/rating"/>
             <TextView
-                    app:voteAverage="@{movie.voteAverage}"
+                    app:voteAverage="@{tvShow.voteAverage}"
                     android:text="@string/rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
                     app:layout_constraintVertical_bias="0.0"
                     app:layout_constraintHorizontal_bias="1.0"/>
             <TextView
-                    android:text="@{movie.title}"
+                    android:text="@{tvShow.name}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_title"
@@ -101,7 +101,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"/>
             <TextView
-                    app:releaseDate="@{movie.releaseDate}"
+                    app:releaseDate="@{tvShow.firstAirDate}"
                     android:text="@string/movie_tv_show_release_date"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"/>
             <TextView
-                    android:text="@{movie.overview}"
+                    android:text="@{tvShow.overview}"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:id="@+id/tv_description"

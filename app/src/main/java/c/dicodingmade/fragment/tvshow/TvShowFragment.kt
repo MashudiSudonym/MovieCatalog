@@ -5,21 +5,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import c.dicodingmade.R
+import androidx.lifecycle.ViewModelProviders
+import c.dicodingmade.databinding.FragmentTvShowBinding
 
 class TvShowFragment : Fragment() {
+
+    private val tvShowViewModel: TvShowViewModel by lazy {
+        ViewModelProviders.of(this).get(TvShowViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tv_show, container, false)
-    }
+        val binding = FragmentTvShowBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        binding.tvShowViewModel = tvShowViewModel
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        binding.rvTvShow.adapter = TvShowAdapter(TvShowAdapter.OnClickListener {
+            Toast.makeText(context, it.originalName, Toast.LENGTH_SHORT).show()
+        })
 
+        return binding.root
     }
 }

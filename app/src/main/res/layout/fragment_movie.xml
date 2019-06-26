@@ -31,7 +31,7 @@
         >
         </androidx.recyclerview.widget.RecyclerView>
         <ImageView
-                app:movieApiStatusImageErrorConnection="@{movieViewModel.status}"
+                app:apiStatusImageErrorConnection="@{movieViewModel.status}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/img_status_connection_movie"
@@ -47,7 +47,7 @@
                 android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"/>
         <ProgressBar
-                app:movieApiStatusProgressBar="@{movieViewModel.status}"
+                app:apiStatusProgressBar="@{movieViewModel.status}"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
