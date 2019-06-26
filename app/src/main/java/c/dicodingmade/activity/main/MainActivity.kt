@@ -6,30 +6,32 @@ import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupWithNavController
 import c.dicodingmade.R
-import c.dicodingmade.fragment.movie.MovieFragment
-import c.dicodingmade.fragment.tvshow.TvShowFragment
-import c.dicodingmade.util.TabViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var tabViewPagerAdapter: TabViewPagerAdapter
+    private lateinit var navController: NavController
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setSupportActionBar(toolbar_main)
-        supportActionBar.apply {
-            title = resources.getString(R.string.app_name)
+        navController = findNavController(R.id.nav_host_fragment)
+        appBarConfiguration = AppBarConfiguration(navController.graph)
+        toolbar_main.apply {
+            setupWithNavController(navController, appBarConfiguration)
         }
+        setSupportActionBar(toolbar_main) // add this for show menu item
+    }
 
-        tabViewPagerAdapter = TabViewPagerAdapter(supportFragmentManager).apply {
-            addFragment(MovieFragment(), resources.getString(R.string.title_tab_movie))
-            addFragment(TvShowFragment(), resources.getString(R.string.title_tab_tv_show))
-        }
-        view_pager_main.adapter = tabViewPagerAdapter
-        layout_tab_main.setupWithViewPager(view_pager_main)
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -43,4 +45,5 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 }
