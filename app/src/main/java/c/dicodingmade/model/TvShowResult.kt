@@ -1,7 +1,10 @@
 package c.dicodingmade.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class TvShowResult(
     @SerializedName("backdrop_path")
     val backdropPath: String? = "",
@@ -14,7 +17,7 @@ data class TvShowResult(
     @SerializedName("name")
     val name: String? = "",
     @SerializedName("origin_country")
-    val originCountry: List<Any?>? = listOf(),
+    val originCountry: List<String>? = listOf(),
     @SerializedName("original_language")
     val originalLanguage: String? = "",
     @SerializedName("original_name")
@@ -29,4 +32,4 @@ data class TvShowResult(
     val voteAverage: Double? = 0.0,
     @SerializedName("vote_count")
     val voteCount: Int? = 0
-)
+) : Parcelable

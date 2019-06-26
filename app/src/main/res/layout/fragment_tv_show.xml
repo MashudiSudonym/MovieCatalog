@@ -18,5 +18,5 @@
             android:padding="6dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="16"
-            tools:listitem="@layout/item_list_movie_tv_show"/>
+            tools:listitem="@layout/item_list_movie"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

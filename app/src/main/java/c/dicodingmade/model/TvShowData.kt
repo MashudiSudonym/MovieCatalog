@@ -1,8 +1,10 @@
 package c.dicodingmade.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 data class TvShowData(
     @SerializedName("page")
     val page: Int? = 0,
@@ -12,4 +14,4 @@ data class TvShowData(
     val totalPages: Int? = 0,
     @SerializedName("total_results")
     val totalResults: Int? = 0
-)
+) : Parcelable

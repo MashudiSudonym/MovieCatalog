@@ -11,7 +11,7 @@ interface ApiService {
     suspend fun getMovieList(
         @Query("api_key") apiKey: String,
         @Query("language") language: String
-    ): Response<MovieData>
+    ): MovieData
 
     @GET("discover/tv")
     suspend fun getTvShowList(

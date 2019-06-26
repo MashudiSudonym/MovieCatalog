@@ -1,7 +1,10 @@
 package c.dicodingmade.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class MovieResult(
     @SerializedName("adult")
     val adult: Boolean = false,
@@ -31,4 +34,4 @@ data class MovieResult(
     val voteAverage: Double = 0.0,
     @SerializedName("vote_count")
     val voteCount: Int = 0
-)
+) : Parcelable

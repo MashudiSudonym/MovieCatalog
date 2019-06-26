@@ -5,21 +5,28 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import c.dicodingmade.R
+import androidx.lifecycle.ViewModelProviders
+import c.dicodingmade.databinding.FragmentMovieBinding
 
 class MovieFragment : Fragment() {
+    private val movieViewModel: MovieViewModel by lazy {
+        ViewModelProviders.of(this).get(MovieViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie, container, false)
-    }
+        val binding = FragmentMovieBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        binding.movieViewModel = movieViewModel
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        binding.rvMovie.adapter = MovieAdapter(MovieAdapter.OnClickListener {
+            Toast.makeText(context, it.originalTitle, Toast.LENGTH_SHORT).show()
+        })
 
+        return binding.root
     }
 }
