@@ -10,7 +10,6 @@ import c.dicodingmade.BuildConfig
 import c.dicodingmade.R
 import c.dicodingmade.fragment.movie.MovieAdapter
 import c.dicodingmade.fragment.tvshow.TvShowAdapter
-import c.dicodingmade.model.ApiStatusConnection
 import c.dicodingmade.model.MovieResult
 import c.dicodingmade.model.TvShowResult
 import com.bumptech.glide.Glide

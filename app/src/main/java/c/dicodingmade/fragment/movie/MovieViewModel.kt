@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import c.dicodingmade.BuildConfig
-import c.dicodingmade.model.ApiStatusConnection
 import c.dicodingmade.model.MovieResult
+import c.dicodingmade.util.ApiStatusConnection
 import c.dicodingmade.webservice.ApiService
 import c.dicodingmade.webservice.RetrofitBuilder
 import kotlinx.coroutines.CoroutineScope
