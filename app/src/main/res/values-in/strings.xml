@@ -22,4 +22,5 @@
     <string name="title_tab_movie">Film</string>
     <string name="title_tab_tv_show">Acara TV</string>
     <string name="img_description">Deskripsi Gambar</string>
+    <string name="rating">0.0</string>
 </resources>

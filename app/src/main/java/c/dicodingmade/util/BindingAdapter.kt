@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import c.dicodingmade.BuildConfig
 import c.dicodingmade.R
 import c.dicodingmade.fragment.movie.MovieAdapter
-import c.dicodingmade.model.ApiStatus
+import c.dicodingmade.model.ApiStatusConnection
 import c.dicodingmade.model.MovieResult
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -34,23 +34,23 @@ fun bindPoster(imgView: ImageView, imgPath: String?) {
 }
 
 @BindingAdapter("movieApiStatusProgressBar")
-fun bindMovieApiStatusImageErrorConnection(progressBarStatus: ProgressBar, status: ApiStatus?) {
+fun bindMovieApiStatusImageErrorConnection(progressBarStatus: ProgressBar, status: ApiStatusConnection?) {
     when (status) {
-        ApiStatus.LOADING -> progressBarStatus.visible()
-        ApiStatus.ERROR -> progressBarStatus.gone()
-        ApiStatus.DONE -> progressBarStatus.gone()
+        ApiStatusConnection.LOADING -> progressBarStatus.visible()
+        ApiStatusConnection.ERROR -> progressBarStatus.gone()
+        ApiStatusConnection.DONE -> progressBarStatus.gone()
     }
 }
 
 @BindingAdapter("movieApiStatusImageErrorConnection")
-fun bindMovieApiStatusImageErrorConnection(imgStatus: ImageView, status: ApiStatus?) {
+fun bindMovieApiStatusImageErrorConnection(imgStatus: ImageView, status: ApiStatusConnection?) {
     when (status) {
-        ApiStatus.LOADING -> imgStatus.gone()
-        ApiStatus.ERROR -> {
+        ApiStatusConnection.LOADING -> imgStatus.gone()
+        ApiStatusConnection.ERROR -> {
             imgStatus.visible()
             imgStatus.setImageResource(R.drawable.ic_connection_error)
         }
-        ApiStatus.DONE -> imgStatus.gone()
+        ApiStatusConnection.DONE -> imgStatus.gone()
     }
 }
 
@@ -59,4 +59,9 @@ fun bindMovieApiStatusImageErrorConnection(imgStatus: ImageView, status: ApiStat
 fun bindReleaseDate(textView: TextView, textPath: String?) {
     textView.text =
         textView.resources.getString(R.string.movie_tv_show_release_date) + simpleDateFormat(textPath as String)
+}
+
+@BindingAdapter("voteAverage")
+fun bindVoteAverage(textView: TextView, textPath: Double?) {
+    textView.text = textPath.toString()
 }
