@@ -4,16 +4,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import c.dicodingmade.BuildConfig
 import c.dicodingmade.R
-import c.dicodingmade.model.MovieTvShowData
+import c.dicodingmade.model.MovieResult
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_list_movie_tv_show.*
 
 class MovieAdapter(
-    private val movieTvShowData: List<MovieTvShowData>,
-    private val listener: (MovieTvShowData) -> Unit
+    private val movieResult: List<MovieResult>,
+    private val listener: (MovieResult) -> Unit
 ) :
     RecyclerView.Adapter<MovieViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder = MovieViewHolder(
@@ -21,18 +22,18 @@ class MovieAdapter(
             .inflate(R.layout.item_list_movie_tv_show, parent, false)
     )
 
-    override fun getItemCount(): Int = movieTvShowData.size
+    override fun getItemCount(): Int = movieResult.size
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) =
-        holder.bindItem(movieTvShowData[position], listener)
+        holder.bindItem(movieResult[position], listener)
 }
 
 class MovieViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
-    fun bindItem(movieTvShowData: MovieTvShowData, listener: (MovieTvShowData) -> Unit) {
-        layout_item_movie_tv_show.setOnClickListener { listener(movieTvShowData) }
+    fun bindItem(movieResult: MovieResult, listener: (MovieResult) -> Unit) {
+        layout_item_movie_tv_show.setOnClickListener { listener(movieResult) }
 
         Glide.with(itemView.context)
-            .load(movieTvShowData.movieTvShowPoster)
+            .load("${BuildConfig.BASE_URL_API}original/${movieResult.backdropPath}")
             .apply(
                 RequestOptions()
                     .placeholder(R.drawable.loading_animation)
@@ -40,8 +41,8 @@ class MovieViewHolder(override val containerView: View) : RecyclerView.ViewHolde
             )
             .into(img_poster)
 
-        tv_title.text = movieTvShowData.movieTvShowTitle
-        tv_release_date.text = movieTvShowData.movieTvShowReleaseDate
-        tv_description.text = movieTvShowData.movieTvShowDescription
+        tv_title.text = movieResult.originalTitle
+        tv_release_date.text = movieResult.releaseDate
+        tv_description.text = movieResult.overview
     }
 }
