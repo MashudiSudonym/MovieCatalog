@@ -6,13 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import c.dicodingmade.BuildConfig
 import c.dicodingmade.model.MovieResult
-import c.dicodingmade.util.ApiStatusConnection
+import c.dicodingmade.util.ViewStatusConnection
 import c.dicodingmade.webservice.ApiService
 import c.dicodingmade.webservice.RetrofitBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 class MovieViewModel : ViewModel() {
     private var movieViewModelJob = Job()
@@ -20,11 +21,19 @@ class MovieViewModel : ViewModel() {
     private val _movies = MutableLiveData<List<MovieResult>>()
     val movies: LiveData<List<MovieResult>>
         get() = _movies
-    private val _status = MutableLiveData<ApiStatusConnection>()
-    val status: LiveData<ApiStatusConnection>
-        get() = _status
+    private val _statusConnectionView = MutableLiveData<ViewStatusConnection>()
+    val statusConnectionView: LiveData<ViewStatusConnection>
+        get() = _statusConnectionView
+    private val _refreshStatus = MutableLiveData<Boolean>()
+    val refreshStatus: LiveData<Boolean>
+        get() = _refreshStatus
 
     init {
+        getMovieList()
+    }
+
+    fun onRefresh() {
+        _refreshStatus.value = true
         getMovieList()
     }
 
@@ -33,13 +42,20 @@ class MovieViewModel : ViewModel() {
             val services = RetrofitBuilder.getInstance(BuildConfig.BASE_URL_API)
                 .create(ApiService::class.java)
             try {
-                _status.value = ApiStatusConnection.LOADING
+                _statusConnectionView.value = ViewStatusConnection.LOADING
                 val movieListResult = services.getMovieList(BuildConfig.TOKEN, "en-US").results
-                _status.value = ApiStatusConnection.DONE
+                _statusConnectionView.value = ViewStatusConnection.DONE
+                _refreshStatus.value = false
                 _movies.value = movieListResult
-            } catch (e: Exception) {
-                Log.d("Error", e.localizedMessage)
-                _status.value = ApiStatusConnection.ERROR
+
+            } catch (e: Throwable) {
+                Log.e("Error", e.localizedMessage)
+                _statusConnectionView.value = ViewStatusConnection.ERROR
+                _refreshStatus.value = false
+            } catch (e: HttpException) {
+                Log.e("Http Error", e.message())
+                _statusConnectionView.value = ViewStatusConnection.ERROR
+                _refreshStatus.value = false
             }
         }
     }

@@ -19,7 +19,7 @@ fun View.gone() {
 @SuppressLint("SimpleDateFormat")
 fun simpleDateFormat(originalDate: String): String {
     val inputFormat = SimpleDateFormat("yyyy-MM-dd")
-    val outputFormat = SimpleDateFormat("EEE, dd MMM yyy")
+    val outputFormat = SimpleDateFormat("EEEE, dd MMM yyy")
     val date = inputFormat.parse(originalDate)
     return outputFormat.format(date)
 }

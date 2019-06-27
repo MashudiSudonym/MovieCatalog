@@ -41,23 +41,32 @@ fun bindPoster(imgView: ImageView, imgPath: String?) {
 }
 
 @BindingAdapter("apiStatusProgressBar")
-fun bindApiStatusImageErrorConnection(progressBarStatus: ProgressBar, status: ApiStatusConnection?) {
-    when (status) {
-        ApiStatusConnection.LOADING -> progressBarStatus.visible()
-        ApiStatusConnection.ERROR -> progressBarStatus.gone()
-        ApiStatusConnection.DONE -> progressBarStatus.gone()
+fun bindApiStatusImageErrorConnection(progressBarStatus: ProgressBar, viewStatusConnection: ViewStatusConnection?) {
+    when (viewStatusConnection) {
+        ViewStatusConnection.LOADING -> progressBarStatus.visible()
+        ViewStatusConnection.ERROR -> progressBarStatus.gone()
+        ViewStatusConnection.DONE -> progressBarStatus.gone()
     }
 }
 
 @BindingAdapter("apiStatusImageErrorConnection")
-fun bindApiStatusImageErrorConnection(imgStatus: ImageView, status: ApiStatusConnection?) {
-    when (status) {
-        ApiStatusConnection.LOADING -> imgStatus.gone()
-        ApiStatusConnection.ERROR -> {
+fun bindApiStatusImageErrorConnection(imgStatus: ImageView, viewStatusConnection: ViewStatusConnection?) {
+    when (viewStatusConnection) {
+        ViewStatusConnection.LOADING -> imgStatus.gone()
+        ViewStatusConnection.ERROR -> {
             imgStatus.visible()
             imgStatus.setImageResource(R.drawable.ic_connection_error)
         }
-        ApiStatusConnection.DONE -> imgStatus.gone()
+        ViewStatusConnection.DONE -> imgStatus.gone()
+    }
+}
+
+@BindingAdapter("apiStatusRecyclerViewErrorConnection")
+fun bindApiStatusRecyclerViewErrorConnection(recyclerView: RecyclerView, viewStatusConnection: ViewStatusConnection?) {
+    when (viewStatusConnection) {
+        ViewStatusConnection.LOADING -> recyclerView.invisible()
+        ViewStatusConnection.ERROR -> recyclerView.invisible()
+        ViewStatusConnection.DONE -> recyclerView.visible()
     }
 }
 
