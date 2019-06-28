@@ -15,18 +15,21 @@ import c.dicodingmade.model.TvShowResult
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
+// Recycler View Movie
 @BindingAdapter("listDataMovie")
 fun bindMovieRecyclerView(recyclerView: RecyclerView, data: List<MovieResult>?) {
     val adapter = recyclerView.adapter as MovieAdapter
     adapter.submitList(data)
 }
 
+// Recycler View Tv Show
 @BindingAdapter("listDataTvShow")
 fun bindTvShowRecyclerView(recyclerView: RecyclerView, data: List<TvShowResult>?) {
     val adapter = recyclerView.adapter as TvShowAdapter
     adapter.submitList(data)
 }
 
+// Poster Movie / Tv Show
 @BindingAdapter("imageUrl")
 fun bindPoster(imgView: ImageView, imgPath: String?) {
     Glide.with(imgView.context)
@@ -40,6 +43,7 @@ fun bindPoster(imgView: ImageView, imgPath: String?) {
         .into(imgView)
 }
 
+// Progress Bar for waiting loading data
 @BindingAdapter("apiStatusProgressBar")
 fun bindApiStatusImageErrorConnection(progressBarStatus: ProgressBar, viewStatusConnection: ViewStatusConnection?) {
     when (viewStatusConnection) {
@@ -49,6 +53,7 @@ fun bindApiStatusImageErrorConnection(progressBarStatus: ProgressBar, viewStatus
     }
 }
 
+// Error no connection network icon
 @BindingAdapter("apiStatusImageErrorConnection")
 fun bindApiStatusImageErrorConnection(imgStatus: ImageView, viewStatusConnection: ViewStatusConnection?) {
     when (viewStatusConnection) {
@@ -61,6 +66,7 @@ fun bindApiStatusImageErrorConnection(imgStatus: ImageView, viewStatusConnection
     }
 }
 
+// If error connection recycler view must be hiding
 @BindingAdapter("apiStatusRecyclerViewErrorConnection")
 fun bindApiStatusRecyclerViewErrorConnection(recyclerView: RecyclerView, viewStatusConnection: ViewStatusConnection?) {
     when (viewStatusConnection) {
@@ -70,6 +76,7 @@ fun bindApiStatusRecyclerViewErrorConnection(recyclerView: RecyclerView, viewSta
     }
 }
 
+// Converter Text format for release date movie / tv show
 @SuppressLint("SetTextI18n")
 @BindingAdapter("releaseDate")
 fun bindReleaseDate(textView: TextView, textPath: String?) {
@@ -77,6 +84,7 @@ fun bindReleaseDate(textView: TextView, textPath: String?) {
         textView.resources.getString(R.string.movie_tv_show_release_date) + simpleDateFormat(textPath as String)
 }
 
+// Converter Text format for rating movie / tv show
 @BindingAdapter("voteAverage")
 fun bindVoteAverage(textView: TextView, textPath: Double?) {
     textView.text = textPath.toString()

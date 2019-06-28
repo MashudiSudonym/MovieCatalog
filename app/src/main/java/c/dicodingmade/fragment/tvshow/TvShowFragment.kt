@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import c.dicodingmade.databinding.FragmentTvShowBinding
 import c.dicodingmade.fragment.main.MainFragmentDirections
+import c.dicodingmade.model.MovieResult
 
 class TvShowFragment : Fragment() {
 
@@ -32,7 +33,13 @@ class TvShowFragment : Fragment() {
         tvShowViewModel.navigateToDetail.observe(this, Observer {
             if (null != it) {
                 this.findNavController()
-                    .navigate(MainFragmentDirections.actionMainFragmentToDetailFragment(it.id, it.name))
+                    .navigate(
+                        MainFragmentDirections.actionMainFragmentToDetailFragment(
+                            it.name,
+                            MovieResult(),
+                            it
+                        )
+                    )
                 tvShowViewModel.displaDetailComplete()
             }
         })

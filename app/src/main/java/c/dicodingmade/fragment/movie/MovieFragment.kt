@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import c.dicodingmade.databinding.FragmentMovieBinding
 import c.dicodingmade.fragment.main.MainFragmentDirections
+import c.dicodingmade.model.TvShowResult
 
 class MovieFragment : Fragment() {
     private val movieViewModel: MovieViewModel by lazy {
@@ -31,7 +32,13 @@ class MovieFragment : Fragment() {
         movieViewModel.navigateToDetail.observe(this, Observer {
             if (null != it) {
                 this.findNavController()
-                    .navigate(MainFragmentDirections.actionMainFragmentToDetailFragment(it.id, it.title))
+                    .navigate(
+                        MainFragmentDirections.actionMainFragmentToDetailFragment(
+                            it.title,
+                            it,
+                            TvShowResult()
+                        )
+                    )
                 movieViewModel.displayDetailComplete()
             }
         })

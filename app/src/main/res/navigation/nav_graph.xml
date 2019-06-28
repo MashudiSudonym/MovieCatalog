@@ -16,7 +16,8 @@
                 app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
                 app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"
                 app:launchSingleTop="true"/>
-        <argument android:name="dataId" app:argType="integer"/>
         <argument android:name="dataName" app:argType="string"/>
+        <argument android:name="movieResultData" app:argType="c.dicodingmade.model.MovieResult"/>
+        <argument android:name="tvShowResultData" app:argType="c.dicodingmade.model.TvShowResult"/>
     </fragment>
 </navigation>
