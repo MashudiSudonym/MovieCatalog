@@ -10,6 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import c.dicodingmade.R
 import kotlinx.android.synthetic.main.activity_main.*
@@ -24,10 +25,20 @@ class MainActivity : AppCompatActivity() {
 
         navController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration = AppBarConfiguration(navController.graph)
-        toolbar_main.apply {
-            setupWithNavController(navController, appBarConfiguration)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.mainFragment -> {
+                    toolbar_main.apply {
+                        setupWithNavController(navController, appBarConfiguration)
+                    }
+                    setSupportActionBar(toolbar_main) // add this for show menu item
+                }
+                R.id.detailFragment -> {
+                    setupActionBarWithNavController(navController, appBarConfiguration)
+                }
+            }
         }
-        setSupportActionBar(toolbar_main) // add this for show menu item
     }
 
     override fun onSupportNavigateUp(): Boolean {
