@@ -1,4 +1,4 @@
-package c.dicodingmade.fragment.movie
+package c.dicodingmade.ui.movie
 
 
 import android.os.Bundle
@@ -10,8 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import c.dicodingmade.databinding.FragmentMovieBinding
-import c.dicodingmade.fragment.main.MainFragmentDirections
 import c.dicodingmade.model.TvShowResult
+import c.dicodingmade.ui.main.MainFragmentDirections
 
 class MovieFragment : Fragment() {
     private val movieViewModel: MovieViewModel by lazy {

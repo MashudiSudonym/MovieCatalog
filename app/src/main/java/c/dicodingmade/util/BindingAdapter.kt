@@ -8,10 +8,10 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import c.dicodingmade.BuildConfig
 import c.dicodingmade.R
-import c.dicodingmade.fragment.movie.MovieAdapter
-import c.dicodingmade.fragment.tvshow.TvShowAdapter
 import c.dicodingmade.model.MovieResult
 import c.dicodingmade.model.TvShowResult
+import c.dicodingmade.ui.movie.MovieAdapter
+import c.dicodingmade.ui.tvshow.TvShowAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 

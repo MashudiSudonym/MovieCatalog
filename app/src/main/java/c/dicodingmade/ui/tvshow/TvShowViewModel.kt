@@ -1,4 +1,4 @@
-package c.dicodingmade.fragment.tvshow
+package c.dicodingmade.ui.tvshow
 
 import android.util.Log
 import androidx.lifecycle.LiveData

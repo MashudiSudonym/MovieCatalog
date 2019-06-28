@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="tvShowViewModel"
-                type="c.dicodingmade.fragment.tvshow.TvShowViewModel"/>
+                type="c.dicodingmade.ui.tvshow.TvShowViewModel"/>
     </data>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh_tv_show"
@@ -18,7 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".fragment.tvshow.TvShowFragment"
+                tools:context=".ui.tvshow.TvShowFragment"
                 android:id="@+id/layout_tv_show">
             <androidx.recyclerview.widget.RecyclerView
                     app:apiStatusRecyclerViewErrorConnection="@{tvShowViewModel.statusConnectionView}"

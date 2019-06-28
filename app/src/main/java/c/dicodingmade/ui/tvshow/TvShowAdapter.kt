@@ -1,4 +1,4 @@
-package c.dicodingmade.fragment.tvshow
+package c.dicodingmade.ui.tvshow
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

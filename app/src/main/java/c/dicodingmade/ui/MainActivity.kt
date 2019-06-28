@@ -1,4 +1,4 @@
-package c.dicodingmade.activity.main
+package c.dicodingmade.ui
 
 import android.content.Intent
 import android.os.Bundle

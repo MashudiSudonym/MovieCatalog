@@ -1,4 +1,4 @@
-package c.dicodingmade.fragment.movie
+package c.dicodingmade.ui.movie
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

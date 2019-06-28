@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="movieViewModel"
-                type="c.dicodingmade.fragment.movie.MovieViewModel"/>
+                type="c.dicodingmade.ui.movie.MovieViewModel"/>
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -19,7 +19,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".fragment.movie.MovieFragment"
+                tools:context=".ui.movie.MovieFragment"
                 android:id="@+id/layout_movie">
             <androidx.recyclerview.widget.RecyclerView
                     app:apiStatusRecyclerViewErrorConnection="@{movieViewModel.statusConnectionView}"

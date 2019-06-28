@@ -6,7 +6,7 @@
 
     <data>
         <variable name="detailViewModel"
-                  type="c.dicodingmade.fragment.detail.DetailViewModel"/>
+                  type="c.dicodingmade.ui.detail.DetailViewModel"/>
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

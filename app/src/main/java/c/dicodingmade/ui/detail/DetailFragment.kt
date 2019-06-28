@@ -1,4 +1,4 @@
-package c.dicodingmade.fragment.detail
+package c.dicodingmade.ui.detail
 
 import android.graphics.Color
 import android.os.Bundle

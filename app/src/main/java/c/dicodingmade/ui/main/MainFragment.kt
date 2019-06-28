@@ -1,4 +1,4 @@
-package c.dicodingmade.fragment.main
+package c.dicodingmade.ui.main
 
 
 import android.os.Bundle
@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import c.dicodingmade.R
-import c.dicodingmade.fragment.movie.MovieFragment
-import c.dicodingmade.fragment.tvshow.TvShowFragment
+import c.dicodingmade.ui.movie.MovieFragment
+import c.dicodingmade.ui.tvshow.TvShowFragment
 import c.dicodingmade.util.TabViewPagerAdapter
 import kotlinx.android.synthetic.main.fragment_main.*
 

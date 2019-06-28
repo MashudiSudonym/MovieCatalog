@@ -14,9 +14,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".activity.detail.DetailActivity">
-        </activity>
-        <activity android:name=".activity.main.MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

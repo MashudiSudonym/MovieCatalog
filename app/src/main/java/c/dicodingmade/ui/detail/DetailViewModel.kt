@@ -1,4 +1,4 @@
-package c.dicodingmade.fragment.detail
+package c.dicodingmade.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
