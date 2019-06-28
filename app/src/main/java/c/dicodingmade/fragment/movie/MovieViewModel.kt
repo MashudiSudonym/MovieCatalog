@@ -19,22 +19,18 @@ class MovieViewModel : ViewModel() {
     private var movieViewModelJob = Job()
     private var coroutineScope = CoroutineScope(movieViewModelJob + Dispatchers.Main)
 
-    // Update List of Movie Result
     private val _movies = MutableLiveData<List<MovieResult>>()
     val movies: LiveData<List<MovieResult>>
         get() = _movies
 
-    // Status of request
     private val _statusConnectionView = MutableLiveData<ViewStatusConnection>()
     val statusConnectionView: LiveData<ViewStatusConnection>
         get() = _statusConnectionView
 
-    // Refresh status for Swipe Refresh Layout
     private val _refreshStatus = MutableLiveData<Boolean>()
     val refreshStatus: LiveData<Boolean>
         get() = _refreshStatus
 
-    // Handle navigation to Detail
     private val _navigateToDetail = MutableLiveData<MovieResult>()
     val navigateToDetail: LiveData<MovieResult>
         get() = _navigateToDetail

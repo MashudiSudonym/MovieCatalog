@@ -63,9 +63,13 @@
                         tools:srcCompat="@drawable/poster_spiderman"
                         android:contentDescription="@string/img_movie_tv_show_poster_description"
                         android:layout_marginTop="16dp"
-                        app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="16dp"
-                        app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="16dp"
-                        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginEnd="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintDimensionRatio="h,"
                 />
                 <TextView
                         android:text="@{detailViewModel.movies.id == 0 ? detailViewModel.tvShows.name : detailViewModel.movies.title}"
@@ -107,7 +111,7 @@
                         android:layout_marginTop="8dp"
                         tools:text="@string/movie_tv_show_release_date"
                         android:contentDescription="@string/movie_tv_show_release_date_description"
-                        app:releaseDate="@{detailViewModel.movies.id == 0 ? detailViewModel.tvShows.firstAirDate : detailViewModel.movies.releaseDate}"
+                        app:releaseDateDetail="@{detailViewModel.movies.id == 0 ? detailViewModel.tvShows.firstAirDate : detailViewModel.movies.releaseDate}"
                 />
                 <TextView
                         android:text="@string/overview"
