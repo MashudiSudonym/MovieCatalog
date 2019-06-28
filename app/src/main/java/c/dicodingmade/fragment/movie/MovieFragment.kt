@@ -30,7 +30,8 @@ class MovieFragment : Fragment() {
         })
         movieViewModel.navigateToDetail.observe(this, Observer {
             if (null != it) {
-                this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailFragment(it.id))
+                this.findNavController()
+                    .navigate(MainFragmentDirections.actionMainFragmentToDetailFragment(it.id, it.title))
                 movieViewModel.displayDetailComplete()
             }
         })

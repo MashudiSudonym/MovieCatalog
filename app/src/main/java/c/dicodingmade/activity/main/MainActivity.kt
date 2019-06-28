@@ -13,6 +13,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import c.dicodingmade.R
+import c.dicodingmade.util.gone
+import c.dicodingmade.util.visible
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -29,14 +31,20 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.mainFragment -> {
+                    // show toolbar main in main fragment
+                    toolbar_main.visible()
+
+                    // Enable navigation controller like back button in toolbar layout
                     toolbar_main.apply {
                         setupWithNavController(navController, appBarConfiguration)
                     }
                     setSupportActionBar(toolbar_main) // add this for show menu item
                 }
                 R.id.detailFragment -> {
-                    setupActionBarWithNavController(navController, appBarConfiguration)
+                    // hide toolbar main in detail fragment
+                    toolbar_main.gone()
                 }
+                else -> setupActionBarWithNavController(navController)
             }
         }
     }

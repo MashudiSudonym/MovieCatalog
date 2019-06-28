@@ -13,7 +13,7 @@
             android:id="@+id/swipe_refresh_movie"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:refreshing="@{movieViewModel.refreshStatus}"
+            app:refreshing="@{safeUnbox(movieViewModel.refreshStatus)}"
             app:onRefreshListener="@{() -> movieViewModel.onRefresh()}"
     >
         <androidx.constraintlayout.widget.ConstraintLayout

@@ -23,6 +23,7 @@ class TvShowFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentTvShowBinding.inflate(inflater)
+
         binding.lifecycleOwner = this
         binding.tvShowViewModel = tvShowViewModel
         binding.rvTvShow.adapter = TvShowAdapter(TvShowAdapter.OnClickListener {
@@ -30,7 +31,8 @@ class TvShowFragment : Fragment() {
         })
         tvShowViewModel.navigateToDetail.observe(this, Observer {
             if (null != it) {
-                this.findNavController().navigate(MainFragmentDirections.actionMainFragmentToDetailFragment(it.id))
+                this.findNavController()
+                    .navigate(MainFragmentDirections.actionMainFragmentToDetailFragment(it.id, it.name))
                 tvShowViewModel.displaDetailComplete()
             }
         })

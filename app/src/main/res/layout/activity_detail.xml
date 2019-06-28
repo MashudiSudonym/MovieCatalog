@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:fitsSystemWindows="true"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/layout_detail">
@@ -17,7 +17,7 @@
                 android:id="@+id/collapsing_toolbar_detail"
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                android:fitsSystemWindows="true"
+                android:minHeight="?attr/actionBarSize"
         >
             <ImageView
                     android:layout_width="match_parent"
