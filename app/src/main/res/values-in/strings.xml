@@ -5,7 +5,7 @@
     <string name="movie_tv_show_release_date_description">Tanggal Rilis Film atau Acara TV</string>
     <string name="movie_tv_show_overview_description">Ikhtisar Film atau Acara TV</string>
     <string name="title_movie_tv_show">Judul Film atau Acara TV</string>
-    <string name="movie_tv_show_release_date">"Tanggal Rilis "</string>
+    <string name="movie_tv_show_release_date">"Tanggal Rilis : "</string>
     <string name="overview">Ikhtisar</string>
     <string name="choose_language_menu">Pilih Bahasa</string>
     <string name="title_tab_movie">Film</string>

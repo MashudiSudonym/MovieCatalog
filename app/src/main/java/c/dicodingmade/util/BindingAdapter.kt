@@ -84,13 +84,6 @@ fun bindReleaseDate(textView: TextView, textPath: String?) {
         textView.resources.getString(R.string.movie_tv_show_release_date) + simpleDateFormat(textPath as String)
 }
 
-// Converter Text format for release date movie / tv show in detail page
-@SuppressLint("SetTextI18n")
-@BindingAdapter("releaseDateDetail")
-fun bindReleaseDateDetail(textView: TextView, textPath: String?) {
-    textView.text = simpleDateFormat(textPath as String)
-}
-
 // Converter Text format for rating movie / tv show
 @BindingAdapter("voteAverage")
 fun bindVoteAverage(textView: TextView, textPath: Double?) {
