@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Dicoding MADE</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="img_movie_tv_show_poster_description">Poster Movie or TV Show</string>
     <string name="title_movie_tv_show_description">Title Movie or TV Show</string>
     <string name="movie_tv_show_release_date_description">Movie or TV Show Release Date</string>

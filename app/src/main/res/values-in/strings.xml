@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Dicoding MADE</string>
-    <string name="hello_blank_fragment">Halo Fragment Kosong</string>
     <string name="img_movie_tv_show_poster_description">Poster Film atau Acara TV</string>
     <string name="title_movie_tv_show_description">Judul Film atau Acara TV</string>
     <string name="movie_tv_show_release_date_description">Tanggal Rilis Film atau Acara TV</string>
