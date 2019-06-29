@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -60,7 +61,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            R.id.choose_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+            R.id.menu_choose_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+            R.id.menu_favorite -> Toast.makeText(this, "Favorite Menu", Toast.LENGTH_SHORT).show()
         }
         return super.onOptionsItemSelected(item)
     }
