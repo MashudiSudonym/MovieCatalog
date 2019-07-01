@@ -1,4 +1,4 @@
-package c.dicodingmade.webservice
+package c.dicodingmade.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

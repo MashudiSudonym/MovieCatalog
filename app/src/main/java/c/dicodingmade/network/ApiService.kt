@@ -1,4 +1,4 @@
-package c.dicodingmade.webservice
+package c.dicodingmade.network
 
 import c.dicodingmade.model.MovieData
 import c.dicodingmade.model.TvShowData
