@@ -4,21 +4,17 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import c.dicodingmade.BuildConfig
 import c.dicodingmade.model.MovieResult
 import c.dicodingmade.network.ApiService
 import c.dicodingmade.network.RetrofitBuilder
 import c.dicodingmade.util.ViewStatusConnection
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 class MovieViewModel : ViewModel() {
-    private var movieViewModelJob = Job()
-    private var coroutineScope = CoroutineScope(movieViewModelJob + Dispatchers.Main)
-
     private val _movies = MutableLiveData<List<MovieResult>>()
     val movies: LiveData<List<MovieResult>>
         get() = _movies
@@ -53,7 +49,7 @@ class MovieViewModel : ViewModel() {
     }
 
     private fun getMovieList() {
-        coroutineScope.launch {
+        viewModelScope.launch {
             val services = RetrofitBuilder.getInstance(BuildConfig.BASE_URL_API)
                 .create(ApiService::class.java)
             try {
@@ -77,6 +73,6 @@ class MovieViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        movieViewModelJob.cancel()
+        viewModelScope.cancel()
     }
 }

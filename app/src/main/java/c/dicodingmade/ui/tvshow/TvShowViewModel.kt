@@ -4,21 +4,17 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import c.dicodingmade.BuildConfig
 import c.dicodingmade.model.TvShowResult
 import c.dicodingmade.network.ApiService
 import c.dicodingmade.network.RetrofitBuilder
 import c.dicodingmade.util.ViewStatusConnection
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 class TvShowViewModel : ViewModel() {
-    private var tvShowViewModelJob = Job()
-    private var coroutineScope = CoroutineScope(tvShowViewModelJob + Dispatchers.Main)
-
     private val _tvShows = MutableLiveData<List<TvShowResult>>()
     val tvShows: LiveData<List<TvShowResult>>
         get() = _tvShows
@@ -53,7 +49,7 @@ class TvShowViewModel : ViewModel() {
     }
 
     private fun getTvShowList() {
-        coroutineScope.launch {
+        viewModelScope.launch {
             val services = RetrofitBuilder.getInstance(BuildConfig.BASE_URL_API)
                 .create(ApiService::class.java)
             try {
@@ -76,6 +72,6 @@ class TvShowViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        tvShowViewModelJob.cancel()
+        viewModelScope.cancel()
     }
 }
