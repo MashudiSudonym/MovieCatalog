@@ -5,14 +5,10 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.ui.*
 import c.dicodingmade.R
 import c.dicodingmade.util.gone
 import c.dicodingmade.util.visible
@@ -55,14 +51,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.language_setting_menu, menu)
+        menuInflater.inflate(R.menu.app_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.menu_choose_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-            R.id.menu_favorite -> Toast.makeText(this, "Favorite Menu", Toast.LENGTH_SHORT).show()
+            R.id.favoriteFragment -> item.onNavDestinationSelected(navController)
         }
         return super.onOptionsItemSelected(item)
     }

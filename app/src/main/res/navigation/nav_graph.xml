@@ -20,4 +20,10 @@
         <argument android:name="movieResultData" app:argType="c.dicodingmade.model.MovieResult"/>
         <argument android:name="tvShowResultData" app:argType="c.dicodingmade.model.TvShowResult"/>
     </fragment>
+    <fragment android:id="@+id/favoriteFragment" android:name="c.dicodingmade.ui.favorite.FavoriteFragment"
+              android:label="@string/favorite" tools:layout="@layout/fragment_favorite">
+        <action android:id="@+id/action_favoriteFragment_to_detailFragment" app:destination="@id/detailFragment"
+                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
 </navigation>

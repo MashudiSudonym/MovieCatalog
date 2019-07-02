@@ -80,7 +80,8 @@
                         app:layout_constraintBottom_toBottomOf="@+id/tv_rating"
                         app:layout_constraintStart_toEndOf="parent"
                         android:layout_marginStart="8dp" app:layout_constraintEnd_toStartOf="@+id/tv_rating"
-                        app:layout_constraintHorizontal_bias="1.0" android:layout_marginEnd="8dp"/>
+                        app:layout_constraintHorizontal_bias="1.0" android:layout_marginEnd="8dp"
+                />
                 <TextView
                         app:voteAverage="@{detailViewModel.movies.id == 0 ? detailViewModel.tvShows.voteAverage : detailViewModel.movies.voteAverage}"
                         android:text="@string/rating"
@@ -89,13 +90,13 @@
                         android:contentDescription="@string/rating"
                         android:layout_marginEnd="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
+                        android:layout_marginTop="16dp" app:layout_constraintTop_toTopOf="parent"/>
                 <TextView
                         android:text="@{detailViewModel.movies.id == 0 ? detailViewModel.tvShows.name : detailViewModel.movies.title}"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/tv_detail_title"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:layout_marginEnd="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         tools:text="@string/title_movie_tv_show"

@@ -4,6 +4,6 @@
     <item android:title="@string/choose_language_menu" android:id="@+id/menu_choose_language"
           android:icon="@drawable/ic_language" app:showAsAction="ifRoom"
           android:titleCondensed="@string/choose_language_menu"/>
-    <item android:id="@+id/menu_favorite" android:icon="@drawable/ic_favorite_true"
+    <item android:id="@+id/favoriteFragment" android:icon="@drawable/ic_favorite_true"
           app:showAsAction="ifRoom" android:title="@string/favorite"/>
 </menu>

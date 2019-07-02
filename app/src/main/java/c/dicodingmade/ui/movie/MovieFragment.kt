@@ -29,6 +29,7 @@ class MovieFragment : Fragment() {
         binding.rvMovie.adapter = MovieAdapter(MovieAdapter.OnClickListener {
             movieViewModel.displayDetail(it)
         })
+
         movieViewModel.navigateToDetail.observe(this, Observer {
             if (null != it) {
                 this.findNavController()
