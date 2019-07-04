@@ -47,6 +47,17 @@
                 />
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                app:favoriteStatus="@{safeUnbox(detailViewModel.favoriteStatus)}"
+                android:onClick="@{() -> detailViewModel.favoriteStatus == false ? detailViewModel.getFavoriteStatus(true) : detailViewModel.getFavoriteStatus(false)}"
+                android:id="@+id/fab_favorite"
+                android:layout_gravity="bottom|end"
+                app:srcCompat="@drawable/ic_favorite_false"
+                app:backgroundTint="@color/colorPrimary"
+                app:rippleColor="@color/colorAccent"
+                android:layout_margin="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         <androidx.core.widget.NestedScrollView
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
                 android:layout_width="match_parent"

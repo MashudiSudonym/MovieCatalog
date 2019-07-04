@@ -58,7 +58,6 @@ class MovieViewModel : ViewModel() {
                 _statusConnectionView.value = ViewStatusConnection.DONE
                 _refreshStatus.value = false
                 _movies.value = movieListResult
-
             } catch (e: Throwable) {
                 Log.e("Error", e.localizedMessage)
                 _statusConnectionView.value = ViewStatusConnection.ERROR

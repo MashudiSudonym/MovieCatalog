@@ -1,6 +1,7 @@
 package c.dicodingmade.util
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -14,6 +15,7 @@ import c.dicodingmade.ui.movie.MovieAdapter
 import c.dicodingmade.ui.tvshow.TvShowAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 // Recycler View Movie
 @BindingAdapter("listDataMovie")
@@ -88,4 +90,16 @@ fun bindReleaseDate(textView: TextView, textPath: String?) {
 @BindingAdapter("voteAverage")
 fun bindVoteAverage(textView: TextView, textPath: Double?) {
     textView.text = textPath.toString()
+}
+
+@BindingAdapter("favoriteStatus")
+fun bindFavoriteStatus(floatingActionButton: FloatingActionButton, status: Boolean) {
+    when (status) {
+        true -> {
+            floatingActionButton.setColorFilter(Color.argb(255, 236, 64, 122))
+        }
+        false -> {
+            floatingActionButton.setColorFilter(Color.DKGRAY)
+        }
+    }
 }
