@@ -49,7 +49,7 @@
         </com.google.android.material.appbar.AppBarLayout>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 app:favoriteStatus="@{safeUnbox(detailViewModel.favoriteStatus)}"
-                android:onClick="@{() -> detailViewModel.favoriteStatus == false ? detailViewModel.getFavoriteStatus(true) : detailViewModel.getFavoriteStatus(false)}"
+                android:onClickListener="@{() -> detailViewModel.favoriteStatus == false ? detailViewModel.getFavoriteStatus(true) : detailViewModel.getFavoriteStatus(false)}"
                 android:id="@+id/fab_favorite"
                 android:layout_gravity="bottom|end"
                 app:srcCompat="@drawable/ic_favorite_false"

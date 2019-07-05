@@ -14,8 +14,11 @@ interface FavoriteDao {
     @Query("SELECT * FROM favorite_table ORDER BY _id DESC")
     fun getAllFavorite(): LiveData<List<Favorite>>
 
-    @Query("SELECT * FROM favorite_table WHERE title = :key")
-    suspend fun getFavoriteByTitle(key: String): Favorite?
+    @Query("SELECT * FROM favorite_table WHERE id = :id")
+    fun getFavoriteById(id: Int): Favorite?
+
+    @Query("DELETE FROM favorite_table WHERE id = :id")
+    suspend fun deleteFavoriteById(id: Int)
 
     @Query("DELETE FROM favorite_table")
     suspend fun deleteAll()

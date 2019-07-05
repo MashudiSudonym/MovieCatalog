@@ -13,4 +13,6 @@
     <string name="img_description">Deskripsi Gambar</string>
     <string name="rating">0.0</string>
     <string name="favorite">Favorit</string>
+    <string name="add_to_favorite">Tambah ke Favorit</string>
+    <string name="remove_from_favorite">Hapus dari Favorit</string>
 </resources>

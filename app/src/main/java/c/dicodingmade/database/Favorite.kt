@@ -11,6 +11,10 @@ data class Favorite(
     val idFavoriteTable: Long = 0L,
     @ColumnInfo(name = "isMovie")
     var isMovie: Boolean = false,
+    @ColumnInfo(name = "isTvShow")
+    var isTvShow: Boolean = false,
+    @ColumnInfo(name = "first_air_date")
+    var firstAirDate: String = "",
     @ColumnInfo(name = "isFavorite")
     var isFavorite: Boolean = false,
     @ColumnInfo(name = "backdrop_path")
@@ -25,6 +29,8 @@ data class Favorite(
     var releaseDate: String = "",
     @ColumnInfo(name = "title")
     var title: String = "",
+    @ColumnInfo(name = "name")
+    var name: String = "",
     @ColumnInfo(name = "vote_average")
     var voteAverage: Double = 0.0
 )

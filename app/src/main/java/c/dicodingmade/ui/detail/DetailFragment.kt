@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
+import c.dicodingmade.R
 import c.dicodingmade.databinding.FragmentDetailBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_detail.*
@@ -37,11 +38,10 @@ class DetailFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.detailViewModel = detailViewModel
 
-        detailViewModel.favoriteStatus.observe(this, Observer {
-            if (it == true) {
-                snackbar(view as View, it.toString())
-            } else {
-                snackbar(view as View, it.toString())
+        detailViewModel.showSnackBar.observe(this, Observer {
+            when (it) {
+                true -> snackBar(view as View, resources.getString(R.string.add_to_favorite))
+                false -> snackBar(view as View, resources.getString(R.string.remove_from_favorite))
             }
         })
 
@@ -56,6 +56,6 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private fun snackbar(view: View, value: String) = Snackbar.make(view, value, Snackbar.LENGTH_SHORT).show()
+    private fun snackBar(view: View, value: String) = Snackbar.make(view, value, Snackbar.LENGTH_SHORT).show()
 
 }
