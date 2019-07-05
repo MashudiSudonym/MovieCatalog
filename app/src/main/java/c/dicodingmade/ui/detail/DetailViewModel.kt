@@ -40,6 +40,19 @@ class DetailViewModel(movieResultData: MovieResult, tvShowResultData: TvShowResu
         checkContentCategory()
     }
 
+    private fun loadDataFromArgs(
+        movieResultData: MovieResult,
+        tvShowResultData: TvShowResult
+    ) {
+        _movies.value = movieResultData
+        _tvShows.value = tvShowResultData
+    }
+
+    /*
+    * Add content to favorite section
+    * use the reference id movies as a reference for making conditions.
+    * may still boilerplate code, but will improve over time.
+     */
     fun getFavoriteStatus(status: Boolean) {
         _favoriteStatus.value = status
         _showSnackBar.value = status
@@ -61,14 +74,6 @@ class DetailViewModel(movieResultData: MovieResult, tvShowResultData: TvShowResu
                 _favoriteStatus.value = false
             }
         }
-    }
-
-    private fun loadDataFromArgs(
-        movieResultData: MovieResult,
-        tvShowResultData: TvShowResult
-    ) {
-        _movies.value = movieResultData
-        _tvShows.value = tvShowResultData
     }
 
     private fun checkContentCategory() {
