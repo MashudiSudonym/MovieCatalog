@@ -14,16 +14,18 @@ import c.dicodingmade.databinding.FragmentMovieBinding
 import c.dicodingmade.ui.main.MainFragmentDirections
 
 class MovieFragment : Fragment() {
-    private val movieViewModel: MovieViewModel by lazy {
-        ViewModelProviders.of(this).get(MovieViewModel::class.java)
-    }
+    private lateinit var movieViewModel: MovieViewModel
+    private lateinit var movieViewModelFactory: MovieViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentMovieBinding.inflate(inflater)
+        val application = requireNotNull(this.activity).application
 
+        movieViewModelFactory = MovieViewModelFactory(application)
+        movieViewModel = ViewModelProviders.of(this, movieViewModelFactory).get(MovieViewModel::class.java)
         binding.lifecycleOwner = this
         binding.movieViewModel = movieViewModel
         binding.rvMovie.adapter =
@@ -31,6 +33,9 @@ class MovieFragment : Fragment() {
                 movieViewModel.displayDetail(it)
             })
 
+        movieViewModel.contentMovie.observe(this, Observer {
+            movieViewModel.contentMovieData(it)
+        })
         movieViewModel.navigateToDetail.observe(this, Observer {
             if (null != it) {
                 this.findNavController()

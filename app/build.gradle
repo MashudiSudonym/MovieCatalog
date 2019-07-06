@@ -63,6 +63,7 @@ dependencies {
     implementation "androidx.room:room-ktx:2.1.0"
     implementation "androidx.room:room-runtime:2.1.0"
     kapt "androidx.room:room-compiler:2.1.0"
+    implementation "android.arch.work:work-runtime-ktx:1.0.1"
     // Network and repository components
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'

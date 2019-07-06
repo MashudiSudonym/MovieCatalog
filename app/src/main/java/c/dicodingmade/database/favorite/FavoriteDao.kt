@@ -1,4 +1,4 @@
-package c.dicodingmade.database
+package c.dicodingmade.database.favorite
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -11,9 +11,6 @@ interface FavoriteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(favorite: FavoriteEntity)
 
-    @Query("SELECT * FROM favorite_table ORDER BY _id DESC")
-    fun getAllFavorite(): LiveData<List<FavoriteEntity>>
-
     @Query("SELECT * FROM favorite_table WHERE isMovie = 1 ORDER BY _id DESC")
     fun getAllFavoriteMovie(): LiveData<List<FavoriteEntity>>
 
@@ -25,7 +22,4 @@ interface FavoriteDao {
 
     @Query("DELETE FROM favorite_table WHERE id = :id")
     suspend fun deleteFavoriteById(id: Int)
-
-    @Query("DELETE FROM favorite_table")
-    suspend fun deleteAll()
 }

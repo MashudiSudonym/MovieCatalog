@@ -1,19 +1,22 @@
 package c.dicodingmade.ui.tvshow
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import c.dicodingmade.BuildConfig
-import c.dicodingmade.model.ContentResult
-import c.dicodingmade.network.ApiService
-import c.dicodingmade.network.RetrofitBuilder
+import c.dicodingmade.database.contentTvShow.ContentTvShowDatabase
+import c.dicodingmade.domain.ContentResult
+import c.dicodingmade.repository.ContentTvShowRepository
 import c.dicodingmade.util.ViewStatusConnection
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
 
-class TvShowViewModel : ViewModel() {
+class TvShowViewModel(application: Application) : AndroidViewModel(application) {
+    private val database = ContentTvShowDatabase.getDatabase(application)
+    private val contentTvShowRepository = ContentTvShowRepository(database)
+    lateinit var contentTvShow: LiveData<List<ContentResult>>
+
     private val _tvShows = MutableLiveData<List<ContentResult>>()
     val tvShows: LiveData<List<ContentResult>>
         get() = _tvShows
@@ -38,7 +41,7 @@ class TvShowViewModel : ViewModel() {
         _navigateToDetail.value = contentResult
     }
 
-    fun displaDetailComplete() {
+    fun displayDetailComplete() {
         _navigateToDetail.value = null
     }
 
@@ -48,24 +51,31 @@ class TvShowViewModel : ViewModel() {
     }
 
     private fun getTvShowList() {
+        contentTvShow = contentTvShowRepository.contentTvShow
         viewModelScope.launch {
-            val services = RetrofitBuilder.getInstance(BuildConfig.BASE_URL_API)
-                .create(ApiService::class.java)
             try {
                 _statusConnectionView.value = ViewStatusConnection.LOADING
-                val tvShowListResult = services.getTvShowList(BuildConfig.TOKEN, "en-US").results
+                contentTvShowRepository.refreshContentTvShow()
                 _statusConnectionView.value = ViewStatusConnection.DONE
                 _refreshStatus.value = false
-                _tvShows.value = tvShowListResult
             } catch (e: Throwable) {
                 Log.e("Error", e.localizedMessage)
                 _statusConnectionView.value = ViewStatusConnection.ERROR
                 _refreshStatus.value = false
-            } catch (e: HttpException) {
-                Log.e("Http Error", e.message())
-                _statusConnectionView.value = ViewStatusConnection.ERROR
-                _refreshStatus.value = false
             }
+        }
+    }
+
+    fun contentTvShowData(contentTvShow: List<ContentResult>) {
+        if (contentTvShow.isNullOrEmpty()) {
+            _statusConnectionView.value = ViewStatusConnection.LOADING
+            _statusConnectionView.value = ViewStatusConnection.ERROR
+            _refreshStatus.value = false
+        } else {
+            _statusConnectionView.value = ViewStatusConnection.LOADING
+            _statusConnectionView.value = ViewStatusConnection.DONE
+            _refreshStatus.value = false
+            _tvShows.value = contentTvShow
         }
     }
 }

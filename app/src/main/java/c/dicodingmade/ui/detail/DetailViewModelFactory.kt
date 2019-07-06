@@ -3,7 +3,7 @@ package c.dicodingmade.ui.detail
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import c.dicodingmade.model.ContentResult
+import c.dicodingmade.domain.ContentResult
 
 class DetailViewModelFactory(
     private val contentResultData: ContentResult,

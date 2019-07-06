@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import c.dicodingmade.databinding.ItemListContentBinding
-import c.dicodingmade.model.ContentResult
+import c.dicodingmade.domain.ContentResult
 
 class ContentAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<ContentResult, ContentAdapter.MovieViewHolder>(DiffCallback) {

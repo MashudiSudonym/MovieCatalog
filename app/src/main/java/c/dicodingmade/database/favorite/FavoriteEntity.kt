@@ -1,9 +1,9 @@
-package c.dicodingmade.database
+package c.dicodingmade.database.favorite
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import c.dicodingmade.model.ContentResult
+import c.dicodingmade.domain.ContentResult
 
 @Entity(tableName = "favorite_table")
 data class FavoriteEntity constructor(

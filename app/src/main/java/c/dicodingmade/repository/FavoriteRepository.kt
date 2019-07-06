@@ -3,10 +3,10 @@ package c.dicodingmade.repository
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import c.dicodingmade.database.FavoriteDao
-import c.dicodingmade.database.FavoriteEntity
-import c.dicodingmade.database.asDomainModel
-import c.dicodingmade.model.ContentResult
+import c.dicodingmade.database.favorite.FavoriteDao
+import c.dicodingmade.database.favorite.FavoriteEntity
+import c.dicodingmade.database.favorite.asDomainModel
+import c.dicodingmade.domain.ContentResult
 
 
 class FavoriteRepository(private val favoriteDao: FavoriteDao) {

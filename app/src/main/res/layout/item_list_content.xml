@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="content"
-                type="c.dicodingmade.model.ContentResult"/>
+                type="c.dicodingmade.domain.ContentResult"/>
     </data>
 
     <androidx.cardview.widget.CardView

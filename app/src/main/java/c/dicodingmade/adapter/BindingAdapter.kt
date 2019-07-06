@@ -9,7 +9,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import c.dicodingmade.BuildConfig
 import c.dicodingmade.R
-import c.dicodingmade.model.ContentResult
+import c.dicodingmade.domain.ContentResult
 import c.dicodingmade.util.*
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions

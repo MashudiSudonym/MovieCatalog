@@ -5,9 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import c.dicodingmade.database.FavoriteDatabase
-import c.dicodingmade.database.FavoriteEntity
-import c.dicodingmade.model.ContentResult
+import c.dicodingmade.database.favorite.FavoriteDatabase
+import c.dicodingmade.database.favorite.FavoriteEntity
+import c.dicodingmade.domain.ContentResult
 import c.dicodingmade.repository.FavoriteRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -1,19 +1,22 @@
 package c.dicodingmade.ui.movie
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import c.dicodingmade.BuildConfig
-import c.dicodingmade.model.ContentResult
-import c.dicodingmade.network.ApiService
-import c.dicodingmade.network.RetrofitBuilder
+import c.dicodingmade.database.contentMovie.ContentMovieDatabase
+import c.dicodingmade.domain.ContentResult
+import c.dicodingmade.repository.ContentMovieRepository
 import c.dicodingmade.util.ViewStatusConnection
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
 
-class MovieViewModel : ViewModel() {
+class MovieViewModel(application: Application) : AndroidViewModel(application) {
+    private val database = ContentMovieDatabase.getDatabase(application)
+    private val contentMovieRepository = ContentMovieRepository(database)
+    lateinit var contentMovie: LiveData<List<ContentResult>>
+
     private val _movies = MutableLiveData<List<ContentResult>>()
     val movies: LiveData<List<ContentResult>>
         get() = _movies
@@ -48,24 +51,31 @@ class MovieViewModel : ViewModel() {
     }
 
     private fun getMovieList() {
+        contentMovie = contentMovieRepository.contentMovie
         viewModelScope.launch {
-            val services = RetrofitBuilder.getInstance(BuildConfig.BASE_URL_API)
-                .create(ApiService::class.java)
             try {
                 _statusConnectionView.value = ViewStatusConnection.LOADING
-                val movieListResult = services.getMovieList(BuildConfig.TOKEN, "en-US").results
+                contentMovieRepository.refreshContentMovie()
                 _statusConnectionView.value = ViewStatusConnection.DONE
                 _refreshStatus.value = false
-                _movies.value = movieListResult
             } catch (e: Throwable) {
                 Log.e("Error", e.localizedMessage)
                 _statusConnectionView.value = ViewStatusConnection.ERROR
                 _refreshStatus.value = false
-            } catch (e: HttpException) {
-                Log.e("Http Error", e.message())
-                _statusConnectionView.value = ViewStatusConnection.ERROR
-                _refreshStatus.value = false
             }
+        }
+    }
+
+    fun contentMovieData(contentMovie: List<ContentResult>) {
+        if (contentMovie.isNullOrEmpty()) {
+            _statusConnectionView.value = ViewStatusConnection.LOADING
+            _statusConnectionView.value = ViewStatusConnection.ERROR
+            _refreshStatus.value = false
+        } else {
+            _statusConnectionView.value = ViewStatusConnection.LOADING
+            _statusConnectionView.value = ViewStatusConnection.DONE
+            _refreshStatus.value = false
+            _movies.value = contentMovie
         }
     }
 }

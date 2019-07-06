@@ -1,19 +1,19 @@
-package c.dicodingmade.database
+package c.dicodingmade.database.contentMovie
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [FavoriteEntity::class], version = 1, exportSchema = false)
-abstract class FavoriteDatabase : RoomDatabase() {
-    abstract fun favoriteDao(): FavoriteDao
+@Database(entities = [ContentMovieEntity::class], version = 1, exportSchema = false)
+abstract class ContentMovieDatabase : RoomDatabase() {
+    abstract fun contentMovieDao(): ContentMovieDao
 
     companion object {
         @Volatile
-        private var INSTANCE: FavoriteDatabase? = null
+        private var INSTANCE: ContentMovieDatabase? = null
 
-        fun getDatabase(context: Context): FavoriteDatabase {
+        fun getDatabase(context: Context): ContentMovieDatabase {
             val tempInstance = INSTANCE
 
             if (tempInstance != null) return tempInstance
@@ -21,8 +21,8 @@ abstract class FavoriteDatabase : RoomDatabase() {
             synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    FavoriteDatabase::class.java,
-                    "FavoriteEntity Database"
+                    ContentMovieDatabase::class.java,
+                    "ContentMovieEntity Database"
                 ).fallbackToDestructiveMigration()
                     .build()
 
