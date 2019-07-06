@@ -1,14 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".ui.moviefavorite.MovieFavoriteFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+                name="movieFavoriteViewModel"
+                type="c.dicodingmade.ui.moviefavorite.MovieFavoriteViewModel"/>
+    </data>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_movie_favorite"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
-
-</FrameLayout>
+            app:refreshing="@{safeUnbox(movieFavoriteViewModel.refreshStatus)}"
+            app:onRefreshListener="@{() -> movieFavoriteViewModel.onRefresh()}"
+    >
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".ui.moviefavorite.MovieFavoriteFragment"
+                android:id="@+id/layout_movie_favorite">
+            <androidx.recyclerview.widget.RecyclerView
+                    app:apiStatusRecyclerViewErrorConnection="@{movieFavoriteViewModel.statusConnectionView}"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:id="@+id/rv_movie_favorite"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:clipToPadding="false"
+                    android:padding="6dp"
+                    app:listDataContent="@{movieFavoriteViewModel.movieFavorites}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="16"
+                    tools:listitem="@layout/item_list_content"
+            >
+            </androidx.recyclerview.widget.RecyclerView>
+            <ImageView
+                    app:apiStatusImageErrorConnection="@{movieFavoriteViewModel.statusConnectionView}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/img_status_connection_movie_favorite"
+                    tools:srcCompat="@drawable/ic_connection_error"
+                    android:contentDescription="@string/img_description"
+                    app:srcCompat="@drawable/ic_connection_error"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            <ProgressBar
+                    app:apiStatusProgressBar="@{movieFavoriteViewModel.statusConnectionView}"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/progress_bar_movie_favorite"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintVertical_bias="0.0254"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

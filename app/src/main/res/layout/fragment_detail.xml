@@ -34,7 +34,7 @@
                         app:layout_collapseParallaxMultiplier="0.7"
                         android:contentDescription="@string/img_movie_tv_show_poster_description"
                         android:scaleType="centerCrop"
-                        app:imageUrl="@{detailViewModel.movies.id == 0 ? detailViewModel.tvShows.backdropPath : detailViewModel.movies.backdropPath}"
+                        app:imageUrl="@{detailViewModel.contents.backdropPath}"
                 />
                 <androidx.appcompat.widget.Toolbar
                         android:id="@+id/toolbar_detail"
@@ -66,7 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <ImageView
-                        app:imageUrl="@{detailViewModel.movies.id == 0 ? detailViewModel.tvShows.posterPath : detailViewModel.movies.posterPath}"
+                        app:imageUrl="@{detailViewModel.contents.posterPath}"
                         android:layout_width="135dp"
                         android:layout_height="203dp"
                         app:srcCompat="@drawable/poster_spiderman"
@@ -94,7 +94,7 @@
                         app:layout_constraintHorizontal_bias="1.0" android:layout_marginEnd="8dp"
                 />
                 <TextView
-                        app:voteAverage="@{detailViewModel.movies.id == 0 ? detailViewModel.tvShows.voteAverage : detailViewModel.movies.voteAverage}"
+                        app:voteAverage="@{detailViewModel.contents.voteAverage}"
                         android:text="@string/rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/tv_rating" tools:text="@string/rating"
@@ -103,7 +103,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginTop="16dp" app:layout_constraintTop_toTopOf="parent"/>
                 <TextView
-                        android:text="@{detailViewModel.movies.id == 0 ? detailViewModel.tvShows.name : detailViewModel.movies.title}"
+                        android:text="@{detailViewModel.contents.title}"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/tv_detail_title"
@@ -123,7 +123,7 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         tools:text="@string/movie_tv_show_release_date"
                         android:contentDescription="@string/movie_tv_show_release_date_description"
-                        app:releaseDate="@{detailViewModel.movies.id == 0 ? detailViewModel.tvShows.firstAirDate : detailViewModel.movies.releaseDate}"
+                        app:releaseDate="@{detailViewModel.contents.releaseDate}"
                         android:layout_marginTop="8dp"
                         app:layout_constraintTop_toBottomOf="@+id/tv_detail_title"
                         app:layout_constraintStart_toEndOf="@+id/img_detail_poster"
@@ -146,7 +146,7 @@
                         android:layout_marginTop="16dp"
                         android:contentDescription="@string/movie_tv_show_overview_description"/>
                 <TextView
-                        android:text="@{detailViewModel.movies.id == 0 ? detailViewModel.tvShows.overview : detailViewModel.movies.overview}"
+                        android:text="@{detailViewModel.contents.overview}"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/tv_detail_movie_description"

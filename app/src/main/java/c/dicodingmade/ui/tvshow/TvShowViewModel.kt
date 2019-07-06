@@ -6,17 +6,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import c.dicodingmade.BuildConfig
-import c.dicodingmade.model.TvShowResult
+import c.dicodingmade.model.ContentResult
 import c.dicodingmade.network.ApiService
 import c.dicodingmade.network.RetrofitBuilder
 import c.dicodingmade.util.ViewStatusConnection
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 class TvShowViewModel : ViewModel() {
-    private val _tvShows = MutableLiveData<List<TvShowResult>>()
-    val tvShows: LiveData<List<TvShowResult>>
+    private val _tvShows = MutableLiveData<List<ContentResult>>()
+    val tvShows: LiveData<List<ContentResult>>
         get() = _tvShows
 
     private val _statusConnectionView = MutableLiveData<ViewStatusConnection>()
@@ -27,16 +26,16 @@ class TvShowViewModel : ViewModel() {
     val refreshStatus: LiveData<Boolean>
         get() = _refreshStatus
 
-    private val _navigateToDetail = MutableLiveData<TvShowResult>()
-    val navigateToDetail: LiveData<TvShowResult>
+    private val _navigateToDetail = MutableLiveData<ContentResult>()
+    val navigateToDetail: LiveData<ContentResult>
         get() = _navigateToDetail
 
     init {
         getTvShowList()
     }
 
-    fun displayDetail(tvShowResult: TvShowResult) {
-        _navigateToDetail.value = tvShowResult
+    fun displayDetail(contentResult: ContentResult) {
+        _navigateToDetail.value = contentResult
     }
 
     fun displaDetailComplete() {
@@ -68,10 +67,5 @@ class TvShowViewModel : ViewModel() {
                 _refreshStatus.value = false
             }
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        viewModelScope.cancel()
     }
 }

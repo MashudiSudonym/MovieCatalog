@@ -30,9 +30,10 @@ class DetailFragment : Fragment() {
 
         detailViewModelFactory =
             DetailViewModelFactory(
-                movieTvShowData.movieResultData,
-                movieTvShowData.tvShowResultData,
-                application
+                movieTvShowData.contentData,
+                application,
+                movieTvShowData.isMovie,
+                movieTvShowData.isTvShow
             )
         detailViewModel = ViewModelProviders.of(this, detailViewModelFactory).get(DetailViewModel::class.java)
         binding.lifecycleOwner = this

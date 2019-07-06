@@ -6,17 +6,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import c.dicodingmade.BuildConfig
-import c.dicodingmade.model.MovieResult
+import c.dicodingmade.model.ContentResult
 import c.dicodingmade.network.ApiService
 import c.dicodingmade.network.RetrofitBuilder
 import c.dicodingmade.util.ViewStatusConnection
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 class MovieViewModel : ViewModel() {
-    private val _movies = MutableLiveData<List<MovieResult>>()
-    val movies: LiveData<List<MovieResult>>
+    private val _movies = MutableLiveData<List<ContentResult>>()
+    val movies: LiveData<List<ContentResult>>
         get() = _movies
 
     private val _statusConnectionView = MutableLiveData<ViewStatusConnection>()
@@ -27,16 +26,16 @@ class MovieViewModel : ViewModel() {
     val refreshStatus: LiveData<Boolean>
         get() = _refreshStatus
 
-    private val _navigateToDetail = MutableLiveData<MovieResult>()
-    val navigateToDetail: LiveData<MovieResult>
+    private val _navigateToDetail = MutableLiveData<ContentResult>()
+    val navigateToDetail: LiveData<ContentResult>
         get() = _navigateToDetail
 
     init {
         getMovieList()
     }
 
-    fun displayDetail(movieResult: MovieResult) {
-        _navigateToDetail.value = movieResult
+    fun displayDetail(contentResult: ContentResult) {
+        _navigateToDetail.value = contentResult
     }
 
     fun displayDetailComplete() {
@@ -68,10 +67,5 @@ class MovieViewModel : ViewModel() {
                 _refreshStatus.value = false
             }
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        viewModelScope.cancel()
     }
 }

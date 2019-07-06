@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import c.dicodingmade.adapter.ContentAdapter
 import c.dicodingmade.databinding.FragmentMovieBinding
-import c.dicodingmade.model.TvShowResult
 import c.dicodingmade.ui.main.MainFragmentDirections
 
 class MovieFragment : Fragment() {
@@ -26,9 +26,10 @@ class MovieFragment : Fragment() {
 
         binding.lifecycleOwner = this
         binding.movieViewModel = movieViewModel
-        binding.rvMovie.adapter = MovieAdapter(MovieAdapter.OnClickListener {
-            movieViewModel.displayDetail(it)
-        })
+        binding.rvMovie.adapter =
+            ContentAdapter(ContentAdapter.OnClickListener {
+                movieViewModel.displayDetail(it)
+            })
 
         movieViewModel.navigateToDetail.observe(this, Observer {
             if (null != it) {
@@ -37,7 +38,8 @@ class MovieFragment : Fragment() {
                         MainFragmentDirections.actionMainFragmentToDetailFragment(
                             it.title,
                             it,
-                            TvShowResult()
+                            isMovie = true,
+                            isTvShow = false
                         )
                     )
                 movieViewModel.displayDetailComplete()

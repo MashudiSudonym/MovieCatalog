@@ -1,7 +1,6 @@
 package c.dicodingmade.network
 
-import c.dicodingmade.model.MovieData
-import c.dicodingmade.model.TvShowData
+import c.dicodingmade.model.ContentData
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -10,11 +9,11 @@ interface ApiService {
     suspend fun getMovieList(
         @Query("api_key") apiKey: String,
         @Query("language") language: String
-    ): MovieData
+    ): ContentData
 
     @GET("discover/tv")
     suspend fun getTvShowList(
         @Query("api_key") apiKey: String,
         @Query("language") language: String
-    ): TvShowData
+    ): ContentData
 }

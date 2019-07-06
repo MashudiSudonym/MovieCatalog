@@ -37,6 +37,16 @@ class MainActivity : AppCompatActivity() {
                     }
                     setSupportActionBar(toolbar_main) // add this for show menu item
                 }
+                R.id.favoriteFragment -> {
+                    // show toolbar main in main fragment
+                    toolbar_main.visible()
+
+                    // Enable navigation controller like back button in toolbar layout
+                    toolbar_main.apply {
+                        setupWithNavController(navController, appBarConfiguration)
+                    }
+                    setSupportActionBar(toolbar_main) // add this for show menu item
+                }
                 R.id.detailFragment -> {
                     // hide toolbar main in detail fragment
                     toolbar_main.gone()

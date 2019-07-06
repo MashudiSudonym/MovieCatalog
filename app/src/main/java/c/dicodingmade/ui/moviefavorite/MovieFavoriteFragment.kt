@@ -6,25 +6,52 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import c.dicodingmade.R
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import c.dicodingmade.adapter.ContentAdapter
+import c.dicodingmade.databinding.FragmentMovieFavoriteBinding
+import c.dicodingmade.ui.favorite.FavoriteFragmentDirections
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- *
- */
 class MovieFavoriteFragment : Fragment() {
+    private lateinit var movieFavoriteViewModel: MovieFavoriteViewModel
+    private lateinit var movieFavoriteViewModelFactory: MovieFavoriteViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie_favorite, container, false)
+        val binding = FragmentMovieFavoriteBinding.inflate(inflater)
+        val application = requireNotNull(this.activity).application
+
+        movieFavoriteViewModelFactory = MovieFavoriteViewModelFactory(application)
+        movieFavoriteViewModel =
+            ViewModelProviders.of(this, movieFavoriteViewModelFactory).get(MovieFavoriteViewModel::class.java)
+        binding.lifecycleOwner = this
+        binding.movieFavoriteViewModel = movieFavoriteViewModel
+        binding.rvMovieFavorite.adapter = ContentAdapter(ContentAdapter.OnClickListener {
+            movieFavoriteViewModel.displayDetail(it)
+        })
+
+        movieFavoriteViewModel.movieFavoriteList.observe(this, Observer {
+            movieFavoriteViewModel.movieFavoriteData(it)
+        })
+        movieFavoriteViewModel.navigateToDetail.observe(this, Observer {
+            if (it != null) {
+                this.findNavController()
+                    .navigate(
+                        FavoriteFragmentDirections.actionFavoriteFragmentToDetailFragment(
+                            it.title,
+                            it,
+                            isMovie = true,
+                            isTvShow = false
+                        )
+                    )
+                movieFavoriteViewModel.displayDetailComplete()
+            }
+        })
+
+        return binding.root
     }
 
 

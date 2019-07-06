@@ -31,10 +31,10 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:clipToPadding="false"
                     android:padding="6dp"
-                    app:listDataTvShow="@{tvShowViewModel.tvShows}"
+                    app:listDataContent="@{tvShowViewModel.tvShows}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:itemCount="16"
-                    tools:listitem="@layout/item_list_tv_show"
+                    tools:listitem="@layout/item_list_content"
             >
             </androidx.recyclerview.widget.RecyclerView>
             <ImageView

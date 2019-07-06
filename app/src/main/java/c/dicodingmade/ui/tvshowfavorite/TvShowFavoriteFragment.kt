@@ -6,16 +6,51 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import c.dicodingmade.R
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
+import c.dicodingmade.adapter.ContentAdapter
+import c.dicodingmade.databinding.FragmentTvShowFavoriteBinding
+import c.dicodingmade.ui.favorite.FavoriteFragmentDirections
 
 class TvShowFavoriteFragment : Fragment() {
+    private lateinit var tvShowFavoriteViewModel: TvShowFavoriteViewModel
+    private lateinit var tvShowFavoriteViewModelFactory: TvShowFavoriteViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tv_show_favorite, container, false)
+        val binding = FragmentTvShowFavoriteBinding.inflate(inflater)
+        val application = requireNotNull(this.activity).application
+
+        tvShowFavoriteViewModelFactory = TvShowFavoriteViewModelFactory(application)
+        tvShowFavoriteViewModel =
+            ViewModelProviders.of(this, tvShowFavoriteViewModelFactory).get(TvShowFavoriteViewModel::class.java)
+        binding.lifecycleOwner = this
+        binding.tvShowFavoriteViewModel = tvShowFavoriteViewModel
+        binding.rvTvShowFavorite.adapter = ContentAdapter(ContentAdapter.OnClickListener {
+            tvShowFavoriteViewModel.displayDetail(it)
+        })
+
+        tvShowFavoriteViewModel.tvShowFavoriteList.observe(this, Observer {
+            tvShowFavoriteViewModel.tvShowFavoriteData(it)
+        })
+        tvShowFavoriteViewModel.navigateToDetail.observe(this, Observer {
+            if (it != null) {
+                this.findNavController()
+                    .navigate(
+                        FavoriteFragmentDirections.actionFavoriteFragmentToDetailFragment(
+                            it.title,
+                            it,
+                            isMovie = false,
+                            isTvShow = true
+                        )
+                    )
+                tvShowFavoriteViewModel.displayDetailComplete()
+            }
+        })
+        return binding.root
     }
 
 
