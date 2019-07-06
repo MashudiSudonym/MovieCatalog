@@ -38,13 +38,13 @@
             >
             </androidx.recyclerview.widget.RecyclerView>
             <ImageView
-                    app:apiStatusImageErrorConnection="@{movieFavoriteViewModel.statusConnectionView}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    app:statusImageFavoritePage="@{movieFavoriteViewModel.statusConnectionView}"
+                    android:layout_width="256dp"
+                    android:layout_height="256dp"
                     android:id="@+id/img_status_connection_movie_favorite"
-                    tools:srcCompat="@drawable/ic_connection_error"
+                    tools:srcCompat="@drawable/ic_favorite_true"
                     android:contentDescription="@string/img_description"
-                    app:srcCompat="@drawable/ic_connection_error"
+                    app:srcCompat="@drawable/ic_favorite_true"
                     android:layout_marginTop="16dp"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginEnd="16dp"
