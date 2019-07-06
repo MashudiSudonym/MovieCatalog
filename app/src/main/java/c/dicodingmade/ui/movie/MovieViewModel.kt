@@ -10,6 +10,7 @@ import c.dicodingmade.database.contentMovie.ContentMovieDatabase
 import c.dicodingmade.domain.ContentResult
 import c.dicodingmade.repository.ContentMovieRepository
 import c.dicodingmade.util.ViewStatusConnection
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MovieViewModel(application: Application) : AndroidViewModel(application) {
@@ -51,13 +52,11 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun getMovieList() {
+        deleteContentMovie()
         contentMovie = contentMovieRepository.contentMovie
         viewModelScope.launch {
             try {
-                _statusConnectionView.value = ViewStatusConnection.LOADING
                 contentMovieRepository.refreshContentMovie()
-                _statusConnectionView.value = ViewStatusConnection.DONE
-                _refreshStatus.value = false
             } catch (e: Throwable) {
                 Log.e("Error", e.localizedMessage)
                 _statusConnectionView.value = ViewStatusConnection.ERROR
@@ -69,13 +68,15 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
     fun contentMovieData(contentMovie: List<ContentResult>) {
         if (contentMovie.isNullOrEmpty()) {
             _statusConnectionView.value = ViewStatusConnection.LOADING
-            _statusConnectionView.value = ViewStatusConnection.ERROR
-            _refreshStatus.value = false
         } else {
             _statusConnectionView.value = ViewStatusConnection.LOADING
+            _movies.value = contentMovie
             _statusConnectionView.value = ViewStatusConnection.DONE
             _refreshStatus.value = false
-            _movies.value = contentMovie
         }
+    }
+
+    private fun deleteContentMovie() = viewModelScope.launch(Dispatchers.IO) {
+        contentMovieRepository.deleteContentMovie()
     }
 }

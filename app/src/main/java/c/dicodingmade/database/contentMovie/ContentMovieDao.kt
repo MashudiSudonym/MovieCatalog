@@ -13,4 +13,7 @@ interface ContentMovieDao {
 
     @Query("SELECT * FROM content_movie_table ORDER BY _id ASC")
     fun getAllContentMovie(): LiveData<List<ContentMovieEntity>>
+
+    @Query("DELETE FROM content_movie_table")
+    suspend fun deleteAllContentMovie()
 }

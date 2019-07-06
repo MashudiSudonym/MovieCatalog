@@ -13,4 +13,7 @@ interface ContentTvShowDao {
 
     @Query("SELECT * FROM content_tv_show_table ORDER BY _id ASC")
     fun getAllContentTvShow(): LiveData<List<ContentTvShowEntity>>
+
+    @Query("DELETE FROM content_tv_show_table")
+    suspend fun deleteAllContentTvShow()
 }

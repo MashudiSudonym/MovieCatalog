@@ -26,4 +26,6 @@ class ContentMovieRepository(private val contentMovieDatabase: ContentMovieDatab
             contentMovieDatabase.contentMovieDao().insert(*contentList.asDatabaseModel())
         }
     }
+
+    suspend fun deleteContentMovie() = contentMovieDatabase.contentMovieDao().deleteAllContentMovie()
 }

@@ -10,6 +10,7 @@ import c.dicodingmade.database.contentTvShow.ContentTvShowDatabase
 import c.dicodingmade.domain.ContentResult
 import c.dicodingmade.repository.ContentTvShowRepository
 import c.dicodingmade.util.ViewStatusConnection
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TvShowViewModel(application: Application) : AndroidViewModel(application) {
@@ -51,13 +52,11 @@ class TvShowViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     private fun getTvShowList() {
+        deleteContentTvShow()
         contentTvShow = contentTvShowRepository.contentTvShow
         viewModelScope.launch {
             try {
-                _statusConnectionView.value = ViewStatusConnection.LOADING
                 contentTvShowRepository.refreshContentTvShow()
-                _statusConnectionView.value = ViewStatusConnection.DONE
-                _refreshStatus.value = false
             } catch (e: Throwable) {
                 Log.e("Error", e.localizedMessage)
                 _statusConnectionView.value = ViewStatusConnection.ERROR
@@ -69,13 +68,15 @@ class TvShowViewModel(application: Application) : AndroidViewModel(application) 
     fun contentTvShowData(contentTvShow: List<ContentResult>) {
         if (contentTvShow.isNullOrEmpty()) {
             _statusConnectionView.value = ViewStatusConnection.LOADING
-            _statusConnectionView.value = ViewStatusConnection.ERROR
-            _refreshStatus.value = false
         } else {
             _statusConnectionView.value = ViewStatusConnection.LOADING
+            _tvShows.value = contentTvShow
             _statusConnectionView.value = ViewStatusConnection.DONE
             _refreshStatus.value = false
-            _tvShows.value = contentTvShow
         }
+    }
+
+    private fun deleteContentTvShow() = viewModelScope.launch(Dispatchers.IO) {
+        contentTvShowRepository.deleteContentTvShow()
     }
 }

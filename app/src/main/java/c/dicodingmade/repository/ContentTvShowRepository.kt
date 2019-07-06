@@ -26,4 +26,6 @@ class ContentTvShowRepository(private val contentTvShowDatabase: ContentTvShowDa
             contentTvShowDatabase.contentTvShowDao().insert(*contentList.asDatabaseModel())
         }
     }
+
+    suspend fun deleteContentTvShow() = contentTvShowDatabase.contentTvShowDao().deleteAllContentTvShow()
 }
