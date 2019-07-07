@@ -6,14 +6,14 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import c.dicodingmade.database.contentTvShow.ContentTvShowDatabase
+import c.dicodingmade.database.ApplicationDatabase
 import c.dicodingmade.domain.ContentResult
 import c.dicodingmade.repository.ContentTvShowRepository
 import c.dicodingmade.util.ViewStatusConnection
 import kotlinx.coroutines.launch
 
 class TvShowViewModel(application: Application) : AndroidViewModel(application) {
-    private val database = ContentTvShowDatabase.getDatabase(application)
+    private val database = ApplicationDatabase.getDatabase(application)
     private val contentTvShowRepository = ContentTvShowRepository(database)
     var contentTvShow: LiveData<List<ContentResult>> = contentTvShowRepository.contentTvShow
 

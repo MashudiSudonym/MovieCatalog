@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import c.dicodingmade.database.favorite.FavoriteDatabase
+import c.dicodingmade.database.ApplicationDatabase
 import c.dicodingmade.database.favorite.FavoriteEntity
 import c.dicodingmade.domain.ContentResult
 import c.dicodingmade.repository.FavoriteRepository
@@ -20,7 +20,7 @@ class DetailViewModel(
     isTvShow: Boolean
 ) :
     AndroidViewModel(application) {
-    private val favoriteDao = FavoriteDatabase.getDatabase(application).favoriteDao()
+    private val favoriteDao = ApplicationDatabase.getDatabase(application)
     private val favoriteRepository = FavoriteRepository(favoriteDao)
     private val contentIsMovie = isMovie
     private val contentIsTvShow = isTvShow

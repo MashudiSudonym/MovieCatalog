@@ -3,8 +3,7 @@ package c.dicodingmade.work
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import c.dicodingmade.database.contentMovie.ContentMovieDatabase
-import c.dicodingmade.database.contentTvShow.ContentTvShowDatabase
+import c.dicodingmade.database.ApplicationDatabase
 import c.dicodingmade.repository.ContentMovieRepository
 import c.dicodingmade.repository.ContentTvShowRepository
 import retrofit2.HttpException
@@ -15,10 +14,9 @@ class RefreshDataWorker(appContext: Context, params: WorkerParameters) : Corouti
     }
 
     override suspend fun doWork(): Result {
-        val contentMovieDatabase = ContentMovieDatabase.getDatabase(applicationContext)
-        val contentTvShowDatabase = ContentTvShowDatabase.getDatabase(applicationContext)
-        val contentMovieRepository = ContentMovieRepository(contentMovieDatabase)
-        val contentTvShowRepository = ContentTvShowRepository(contentTvShowDatabase)
+        val applicationDatabase = ApplicationDatabase.getDatabase(applicationContext)
+        val contentMovieRepository = ContentMovieRepository(applicationDatabase)
+        val contentTvShowRepository = ContentTvShowRepository(applicationDatabase)
 
         return try {
             contentMovieRepository.refreshContentMovie()

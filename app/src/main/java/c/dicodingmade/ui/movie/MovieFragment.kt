@@ -29,8 +29,8 @@ class MovieFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.movieViewModel = movieViewModel
         binding.rvMovie.adapter = ContentAdapter(ContentAdapter.OnClickListener {
-                movieViewModel.displayDetail(it)
-            })
+            movieViewModel.displayDetail(it)
+        })
 
         movieViewModel.contentMovie.observe(this, Observer {
             movieViewModel.contentMovieData(it)

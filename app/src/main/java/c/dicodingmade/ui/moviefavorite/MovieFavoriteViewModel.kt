@@ -4,13 +4,13 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import c.dicodingmade.database.favorite.FavoriteDatabase
+import c.dicodingmade.database.ApplicationDatabase
 import c.dicodingmade.domain.ContentResult
 import c.dicodingmade.repository.FavoriteRepository
 import c.dicodingmade.util.ViewStatusConnection
 
 class MovieFavoriteViewModel(application: Application) : AndroidViewModel(application) {
-    private val favoriteDao = FavoriteDatabase.getDatabase(application).favoriteDao()
+    private val favoriteDao = ApplicationDatabase.getDatabase(application)
     private val favoriteRepository = FavoriteRepository(favoriteDao)
     lateinit var movieFavoriteList: LiveData<List<ContentResult>>
 
