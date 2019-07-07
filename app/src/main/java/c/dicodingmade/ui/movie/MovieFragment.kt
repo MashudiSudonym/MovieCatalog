@@ -28,8 +28,7 @@ class MovieFragment : Fragment() {
         movieViewModel = ViewModelProviders.of(this, movieViewModelFactory).get(MovieViewModel::class.java)
         binding.lifecycleOwner = this
         binding.movieViewModel = movieViewModel
-        binding.rvMovie.adapter =
-            ContentAdapter(ContentAdapter.OnClickListener {
+        binding.rvMovie.adapter = ContentAdapter(ContentAdapter.OnClickListener {
                 movieViewModel.displayDetail(it)
             })
 

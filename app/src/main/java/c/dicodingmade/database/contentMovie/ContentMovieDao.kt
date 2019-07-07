@@ -1,10 +1,7 @@
 package c.dicodingmade.database.contentMovie
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface ContentMovieDao {
@@ -16,4 +13,10 @@ interface ContentMovieDao {
 
     @Query("DELETE FROM content_movie_table")
     suspend fun deleteAllContentMovie()
+
+    @Transaction
+    suspend fun updateData(vararg contentMovie: ContentMovieEntity) {
+        deleteAllContentMovie()
+        insert(*contentMovie)
+    }
 }

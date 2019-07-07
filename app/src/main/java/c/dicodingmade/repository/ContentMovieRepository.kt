@@ -23,9 +23,7 @@ class ContentMovieRepository(private val contentMovieDatabase: ContentMovieDatab
             val services = RetrofitBuilder.getInstance(BuildConfig.BASE_URL_API)
                 .create(ApiService::class.java)
             val contentList = services.getMovieList(BuildConfig.TOKEN, "en-US")
-            contentMovieDatabase.contentMovieDao().insert(*contentList.asDatabaseModel())
+            contentMovieDatabase.contentMovieDao().updateData(*contentList.asDatabaseModel())
         }
     }
-
-    suspend fun deleteContentMovie() = contentMovieDatabase.contentMovieDao().deleteAllContentMovie()
 }

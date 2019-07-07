@@ -20,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 fun bindMovieRecyclerView(recyclerView: RecyclerView, data: List<ContentResult>?) {
     val adapter = recyclerView.adapter as ContentAdapter
     adapter.submitList(data)
+    adapter.notifyDataSetChanged()
 }
 
 // Poster

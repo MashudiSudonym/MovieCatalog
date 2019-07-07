@@ -10,13 +10,12 @@ import c.dicodingmade.database.contentMovie.ContentMovieDatabase
 import c.dicodingmade.domain.ContentResult
 import c.dicodingmade.repository.ContentMovieRepository
 import c.dicodingmade.util.ViewStatusConnection
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MovieViewModel(application: Application) : AndroidViewModel(application) {
     private val database = ContentMovieDatabase.getDatabase(application)
     private val contentMovieRepository = ContentMovieRepository(database)
-    lateinit var contentMovie: LiveData<List<ContentResult>>
+    var contentMovie: LiveData<List<ContentResult>> = contentMovieRepository.contentMovie
 
     private val _movies = MutableLiveData<List<ContentResult>>()
     val movies: LiveData<List<ContentResult>>
@@ -52,8 +51,6 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun getMovieList() {
-        deleteContentMovie()
-        contentMovie = contentMovieRepository.contentMovie
         viewModelScope.launch {
             try {
                 contentMovieRepository.refreshContentMovie()
@@ -74,9 +71,5 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
             _statusConnectionView.value = ViewStatusConnection.DONE
             _refreshStatus.value = false
         }
-    }
-
-    private fun deleteContentMovie() = viewModelScope.launch(Dispatchers.IO) {
-        contentMovieRepository.deleteContentMovie()
     }
 }

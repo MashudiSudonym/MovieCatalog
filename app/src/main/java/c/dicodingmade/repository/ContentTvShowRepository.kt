@@ -23,9 +23,7 @@ class ContentTvShowRepository(private val contentTvShowDatabase: ContentTvShowDa
             val services = RetrofitBuilder.getInstance(BuildConfig.BASE_URL_API)
                 .create(ApiService::class.java)
             val contentList = services.getTvShowList(BuildConfig.TOKEN, "en-US")
-            contentTvShowDatabase.contentTvShowDao().insert(*contentList.asDatabaseModel())
+            contentTvShowDatabase.contentTvShowDao().updateData(*contentList.asDatabaseModel())
         }
     }
-
-    suspend fun deleteContentTvShow() = contentTvShowDatabase.contentTvShowDao().deleteAllContentTvShow()
 }

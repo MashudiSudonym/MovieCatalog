@@ -10,13 +10,12 @@ import c.dicodingmade.database.contentTvShow.ContentTvShowDatabase
 import c.dicodingmade.domain.ContentResult
 import c.dicodingmade.repository.ContentTvShowRepository
 import c.dicodingmade.util.ViewStatusConnection
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TvShowViewModel(application: Application) : AndroidViewModel(application) {
     private val database = ContentTvShowDatabase.getDatabase(application)
     private val contentTvShowRepository = ContentTvShowRepository(database)
-    lateinit var contentTvShow: LiveData<List<ContentResult>>
+    var contentTvShow: LiveData<List<ContentResult>> = contentTvShowRepository.contentTvShow
 
     private val _tvShows = MutableLiveData<List<ContentResult>>()
     val tvShows: LiveData<List<ContentResult>>
@@ -52,8 +51,6 @@ class TvShowViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     private fun getTvShowList() {
-        deleteContentTvShow()
-        contentTvShow = contentTvShowRepository.contentTvShow
         viewModelScope.launch {
             try {
                 contentTvShowRepository.refreshContentTvShow()
@@ -74,9 +71,5 @@ class TvShowViewModel(application: Application) : AndroidViewModel(application) 
             _statusConnectionView.value = ViewStatusConnection.DONE
             _refreshStatus.value = false
         }
-    }
-
-    private fun deleteContentTvShow() = viewModelScope.launch(Dispatchers.IO) {
-        contentTvShowRepository.deleteContentTvShow()
     }
 }
