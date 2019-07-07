@@ -15,4 +15,18 @@ interface ApiService {
         @Query("api_key") apiKey: String,
         @Query("language") language: String
     ): NetworkContentDataTvShow
+
+    @GET("search/movie")
+    suspend fun getSearchMovieList(
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String,
+        @Query("query") query: String
+    ): NetworkContentDataMovie
+
+    @GET("search/tv")
+    suspend fun getSearchTvShowList(
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String,
+        @Query("query") query: String
+    ): NetworkContentDataTvShow
 }
