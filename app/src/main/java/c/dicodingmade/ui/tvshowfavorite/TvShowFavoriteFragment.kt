@@ -7,26 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import c.dicodingmade.adapter.ContentAdapter
 import c.dicodingmade.databinding.FragmentTvShowFavoriteBinding
 import c.dicodingmade.ui.favorite.FavoriteFragmentDirections
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TvShowFavoriteFragment : Fragment() {
-    private lateinit var tvShowFavoriteViewModel: TvShowFavoriteViewModel
-    private lateinit var tvShowFavoriteViewModelFactory: TvShowFavoriteViewModelFactory
+    private val tvShowFavoriteViewModel: TvShowFavoriteViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentTvShowFavoriteBinding.inflate(inflater)
-        val application = requireNotNull(this.activity).application
 
-        tvShowFavoriteViewModelFactory = TvShowFavoriteViewModelFactory(application)
-        tvShowFavoriteViewModel =
-            ViewModelProviders.of(this, tvShowFavoriteViewModelFactory).get(TvShowFavoriteViewModel::class.java)
         binding.lifecycleOwner = this
         binding.tvShowFavoriteViewModel = tvShowFavoriteViewModel
         binding.rvTvShowFavorite.adapter = ContentAdapter(ContentAdapter.OnClickListener {

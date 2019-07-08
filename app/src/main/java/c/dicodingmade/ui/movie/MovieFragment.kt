@@ -7,25 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import c.dicodingmade.adapter.ContentAdapter
 import c.dicodingmade.databinding.FragmentMovieBinding
 import c.dicodingmade.ui.main.MainFragmentDirections
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieFragment : Fragment() {
-    private lateinit var movieViewModel: MovieViewModel
-    private lateinit var movieViewModelFactory: MovieViewModelFactory
+    private val movieViewModel: MovieViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentMovieBinding.inflate(inflater)
-        val application = requireNotNull(this.activity).application
 
-        movieViewModelFactory = MovieViewModelFactory(application)
-        movieViewModel = ViewModelProviders.of(this, movieViewModelFactory).get(MovieViewModel::class.java)
         binding.lifecycleOwner = this
         binding.movieViewModel = movieViewModel
         binding.rvMovie.adapter = ContentAdapter(ContentAdapter.OnClickListener {
