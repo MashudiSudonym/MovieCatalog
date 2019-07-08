@@ -10,6 +10,12 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 class Module {
+    /*
+    * Note:
+    * Need more learning about dependency injection using KOIN
+    * while currently used to overcome "View Model Factory"
+    * check the branch "submission-4" which still doesn't use KOIN to see the difference
+    * */
     val appModule = module {
         viewModel { MovieViewModel(get()) }
         viewModel { TvShowViewModel(get()) }
