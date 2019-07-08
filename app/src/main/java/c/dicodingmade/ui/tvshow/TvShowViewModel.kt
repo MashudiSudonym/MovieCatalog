@@ -55,7 +55,7 @@ class TvShowViewModel(application: Application) : AndroidViewModel(application) 
             try {
                 contentTvShowRepository.refreshContentTvShow()
             } catch (e: Throwable) {
-                Log.e("Error", e.localizedMessage)
+                Log.e("Error", e.localizedMessage as String)
                 _statusConnectionView.value = ViewStatusConnection.ERROR
                 _refreshStatus.value = false
             }

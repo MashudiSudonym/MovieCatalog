@@ -55,7 +55,7 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
             try {
                 contentMovieRepository.refreshContentMovie()
             } catch (e: Throwable) {
-                Log.e("Error", e.localizedMessage)
+                Log.e("Error", e.localizedMessage as String)
                 _statusConnectionView.value = ViewStatusConnection.ERROR
                 _refreshStatus.value = false
             }
