@@ -9,22 +9,24 @@ import c.dicodingmade.database.favorite.asDomainModel
 import c.dicodingmade.domain.ContentResult
 
 
-class FavoriteRepository(private val applicationDatabase: ApplicationDatabase) {
+class FavoriteRepository(applicationDatabase: ApplicationDatabase) {
+    private val favoriteDao = applicationDatabase.favoriteDao()
+
     fun getAllMovieFavorite(): LiveData<List<ContentResult>> =
-        Transformations.map(applicationDatabase.favoriteDao().getAllFavoriteMovie()) {
+        Transformations.map(favoriteDao.getAllFavoriteMovie()) {
             it.asDomainModel()
         }
 
     fun getAllTvShowFavorite(): LiveData<List<ContentResult>> =
-        Transformations.map(applicationDatabase.favoriteDao().getAllFavoriteTvShow()) {
+        Transformations.map(favoriteDao.getAllFavoriteTvShow()) {
             it.asDomainModel()
         }
 
-    fun getFavoriteById(id: Int): FavoriteEntity? = applicationDatabase.favoriteDao().getFavoriteById(id)
+    fun getFavoriteById(id: Int): FavoriteEntity? = favoriteDao.getFavoriteById(id)
 
     @WorkerThread
-    suspend fun deleteFavoriteById(id: Int) = applicationDatabase.favoriteDao().deleteFavoriteById(id)
+    suspend fun deleteFavoriteById(id: Int) = favoriteDao.deleteFavoriteById(id)
 
     @WorkerThread
-    suspend fun insert(favorite: FavoriteEntity) = applicationDatabase.favoriteDao().insert(favorite)
+    suspend fun insert(favorite: FavoriteEntity) = favoriteDao.insert(favorite)
 }

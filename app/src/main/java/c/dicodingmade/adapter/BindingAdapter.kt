@@ -7,9 +7,9 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import c.dicodingmade.BuildConfig
 import c.dicodingmade.R
 import c.dicodingmade.domain.ContentResult
+import c.dicodingmade.network.Services
 import c.dicodingmade.util.*
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -27,7 +27,7 @@ fun bindMovieRecyclerView(recyclerView: RecyclerView, data: List<ContentResult>?
 @BindingAdapter("imageUrl")
 fun bindPoster(imgView: ImageView, imgPath: String?) {
     Glide.with(imgView.context)
-        .load(BuildConfig.BASE_URL_POSTER + imgPath)
+        .load(Services.BASE_URL_POSTER + imgPath)
         .apply(
             RequestOptions()
                 .centerCrop()
