@@ -13,6 +13,9 @@ interface FavoriteDao {
     suspend fun insert(favorite: FavoriteEntity)
 
     @Query("SELECT * FROM favorite_table ORDER BY _id DESC")
+    fun readFavorite(): List<FavoriteEntity>
+
+    @Query("SELECT * FROM favorite_table ORDER BY _id DESC")
     fun readFavoriteCursor(): Cursor
 
     @Query("SELECT * FROM favorite_table WHERE isMovie = 1 ORDER BY _id DESC")

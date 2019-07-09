@@ -15,4 +15,6 @@
     <string name="favorite">Favorit</string>
     <string name="add_to_favorite">Tambah ke Favorit</string>
     <string name="remove_from_favorite">Hapus dari Favorit</string>
+    <string name="add_widget">Tambahkan widget</string>
+    <string name="appwidget_text">Widget Film Acara TV Favorit</string>
 </resources>
