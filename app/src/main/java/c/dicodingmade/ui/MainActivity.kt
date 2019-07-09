@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -65,10 +66,12 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
             R.id.menu_choose_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
             R.id.favoriteFragment -> item.onNavDestinationSelected(navController)
+            R.id.menu_search -> Toast.makeText(this, "Searching", Toast.LENGTH_SHORT).show()
+            R.id.menu_setting -> Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
         }
         return super.onOptionsItemSelected(item)
     }
