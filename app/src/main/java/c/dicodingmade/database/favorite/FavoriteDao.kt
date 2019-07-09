@@ -1,5 +1,6 @@
 package c.dicodingmade.database.favorite
 
+import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
@@ -10,6 +11,9 @@ import androidx.room.Query
 interface FavoriteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(favorite: FavoriteEntity)
+
+    @Query("SELECT * FROM favorite_table ORDER BY _id DESC")
+    fun readFavoriteCursor(): Cursor
 
     @Query("SELECT * FROM favorite_table WHERE isMovie = 1 ORDER BY _id DESC")
     fun getAllFavoriteMovie(): LiveData<List<FavoriteEntity>>

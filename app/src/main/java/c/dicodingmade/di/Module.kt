@@ -13,7 +13,7 @@ class Module {
     /*
     * Note:
     * Need more learning about dependency injection using KOIN
-    * while currently used to overcome "View Model Factory"
+    * while currently used to overcome "View Model and View Model Factory"
     * check the branch "submission-4" which still doesn't use KOIN to see the difference
     * */
     val appModule = module {
