@@ -2,7 +2,6 @@ package c.dicodingmade.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -11,6 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import c.dicodingmade.R
+import c.dicodingmade.ui.setting.SettingsActivity
 import c.dicodingmade.util.gone
 import c.dicodingmade.util.visible
 import kotlinx.android.synthetic.main.activity_main.*
@@ -35,10 +35,6 @@ class MainActivity : AppCompatActivity() {
                     mainToolbarSetup()
                 }
                 R.id.detailFragment -> {
-                    // hide toolbar main in detail fragment
-                    hideMainToolbar()
-                }
-                R.id.settingFragment -> {
                     // hide toolbar main in detail fragment
                     hideMainToolbar()
                 }
@@ -75,8 +71,7 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.menu_search -> Toast.makeText(this, "Searching", Toast.LENGTH_SHORT).show()
             R.id.favoriteFragment -> item.onNavDestinationSelected(navController)
-            R.id.menu_choose_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-            R.id.settingFragment -> item.onNavDestinationSelected(navController)
+            R.id.menu_setting -> startActivity(Intent(this, SettingsActivity::class.java))
         }
         return super.onOptionsItemSelected(item)
     }

@@ -22,6 +22,15 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme.NoActionBar"
             tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity
+                android:name=".ui.setting.SettingsActivity"
+                android:label="@string/settings"
+                android:parentActivityName=".ui.MainActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="c.dicodingmade.ui.MainActivity"/>
+        </activity>
+
         <receiver android:name=".ui.widget.FavoriteWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
@@ -32,10 +41,10 @@
                     android:resource="@xml/favorite_widget_info"/>
         </receiver>
 
-        <service android:name=".service.FavoriteWidgetService"
-                 android:permission="android.permission.BIND_REMOTEVIEWS"
-                 android:exported="false"
-        />
+        <service
+                android:name=".service.FavoriteWidgetService"
+                android:exported="false"
+                android:permission="android.permission.BIND_REMOTEVIEWS"/>
 
         <activity android:name=".ui.MainActivity">
             <intent-filter>

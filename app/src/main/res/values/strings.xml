@@ -60,4 +60,5 @@
     <string name="title_daily_reminder">Daily Reminder</string>
     <string name="description_daily_reminder">Reminder for return to application</string>
     <string name="reminder_setting">Reminder Setting</string>
+    <string name="language_setting">Language Setting</string>
 </resources>
