@@ -7,9 +7,23 @@ import android.provider.Settings
 import android.util.Log
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import c.dicodingmade.R
+import c.dicodingmade.work.DailyReminderNotificationWorker
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
+    private val dailyDate = Calendar.getInstance().apply {
+        set(Calendar.HOUR_OF_DAY, 7)
+        set(Calendar.MINUTE, 0)
+        set(Calendar.SECOND, 0)
+    }
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
@@ -26,14 +40,32 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
                 )
             }
             "daily_reminder" -> {
-                Log.i(
-                    "daily_reminder",
-                    "Preference value was updated to: " + sharedPreferences?.getBoolean(key, false)
-                )
+                when (sharedPreferences?.getBoolean(key, false)) {
+                    true -> {
+                        CoroutineScope(Dispatchers.Default).launch {
+                            dailyReminderInit()
+                        }
+                    }
+                    false -> cancelDailyReminderWorker()
+                }
             }
         }
     }
 
+    // Worker
+    private fun cancelDailyReminderWorker() {
+        WorkManager.getInstance().cancelAllWorkByTag(DailyReminderNotificationWorker.TAG)
+    }
+
+    private fun dailyReminderInit() {
+        val dailyReminderRequest = OneTimeWorkRequestBuilder<DailyReminderNotificationWorker>()
+            .setInitialDelay(dailyDate.timeInMillis, TimeUnit.MILLISECONDS)
+            .build()
+
+        WorkManager.getInstance().enqueue(dailyReminderRequest)
+    }
+
+    // SharedPreferences Listener Lifecycle
     override fun onPause() {
         super.onPause()
         preferenceManager.sharedPreferences.registerOnSharedPreferenceChangeListener(this)
