@@ -8,6 +8,6 @@
     <item android:title="@string/choose_language_menu" android:id="@+id/menu_choose_language"
           android:icon="@drawable/ic_language" app:showAsAction="ifRoom"
           android:titleCondensed="@string/choose_language_menu"/>
-    <item android:id="@+id/menu_setting" android:title="@string/settings" android:icon="@drawable/ic_settings"
+    <item android:id="@+id/settingFragment" android:title="@string/settings" android:icon="@drawable/ic_settings"
           app:showAsAction="ifRoom"/>
 </menu>

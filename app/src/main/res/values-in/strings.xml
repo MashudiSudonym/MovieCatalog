@@ -19,4 +19,9 @@
     <string name="appwidget_text">Widget Film Acara TV Favorit</string>
     <string name="settings">Pengaturan</string>
     <string name="search">Pencarian</string>
+    <string name="reminder_setting">Pengaturan Pengingat</string>
+    <string name="title_daily_reminder">Pengingat Harian</string>
+    <string name="title_release_reminder">Pengingat Rilisan</string>
+    <string name="description_daily_reminder">Mengingatkan untuk kembali ke aplikasi</string>
+    <string name="description_release_reminder">Menampilkan pengingat film yang rilis</string>
 </resources>

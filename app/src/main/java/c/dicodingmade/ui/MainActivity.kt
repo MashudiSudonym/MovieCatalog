@@ -29,32 +29,37 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.mainFragment -> {
-                    // show toolbar main in main fragment
-                    toolbar_main.visible()
-
-                    // Enable navigation controller like back button in toolbar layout
-                    toolbar_main.apply {
-                        setupWithNavController(navController, appBarConfiguration)
-                    }
-                    setSupportActionBar(toolbar_main) // add this for show menu item
+                    mainToolbarSetup()
                 }
                 R.id.favoriteFragment -> {
-                    // show toolbar main in main fragment
-                    toolbar_main.visible()
-
-                    // Enable navigation controller like back button in toolbar layout
-                    toolbar_main.apply {
-                        setupWithNavController(navController, appBarConfiguration)
-                    }
-                    setSupportActionBar(toolbar_main) // add this for show menu item
+                    mainToolbarSetup()
                 }
                 R.id.detailFragment -> {
                     // hide toolbar main in detail fragment
-                    toolbar_main.gone()
+                    hideMainToolbar()
+                }
+                R.id.settingFragment -> {
+                    // hide toolbar main in detail fragment
+                    hideMainToolbar()
                 }
                 else -> setupActionBarWithNavController(navController)
             }
         }
+    }
+
+    private fun hideMainToolbar() {
+        toolbar_main.gone()
+    }
+
+    private fun mainToolbarSetup() {
+        // show toolbar main in main fragment
+        toolbar_main.visible()
+
+        // Enable navigation controller like back button in toolbar layout
+        toolbar_main.apply {
+            setupWithNavController(navController, appBarConfiguration)
+        }
+        setSupportActionBar(toolbar_main) // add this for show menu item
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -68,10 +73,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_choose_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
-            R.id.favoriteFragment -> item.onNavDestinationSelected(navController)
             R.id.menu_search -> Toast.makeText(this, "Searching", Toast.LENGTH_SHORT).show()
-            R.id.menu_setting -> Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
+            R.id.favoriteFragment -> item.onNavDestinationSelected(navController)
+            R.id.menu_choose_language -> startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+            R.id.settingFragment -> item.onNavDestinationSelected(navController)
         }
         return super.onOptionsItemSelected(item)
     }
