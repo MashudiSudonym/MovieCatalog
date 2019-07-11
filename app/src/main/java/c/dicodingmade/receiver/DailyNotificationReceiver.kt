@@ -12,7 +12,7 @@ import java.util.*
 class DailyNotificationReceiver : BroadcastReceiver() {
     companion object {
         const val ID_REPEATING = 10
-        const val CHANNEL_ID = 0
+        const val CHANNEL_ID = 122
         const val NOTIFICATION_CHANNEL = "Daily Reminder"
     }
 

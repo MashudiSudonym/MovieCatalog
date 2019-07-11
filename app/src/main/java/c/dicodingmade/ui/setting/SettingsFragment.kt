@@ -25,28 +25,29 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val currentDate = dateFormat.format(date)
         settingsViewModel.movieUpcomingByDate(currentDate)
+        val movieTodayTitle = settingsViewModel.movieUpcomingToday?.title
+        val movieTodayOverview = settingsViewModel.movieUpcomingToday?.overview
+        preferenceManager.sharedPreferences.edit {
+            putString(getString(R.string.shared_pref_movie_title), movieTodayTitle)
+            putString(getString(R.string.shared_pref_movie_overview), movieTodayOverview)
+            apply()
+        }
 
         val chooseLanguage = findPreference<Preference>("choose_language")
         chooseLanguage?.intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        val movieTodayTitle = settingsViewModel.movieUpcomingToday?.title
-        val movieTodayOverview = settingsViewModel.movieUpcomingToday?.overview
+
+
         when (key) {
             "release_reminder" -> {
                 when (sharedPreferences?.getBoolean(key, false)) {
                     true -> {
-                        preferenceManager.sharedPreferences.edit {
-                            putString("MovieTitle", movieTodayTitle)
-                            putString("MovieOverview", movieTodayOverview)
-                            apply()
-                        }
-
-                        releaseNotificationReceiver.cancelAlarmRepeat(activity, movieTodayTitle, movieTodayOverview)
-                        releaseNotificationReceiver.setAlarmRepeat(activity, movieTodayTitle, movieTodayOverview)
+                        releaseNotificationReceiver.cancelAlarmRepeat(activity)
+                        releaseNotificationReceiver.setAlarmRepeat(activity)
                     }
-                    false -> releaseNotificationReceiver.setAlarmRepeat(activity, movieTodayTitle, movieTodayOverview)
+                    false -> releaseNotificationReceiver.cancelAlarmRepeat(activity)
                 }
             }
             "daily_reminder" -> {
