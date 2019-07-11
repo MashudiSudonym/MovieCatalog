@@ -6,13 +6,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import c.dicodingmade.database.contentMovie.ContentMovieDao
 import c.dicodingmade.database.contentMovie.ContentMovieEntity
+import c.dicodingmade.database.contentMovieUpcoming.ContentMovieUpcomingDao
+import c.dicodingmade.database.contentMovieUpcoming.ContentMovieUpcomingEntity
 import c.dicodingmade.database.contentTvShow.ContentTvShowDao
 import c.dicodingmade.database.contentTvShow.ContentTvShowEntity
 import c.dicodingmade.database.favorite.FavoriteDao
 import c.dicodingmade.database.favorite.FavoriteEntity
 
 @Database(
-    entities = [ContentMovieEntity::class, ContentTvShowEntity::class, FavoriteEntity::class],
+    entities = [ContentMovieEntity::class, ContentTvShowEntity::class, FavoriteEntity::class, ContentMovieUpcomingEntity::class],
     version = 1,
     exportSchema = false
 )
@@ -20,6 +22,7 @@ abstract class ApplicationDatabase : RoomDatabase() {
     abstract fun contentMovieDao(): ContentMovieDao
     abstract fun contentTvShowDao(): ContentTvShowDao
     abstract fun favoriteDao(): FavoriteDao
+    abstract fun contentMovieUpcomingDao(): ContentMovieUpcomingDao
 
     companion object {
         @Volatile

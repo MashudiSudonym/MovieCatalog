@@ -1,6 +1,7 @@
 package c.dicodingmade.network
 
 import c.dicodingmade.database.contentMovie.ContentMovieEntity
+import c.dicodingmade.database.contentMovieUpcoming.ContentMovieUpcomingEntity
 import c.dicodingmade.database.contentTvShow.ContentTvShowEntity
 import com.google.gson.annotations.SerializedName
 
@@ -10,6 +11,11 @@ data class NetworkContentDataMovie(
 )
 
 data class NetworkContentDataTvShow(
+    @SerializedName("results")
+    val results: List<NetworkContentResult> = listOf()
+)
+
+data class NetworkContentDataMovieUpcoming(
     @SerializedName("results")
     val results: List<NetworkContentResult> = listOf()
 )
@@ -66,6 +72,26 @@ fun NetworkContentDataTvShow.asDatabaseModel(): Array<ContentTvShowEntity> {
 fun NetworkContentDataMovie.asDatabaseModel(): Array<ContentMovieEntity> {
     return results.map {
         ContentMovieEntity(
+            backdropPath = it.backdropPath,
+            id = it.id,
+            overview = it.overview,
+            posterPath = it.posterPath,
+            releaseDate = it.releaseDate,
+            title = it.title,
+            voteAverage = it.voteAverage,
+            voteCount = it.voteCount,
+            adult = it.adult,
+            originalLanguage = it.originalLanguage,
+            originalTitle = it.originalTitle,
+            popularity = it.popularity,
+            video = it.video
+        )
+    }.toTypedArray()
+}
+
+fun NetworkContentDataMovieUpcoming.asDatabaseModel(): Array<ContentMovieUpcomingEntity> {
+    return results.map {
+        ContentMovieUpcomingEntity(
             backdropPath = it.backdropPath,
             id = it.id,
             overview = it.overview,

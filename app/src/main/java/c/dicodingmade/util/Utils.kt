@@ -37,7 +37,13 @@ fun simpleDateFormat(originalDate: String): String {
     return outputFormat.format(date as Date)
 }
 
-fun notificationSetup(context: Context?, content: String?, channelId: Int?, notificationChannel: String?) {
+fun notificationSetup(
+    context: Context?,
+    title: String?,
+    content: String?,
+    channelId: Int?,
+    notificationChannel: String?
+) {
     // Declaration Notification
     val intentApp = Intent(context, MainActivity::class.java).apply {
         flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -54,7 +60,7 @@ fun notificationSetup(context: Context?, content: String?, channelId: Int?, noti
     )
         .setDefaults(Notification.DEFAULT_ALL)
         .setSmallIcon(R.drawable.ic_movie)
-        .setContentTitle(context.resources?.getString(R.string.app_name))
+        .setContentTitle(title)
         .setStyle(
             NotificationCompat.BigTextStyle()
                 .bigText(content)

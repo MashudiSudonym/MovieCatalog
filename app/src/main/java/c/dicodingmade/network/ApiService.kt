@@ -29,4 +29,9 @@ interface ApiService {
         @Query("language") language: String,
         @Query("query") query: String
     ): NetworkContentDataTvShow
+
+    @GET("movie/upcoming")
+    suspend fun getMovieUpcoming(
+        @Query("api_key") apiKey: String
+    ): NetworkContentDataMovieUpcoming
 }

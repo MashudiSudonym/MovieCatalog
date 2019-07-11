@@ -9,27 +9,29 @@ import c.dicodingmade.R
 import c.dicodingmade.util.notificationSetup
 import java.util.*
 
-class DailyNotificationReceiver : BroadcastReceiver() {
+class ReleaseNotificationReceiver : BroadcastReceiver() {
     companion object {
         const val ID_REPEATING = 10
-        const val CHANNEL_ID = 0
-        const val NOTIFICATION_CHANNEL = "Daily Reminder"
+        const val CHANNEL_ID = 1
+        const val NOTIFICATION_CHANNEL = "Release Reminder"
+        const val TITLE = "TITLE"
+        const val CONTENT = "CONTENT"
     }
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        val title = context?.resources?.getString(R.string.app_name)
-        val content = context?.resources?.getString(R.string.notif_daily_body)
+        val title = "${context?.resources?.getString(R.string.release_Today)} ${intent?.getStringExtra(TITLE)}"
+        val content = intent?.getStringExtra(CONTENT)
         notificationSetup(context, title, content, CHANNEL_ID, NOTIFICATION_CHANNEL)
     }
 
-    fun setAlarmRepeat(context: Context?) {
+    fun setAlarmRepeat(context: Context?, upcomingTitle: String?, upcomingOverview: String?) {
         val alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val dailyDate = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, 7)
+            set(Calendar.HOUR_OF_DAY, 8)
             set(Calendar.MINUTE, 0)
             set(Calendar.SECOND, 0)
         }
-        val pendingIntent = pendingIntentService(context)
+        val pendingIntent = pendingIntentService(context, upcomingTitle, upcomingOverview)
 
         alarmManager.setInexactRepeating(
             AlarmManager.RTC_WAKEUP,
@@ -39,17 +41,24 @@ class DailyNotificationReceiver : BroadcastReceiver() {
         )
     }
 
-    private fun pendingIntentService(context: Context?): PendingIntent? {
-        val intent = Intent(context, DailyNotificationReceiver::class.java)
+    private fun pendingIntentService(
+        context: Context?,
+        upcomingTitle: String?,
+        upcomingOverview: String?
+    ): PendingIntent? {
+        val intent = Intent(context, DailyNotificationReceiver::class.java).apply {
+            putExtra(TITLE, upcomingTitle)
+            putExtra(CONTENT, upcomingOverview)
+        }
         return PendingIntent.getBroadcast(
             context,
             ID_REPEATING, intent, 0
         )
     }
 
-    fun cancelAlarmRepeat(context: Context?) {
+    fun cancelAlarmRepeat(context: Context?, upcomingTitle: String?, upcomingOverview: String?) {
         val alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val pendingIntent = pendingIntentService(context)
+        val pendingIntent = pendingIntentService(context, upcomingTitle, upcomingOverview)
         alarmManager.cancel(pendingIntent)
     }
 }

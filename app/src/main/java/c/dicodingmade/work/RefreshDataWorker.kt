@@ -5,6 +5,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import c.dicodingmade.database.ApplicationDatabase
 import c.dicodingmade.repository.ContentMovieRepository
+import c.dicodingmade.repository.ContentMovieUpcomingRepository
 import c.dicodingmade.repository.ContentTvShowRepository
 import retrofit2.HttpException
 
@@ -17,10 +18,12 @@ class RefreshDataWorker(appContext: Context, params: WorkerParameters) : Corouti
         val applicationDatabase = ApplicationDatabase.getDatabase(applicationContext)
         val contentMovieRepository = ContentMovieRepository(applicationDatabase)
         val contentTvShowRepository = ContentTvShowRepository(applicationDatabase)
+        val contentMovieUpcomingRepository = ContentMovieUpcomingRepository(applicationDatabase)
 
         return try {
             contentMovieRepository.refreshContentMovie()
             contentTvShowRepository.refreshContentTvShow()
+            contentMovieUpcomingRepository.refreshMovieUpcoming()
             Result.success()
         } catch (e: HttpException) {
             Result.retry()
