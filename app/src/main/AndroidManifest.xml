@@ -60,6 +60,10 @@
                 android:exported="true"
                 android:readPermission="c.dicodingmade.DicodingmadeApplication.READ_DATABASE"
                 android:writePermission="c.dicodingmade.DicodingmadeApplication.READ_DATABASE"/>
+
+        <receiver android:name=".receiver.DailyNotificationReceiver"
+                  android:enabled="true"
+                  android:exported="false"/>
     </application>
 
 </manifest>

@@ -7,22 +7,11 @@ import android.provider.Settings
 import android.util.Log
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
 import c.dicodingmade.R
-import c.dicodingmade.work.DailyReminderNotificationWorker
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.util.*
-import java.util.concurrent.TimeUnit
+import c.dicodingmade.receiver.DailyNotificationReceiver
 
 class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
-    private val dailyDate = Calendar.getInstance().apply {
-        set(Calendar.HOUR_OF_DAY, 7)
-        set(Calendar.MINUTE, 0)
-        set(Calendar.SECOND, 0)
-    }
+    private val dailyNotificationReceiver = DailyNotificationReceiver()
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
@@ -42,27 +31,13 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
             "daily_reminder" -> {
                 when (sharedPreferences?.getBoolean(key, false)) {
                     true -> {
-                        CoroutineScope(Dispatchers.Default).launch {
-                            dailyReminderInit()
-                        }
+                        dailyNotificationReceiver.cancelAlarmRepeat(activity)
+                        dailyNotificationReceiver.setAlarmRepeat(activity)
                     }
-                    false -> cancelDailyReminderWorker()
+                    false -> dailyNotificationReceiver.cancelAlarmRepeat(activity)
                 }
             }
         }
-    }
-
-    // Worker
-    private fun cancelDailyReminderWorker() {
-        WorkManager.getInstance().cancelAllWorkByTag(DailyReminderNotificationWorker.TAG)
-    }
-
-    private fun dailyReminderInit() {
-        val dailyReminderRequest = OneTimeWorkRequestBuilder<DailyReminderNotificationWorker>()
-            .setInitialDelay(dailyDate.timeInMillis, TimeUnit.MILLISECONDS)
-            .build()
-
-        WorkManager.getInstance().enqueue(dailyReminderRequest)
     }
 
     // SharedPreferences Listener Lifecycle
