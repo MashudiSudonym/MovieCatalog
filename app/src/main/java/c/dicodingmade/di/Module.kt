@@ -2,11 +2,11 @@ package c.dicodingmade.di
 
 import c.dicodingmade.domain.ContentResult
 import c.dicodingmade.ui.detail.DetailViewModel
-import c.dicodingmade.ui.movie.MovieViewModel
-import c.dicodingmade.ui.moviefavorite.MovieFavoriteViewModel
+import c.dicodingmade.ui.movieui.movie.MovieViewModel
+import c.dicodingmade.ui.movieui.moviefavorite.MovieFavoriteViewModel
 import c.dicodingmade.ui.setting.SettingsViewModel
-import c.dicodingmade.ui.tvshow.TvShowViewModel
-import c.dicodingmade.ui.tvshowfavorite.TvShowFavoriteViewModel
+import c.dicodingmade.ui.tvshowui.tvshow.TvShowViewModel
+import c.dicodingmade.ui.tvshowui.tvshowfavorite.TvShowFavoriteViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

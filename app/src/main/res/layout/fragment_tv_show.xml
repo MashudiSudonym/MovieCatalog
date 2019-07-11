@@ -6,19 +6,19 @@
     <data>
         <variable
                 name="tvShowViewModel"
-                type="c.dicodingmade.ui.tvshow.TvShowViewModel"/>
+                type="c.dicodingmade.ui.tvshowui.tvshow.TvShowViewModel"/>
     </data>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh_tv_show"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            tools:context=".ui.tvshowui.tvshow.TvShowFragment"
             app:refreshing="@{safeUnbox(tvShowViewModel.refreshStatus)}"
             app:onRefreshListener="@{() -> tvShowViewModel.onRefresh()}"
     >
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".ui.tvshow.TvShowFragment"
                 android:id="@+id/layout_tv_show">
             <androidx.recyclerview.widget.RecyclerView
                     app:apiStatusRecyclerViewErrorConnection="@{tvShowViewModel.statusConnectionView}"

@@ -1,4 +1,4 @@
-package c.dicodingmade.ui.favorite
+package c.dicodingmade.ui.baseui.favorite
 
 
 import android.os.Bundle
@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import c.dicodingmade.R
 import c.dicodingmade.adapter.TabViewPagerAdapter
-import c.dicodingmade.ui.moviefavorite.MovieFavoriteFragment
-import c.dicodingmade.ui.tvshowfavorite.TvShowFavoriteFragment
+import c.dicodingmade.ui.movieui.moviefavorite.MovieFavoriteFragment
+import c.dicodingmade.ui.tvshowui.tvshowfavorite.TvShowFavoriteFragment
 import kotlinx.android.synthetic.main.fragment_favorite.*
 
 class FavoriteFragment : Fragment() {

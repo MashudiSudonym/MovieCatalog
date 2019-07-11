@@ -1,4 +1,4 @@
-package c.dicodingmade.ui.tvshow
+package c.dicodingmade.ui.tvshowui.tvshow
 
 
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import c.dicodingmade.adapter.ContentAdapter
 import c.dicodingmade.databinding.FragmentTvShowBinding
-import c.dicodingmade.ui.main.MainFragmentDirections
+import c.dicodingmade.ui.baseui.main.MainFragmentDirections
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TvShowFragment : Fragment() {

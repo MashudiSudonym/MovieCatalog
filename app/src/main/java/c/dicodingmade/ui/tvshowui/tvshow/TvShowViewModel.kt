@@ -1,4 +1,4 @@
-package c.dicodingmade.ui.movie
+package c.dicodingmade.ui.tvshowui.tvshow
 
 import android.app.Application
 import android.util.Log
@@ -8,18 +8,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import c.dicodingmade.database.ApplicationDatabase
 import c.dicodingmade.domain.ContentResult
-import c.dicodingmade.repository.ContentMovieRepository
+import c.dicodingmade.repository.ContentTvShowRepository
 import c.dicodingmade.util.ViewStatusConnection
 import kotlinx.coroutines.launch
 
-class MovieViewModel(application: Application) : AndroidViewModel(application) {
+class TvShowViewModel(application: Application) : AndroidViewModel(application) {
     private val database = ApplicationDatabase.getDatabase(application)
-    private val contentMovieRepository = ContentMovieRepository(database)
-    var contentMovie: LiveData<List<ContentResult>> = contentMovieRepository.contentMovie
+    private val contentTvShowRepository = ContentTvShowRepository(database)
+    var contentTvShow: LiveData<List<ContentResult>> = contentTvShowRepository.contentTvShow
 
-    private val _movies = MutableLiveData<List<ContentResult>>()
-    val movies: LiveData<List<ContentResult>>
-        get() = _movies
+    private val _tvShows = MutableLiveData<List<ContentResult>>()
+    val tvShows: LiveData<List<ContentResult>>
+        get() = _tvShows
 
     private val _statusConnectionView = MutableLiveData<ViewStatusConnection>()
     val statusConnectionView: LiveData<ViewStatusConnection>
@@ -34,7 +34,7 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
         get() = _navigateToDetail
 
     init {
-        getMovieList()
+        getTvShowList()
     }
 
     fun displayDetail(contentResult: ContentResult) {
@@ -47,13 +47,13 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
     fun onRefresh() {
         _refreshStatus.value = true
-        getMovieList()
+        getTvShowList()
     }
 
-    private fun getMovieList() {
+    private fun getTvShowList() {
         viewModelScope.launch {
             try {
-                contentMovieRepository.refreshContentMovie()
+                contentTvShowRepository.refreshContentTvShow()
             } catch (e: Throwable) {
                 Log.e("Error", e.localizedMessage as String)
                 _statusConnectionView.value = ViewStatusConnection.ERROR
@@ -62,12 +62,12 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun contentMovieData(contentMovie: List<ContentResult>) {
-        if (contentMovie.isNullOrEmpty()) {
+    fun contentTvShowData(contentTvShow: List<ContentResult>) {
+        if (contentTvShow.isNullOrEmpty()) {
             _statusConnectionView.value = ViewStatusConnection.LOADING
         } else {
             _statusConnectionView.value = ViewStatusConnection.LOADING
-            _movies.value = contentMovie
+            _tvShows.value = contentTvShow
             _statusConnectionView.value = ViewStatusConnection.DONE
             _refreshStatus.value = false
         }

@@ -1,4 +1,4 @@
-package c.dicodingmade.ui.movie
+package c.dicodingmade.ui.movieui.movie
 
 
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import c.dicodingmade.adapter.ContentAdapter
 import c.dicodingmade.databinding.FragmentMovieBinding
-import c.dicodingmade.ui.main.MainFragmentDirections
+import c.dicodingmade.ui.baseui.main.MainFragmentDirections
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieFragment : Fragment() {

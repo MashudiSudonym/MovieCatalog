@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="tvShowFavoriteViewModel"
-                type="c.dicodingmade.ui.tvshowfavorite.TvShowFavoriteViewModel"/>
+                type="c.dicodingmade.ui.tvshowui.tvshowfavorite.TvShowFavoriteViewModel"/>
     </data>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh_tv_show_favorite"
@@ -18,7 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".ui.tvshowfavorite.TvShowFavoriteFragment"
+                tools:context=".ui.tvshowui.tvshowfavorite.TvShowFavoriteFragment"
                 android:id="@+id/layout_tv_show_favorite">
             <androidx.recyclerview.widget.RecyclerView
                     app:apiStatusRecyclerViewErrorConnection="@{tvShowFavoriteViewModel.statusConnectionView}"

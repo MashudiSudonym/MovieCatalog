@@ -66,4 +66,5 @@
     <string name="shared_pref" translatable="false">c.dicodingmade_preferences</string>
     <string name="shared_pref_movie_title" translatable="false">MovieTitle</string>
     <string name="shared_pref_movie_overview" translatable="false">MovieOverview</string>
+    <string name="search_movie_tv_show">Search Movie TV Show</string>
 </resources>

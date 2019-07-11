@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="movieFavoriteViewModel"
-                type="c.dicodingmade.ui.moviefavorite.MovieFavoriteViewModel"/>
+                type="c.dicodingmade.ui.movieui.moviefavorite.MovieFavoriteViewModel"/>
     </data>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh_movie_favorite"
@@ -18,7 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".ui.moviefavorite.MovieFavoriteFragment"
+                tools:context=".ui.movieui.moviefavorite.MovieFavoriteFragment"
                 android:id="@+id/layout_movie_favorite">
             <androidx.recyclerview.widget.RecyclerView
                     app:apiStatusRecyclerViewErrorConnection="@{movieFavoriteViewModel.statusConnectionView}"

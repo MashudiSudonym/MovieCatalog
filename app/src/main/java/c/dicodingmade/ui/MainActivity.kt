@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -38,6 +37,9 @@ class MainActivity : AppCompatActivity() {
                     // hide toolbar main in detail fragment
                     hideMainToolbar()
                 }
+                R.id.searchFragment -> {
+                    hideMainToolbar()
+                }
                 else -> setupActionBarWithNavController(navController)
             }
         }
@@ -69,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_search -> Toast.makeText(this, "Searching", Toast.LENGTH_SHORT).show()
+            R.id.searchFragment -> item.onNavDestinationSelected(navController)
             R.id.favoriteFragment -> item.onNavDestinationSelected(navController)
             R.id.menu_setting -> startActivity(Intent(this, SettingsActivity::class.java))
         }

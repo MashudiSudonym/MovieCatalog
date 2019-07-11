@@ -1,4 +1,4 @@
-package c.dicodingmade.ui.moviefavorite
+package c.dicodingmade.ui.movieui.moviefavorite
 
 
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import c.dicodingmade.adapter.ContentAdapter
 import c.dicodingmade.databinding.FragmentMovieFavoriteBinding
-import c.dicodingmade.ui.favorite.FavoriteFragmentDirections
+import c.dicodingmade.ui.baseui.favorite.FavoriteFragmentDirections
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieFavoriteFragment : Fragment() {

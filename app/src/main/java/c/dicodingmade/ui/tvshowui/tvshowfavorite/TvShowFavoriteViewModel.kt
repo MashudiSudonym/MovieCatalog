@@ -1,4 +1,4 @@
-package c.dicodingmade.ui.moviefavorite
+package c.dicodingmade.ui.tvshowui.tvshowfavorite
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -9,14 +9,14 @@ import c.dicodingmade.domain.ContentResult
 import c.dicodingmade.repository.FavoriteRepository
 import c.dicodingmade.util.ViewStatusConnection
 
-class MovieFavoriteViewModel(application: Application) : AndroidViewModel(application) {
+class TvShowFavoriteViewModel(application: Application) : AndroidViewModel(application) {
     private val favoriteDao = ApplicationDatabase.getDatabase(application)
     private val favoriteRepository = FavoriteRepository(favoriteDao)
-    lateinit var movieFavoriteList: LiveData<List<ContentResult>>
+    lateinit var tvShowFavoriteList: LiveData<List<ContentResult>>
 
-    private val _movieFavorites = MutableLiveData<List<ContentResult>>()
-    val movieFavorites: LiveData<List<ContentResult>>
-        get() = _movieFavorites
+    private val _tvShowFavorites = MutableLiveData<List<ContentResult>>()
+    val tvShowFavorites: LiveData<List<ContentResult>>
+        get() = _tvShowFavorites
 
     private val _statusConnectionView = MutableLiveData<ViewStatusConnection>()
     val statusConnectionView: LiveData<ViewStatusConnection>
@@ -31,15 +31,15 @@ class MovieFavoriteViewModel(application: Application) : AndroidViewModel(applic
         get() = _navigateToDetail
 
     init {
-        getMovieFavorite()
+        getTvShowFavorite()
     }
 
-    private fun getMovieFavorite() {
-        movieFavoriteList = favoriteRepository.getAllMovieFavorite()
+    private fun getTvShowFavorite() {
+        tvShowFavoriteList = favoriteRepository.getAllTvShowFavorite()
         _refreshStatus.value = false
     }
 
-    fun movieFavoriteData(favorite: List<ContentResult>) {
+    fun tvShowFavoriteData(favorite: List<ContentResult>) {
         if (favorite.isNullOrEmpty()) {
             _statusConnectionView.value = ViewStatusConnection.LOADING
             _statusConnectionView.value = ViewStatusConnection.ERROR
@@ -48,7 +48,7 @@ class MovieFavoriteViewModel(application: Application) : AndroidViewModel(applic
             _statusConnectionView.value = ViewStatusConnection.LOADING
             _statusConnectionView.value = ViewStatusConnection.DONE
             _refreshStatus.value = false
-            _movieFavorites.value = favorite
+            _tvShowFavorites.value = favorite
         }
     }
 
@@ -62,6 +62,6 @@ class MovieFavoriteViewModel(application: Application) : AndroidViewModel(applic
 
     fun onRefresh() {
         _refreshStatus.value = true
-        getMovieFavorite()
+        getTvShowFavorite()
     }
 }
