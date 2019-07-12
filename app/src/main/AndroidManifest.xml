@@ -58,6 +58,7 @@
                 android:name=".provider.DicodingMadeContentProvider"
                 android:authorities="c.dicodingmade.DicodingMadeApplication"
                 android:exported="true"
+                android:syncable="true"
                 android:readPermission="c.dicodingmade.DicodingmadeApplication.READ_DATABASE"
                 android:writePermission="c.dicodingmade.DicodingmadeApplication.READ_DATABASE"/>
 

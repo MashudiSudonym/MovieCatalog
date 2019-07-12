@@ -4,48 +4,43 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.provider.Settings
-import androidx.core.content.edit
+import android.util.Log
+import androidx.lifecycle.Observer
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import c.dicodingmade.R
+import c.dicodingmade.database.contentMovieUpcoming.ContentUpcomingByDateEntity
 import c.dicodingmade.receiver.DailyNotificationReceiver
 import c.dicodingmade.receiver.ReleaseNotificationReceiver
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.text.SimpleDateFormat
-import java.util.*
 
 class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
     private val settingsViewModel: SettingsViewModel by viewModel()
     private val dailyNotificationReceiver = DailyNotificationReceiver()
     private val releaseNotificationReceiver = ReleaseNotificationReceiver()
+    private var title = ""
+    private var content = ""
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
-        val date = Date()
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val currentDate = dateFormat.format(date)
-        settingsViewModel.movieUpcomingByDate(currentDate)
-        val movieTodayTitle = settingsViewModel.movieUpcomingToday?.title
-        val movieTodayOverview = settingsViewModel.movieUpcomingToday?.overview
-        preferenceManager.sharedPreferences.edit {
-            putString(getString(R.string.shared_pref_movie_title), movieTodayTitle)
-            putString(getString(R.string.shared_pref_movie_overview), movieTodayOverview)
-            apply()
-        }
 
         val chooseLanguage = findPreference<Preference>("choose_language")
         chooseLanguage?.intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-
-
         when (key) {
             "release_reminder" -> {
                 when (sharedPreferences?.getBoolean(key, false)) {
                     true -> {
-                        releaseNotificationReceiver.cancelAlarmRepeat(activity)
-                        releaseNotificationReceiver.setAlarmRepeat(activity)
+                        settingsViewModel.movies.observe(this, Observer {
+                            val movieUpcomingList: ArrayList<ContentUpcomingByDateEntity> = arrayListOf()
+                            it.forEach { movieUpcoming ->
+                                movieUpcomingList.add(movieUpcoming)
+                            }
+                            Log.d("MADEALARM", movieUpcomingList.toString())
+                            releaseNotificationReceiver.setReleaseAlarm(activity, movieUpcomingList)
+                        })
                     }
                     false -> releaseNotificationReceiver.cancelAlarmRepeat(activity)
                 }
@@ -53,10 +48,11 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
             "daily_reminder" -> {
                 when (sharedPreferences?.getBoolean(key, false)) {
                     true -> {
-                        dailyNotificationReceiver.cancelAlarmRepeat(activity)
-                        dailyNotificationReceiver.setAlarmRepeat(activity)
+                        title = resources.getString(R.string.app_name)
+                        content = resources.getString(R.string.notif_daily_body)
+                        dailyNotificationReceiver.setDailyAlarm(activity, title, content)
                     }
-                    false -> dailyNotificationReceiver.cancelAlarmRepeat(activity)
+                    false -> dailyNotificationReceiver.cancelAlarm(activity)
                 }
             }
         }

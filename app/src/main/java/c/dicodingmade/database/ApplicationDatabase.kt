@@ -8,13 +8,20 @@ import c.dicodingmade.database.contentMovie.ContentMovieDao
 import c.dicodingmade.database.contentMovie.ContentMovieEntity
 import c.dicodingmade.database.contentMovieUpcoming.ContentMovieUpcomingDao
 import c.dicodingmade.database.contentMovieUpcoming.ContentMovieUpcomingEntity
+import c.dicodingmade.database.contentMovieUpcoming.ContentUpcomingByDateEntity
 import c.dicodingmade.database.contentTvShow.ContentTvShowDao
 import c.dicodingmade.database.contentTvShow.ContentTvShowEntity
 import c.dicodingmade.database.favorite.FavoriteDao
 import c.dicodingmade.database.favorite.FavoriteEntity
 
 @Database(
-    entities = [ContentMovieEntity::class, ContentTvShowEntity::class, FavoriteEntity::class, ContentMovieUpcomingEntity::class],
+    entities = [
+        ContentMovieEntity::class,
+        ContentTvShowEntity::class,
+        FavoriteEntity::class,
+        ContentMovieUpcomingEntity::class,
+        ContentUpcomingByDateEntity::class
+    ],
     version = 1,
     exportSchema = false
 )
