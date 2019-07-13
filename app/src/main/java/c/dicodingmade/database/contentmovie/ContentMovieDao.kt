@@ -1,4 +1,4 @@
-package c.dicodingmade.database.contentMovie
+package c.dicodingmade.database.contentmovie
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

@@ -3,7 +3,7 @@ package c.dicodingmade.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import c.dicodingmade.database.ApplicationDatabase
-import c.dicodingmade.database.contentMovie.asDomainModel
+import c.dicodingmade.database.contentmovie.asDomainModel
 import c.dicodingmade.domain.ContentResult
 import c.dicodingmade.network.Services
 import c.dicodingmade.network.asDatabaseModel

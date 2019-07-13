@@ -5,8 +5,10 @@ import android.graphics.Color
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import c.dicodingmade.R
 import c.dicodingmade.domain.ContentResult
 import c.dicodingmade.network.Services
@@ -44,6 +46,7 @@ fun bindApiStatusImageErrorConnection(progressBarStatus: ProgressBar, viewStatus
         ViewStatusConnection.LOADING -> progressBarStatus.visible()
         ViewStatusConnection.ERROR -> progressBarStatus.gone()
         ViewStatusConnection.DONE -> progressBarStatus.gone()
+        ViewStatusConnection.SEARCH -> progressBarStatus.gone()
     }
 }
 
@@ -57,6 +60,7 @@ fun bindApiStatusImageErrorConnection(imgStatus: ImageView, viewStatusConnection
             imgStatus.setImageResource(R.drawable.ic_connection_error)
         }
         ViewStatusConnection.DONE -> imgStatus.gone()
+        ViewStatusConnection.SEARCH -> imgStatus.gone()
     }
 }
 
@@ -70,6 +74,18 @@ fun bindStatusImageFavoritePage(imgStatus: ImageView, viewStatusConnection: View
             imgStatus.setImageResource(R.drawable.ic_favorite_true)
         }
         ViewStatusConnection.DONE -> imgStatus.gone()
+        ViewStatusConnection.SEARCH -> imgStatus.gone()
+    }
+}
+
+// Default Search page
+@BindingAdapter("statusImageSearchPage")
+fun bindStatusImageSearchPage(imgStatus: ImageView, viewStatusConnection: ViewStatusConnection?) {
+    when (viewStatusConnection) {
+        ViewStatusConnection.LOADING -> imgStatus.gone()
+        ViewStatusConnection.ERROR -> imgStatus.gone()
+        ViewStatusConnection.DONE -> imgStatus.gone()
+        ViewStatusConnection.SEARCH -> imgStatus.visible()
     }
 }
 
@@ -80,6 +96,18 @@ fun bindApiStatusRecyclerViewErrorConnection(recyclerView: RecyclerView, viewSta
         ViewStatusConnection.LOADING -> recyclerView.invisible()
         ViewStatusConnection.ERROR -> recyclerView.invisible()
         ViewStatusConnection.DONE -> recyclerView.visible()
+        ViewStatusConnection.SEARCH -> recyclerView.gone()
+    }
+}
+
+// If success viewpager must be hiding
+@BindingAdapter("apiStatusViewPagerErrorConnection")
+fun bindApiStatusViewPagerErrorConnection(viewPager: ViewPager, viewStatusConnection: ViewStatusConnection?) {
+    when (viewStatusConnection) {
+        ViewStatusConnection.LOADING -> viewPager.invisible()
+        ViewStatusConnection.ERROR -> viewPager.invisible()
+        ViewStatusConnection.DONE -> viewPager.visible()
+        ViewStatusConnection.SEARCH -> viewPager.gone()
     }
 }
 
@@ -109,4 +137,18 @@ fun bindFavoriteStatus(floatingActionButton: FloatingActionButton, status: Boole
             floatingActionButton.setColorFilter(Color.DKGRAY)
         }
     }
+}
+
+//Search View Binding Adapter
+@BindingAdapter("android:onQueryTextChange")
+fun setOnQueryTextListener(searchView: SearchView, listener: OnQueryTextChange) {
+    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String): Boolean = true
+
+        override fun onQueryTextChange(query: String): Boolean = listener(query)
+    })
+}
+
+interface OnQueryTextChange {
+    operator fun invoke(string: String): Boolean
 }

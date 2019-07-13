@@ -1,6 +1,7 @@
 package c.dicodingmade.di
 
 import c.dicodingmade.domain.ContentResult
+import c.dicodingmade.ui.baseui.search.SearchViewModel
 import c.dicodingmade.ui.detail.DetailViewModel
 import c.dicodingmade.ui.movieui.movie.MovieViewModel
 import c.dicodingmade.ui.movieui.moviefavorite.MovieFavoriteViewModel
@@ -31,5 +32,6 @@ class Module {
             )
         }
         viewModel { SettingsViewModel(get()) }
+        viewModel { SearchViewModel(get()) }
     }
 }

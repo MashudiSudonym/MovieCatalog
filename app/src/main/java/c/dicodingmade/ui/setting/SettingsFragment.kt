@@ -4,12 +4,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import c.dicodingmade.R
-import c.dicodingmade.database.contentMovieUpcoming.ContentUpcomingByDateEntity
+import c.dicodingmade.database.contentmovieupcoming.ContentUpcomingByDateEntity
 import c.dicodingmade.receiver.DailyNotificationReceiver
 import c.dicodingmade.receiver.ReleaseNotificationReceiver
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -38,7 +37,6 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
                             it.forEach { movieUpcoming ->
                                 movieUpcomingList.add(movieUpcoming)
                             }
-                            Log.d("MADEALARM", movieUpcomingList.toString())
                             releaseNotificationReceiver.setReleaseAlarm(activity, movieUpcomingList)
                         })
                     }

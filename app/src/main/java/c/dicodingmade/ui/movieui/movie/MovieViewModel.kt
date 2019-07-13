@@ -46,7 +46,7 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun onRefresh() {
-        _refreshStatus.value = true
+        _refreshStatus.value = false
         getMovieList()
     }
 

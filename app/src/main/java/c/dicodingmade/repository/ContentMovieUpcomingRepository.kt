@@ -3,8 +3,8 @@ package c.dicodingmade.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import c.dicodingmade.database.ApplicationDatabase
-import c.dicodingmade.database.contentMovieUpcoming.ContentMovieUpcomingEntity
-import c.dicodingmade.database.contentMovieUpcoming.ContentUpcomingByDateEntity
+import c.dicodingmade.database.contentmovieupcoming.ContentMovieUpcomingEntity
+import c.dicodingmade.database.contentmovieupcoming.ContentUpcomingByDateEntity
 import c.dicodingmade.network.Services
 import c.dicodingmade.network.asDatabaseModel
 import kotlinx.coroutines.Dispatchers

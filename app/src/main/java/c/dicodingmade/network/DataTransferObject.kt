@@ -1,8 +1,10 @@
 package c.dicodingmade.network
 
-import c.dicodingmade.database.contentMovie.ContentMovieEntity
-import c.dicodingmade.database.contentMovieUpcoming.ContentMovieUpcomingEntity
-import c.dicodingmade.database.contentTvShow.ContentTvShowEntity
+import c.dicodingmade.database.contentmovie.ContentMovieEntity
+import c.dicodingmade.database.contentmoviesearch.ContentMovieSearchEntity
+import c.dicodingmade.database.contentmovieupcoming.ContentMovieUpcomingEntity
+import c.dicodingmade.database.contenttvshow.ContentTvShowEntity
+import c.dicodingmade.database.contenttvshowsearch.ContentTvShowSearchEntity
 import com.google.gson.annotations.SerializedName
 
 data class NetworkContentDataMovie(
@@ -16,6 +18,16 @@ data class NetworkContentDataTvShow(
 )
 
 data class NetworkContentDataMovieUpcoming(
+    @SerializedName("results")
+    val results: List<NetworkContentResult> = listOf()
+)
+
+data class NetworkContentDataMovieSearch(
+    @SerializedName("results")
+    val results: List<NetworkContentResult> = listOf()
+)
+
+data class NetworkContentDataTvShowSearch(
     @SerializedName("results")
     val results: List<NetworkContentResult> = listOf()
 )
@@ -92,6 +104,46 @@ fun NetworkContentDataMovie.asDatabaseModel(): Array<ContentMovieEntity> {
 fun NetworkContentDataMovieUpcoming.asDatabaseModel(): Array<ContentMovieUpcomingEntity> {
     return results.map {
         ContentMovieUpcomingEntity(
+            backdropPath = it.backdropPath,
+            id = it.id,
+            overview = it.overview,
+            posterPath = it.posterPath,
+            releaseDate = it.releaseDate,
+            title = it.title,
+            voteAverage = it.voteAverage,
+            voteCount = it.voteCount,
+            adult = it.adult,
+            originalLanguage = it.originalLanguage,
+            originalTitle = it.originalTitle,
+            popularity = it.popularity,
+            video = it.video
+        )
+    }.toTypedArray()
+}
+
+fun NetworkContentDataMovieSearch.asDatabaseModel(): Array<ContentMovieSearchEntity> {
+    return results.map {
+        ContentMovieSearchEntity(
+            backdropPath = it.backdropPath,
+            id = it.id,
+            overview = it.overview,
+            posterPath = it.posterPath,
+            releaseDate = it.releaseDate,
+            title = it.title,
+            voteAverage = it.voteAverage,
+            voteCount = it.voteCount,
+            adult = it.adult,
+            originalLanguage = it.originalLanguage,
+            originalTitle = it.originalTitle,
+            popularity = it.popularity,
+            video = it.video
+        )
+    }.toTypedArray()
+}
+
+fun NetworkContentDataTvShowSearch.asDatabaseModel(): Array<ContentTvShowSearchEntity> {
+    return results.map {
+        ContentTvShowSearchEntity(
             backdropPath = it.backdropPath,
             id = it.id,
             overview = it.overview,

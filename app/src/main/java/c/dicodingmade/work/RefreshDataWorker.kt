@@ -4,12 +4,11 @@ import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import c.dicodingmade.database.ApplicationDatabase
-import c.dicodingmade.database.contentMovieUpcoming.ContentMovieUpcomingEntity
-import c.dicodingmade.database.contentMovieUpcoming.ContentUpcomingByDateEntity
+import c.dicodingmade.database.contentmovieupcoming.ContentMovieUpcomingEntity
+import c.dicodingmade.database.contentmovieupcoming.ContentUpcomingByDateEntity
 import c.dicodingmade.repository.ContentMovieRepository
 import c.dicodingmade.repository.ContentMovieUpcomingRepository
 import c.dicodingmade.repository.ContentTvShowRepository
-import retrofit2.HttpException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -36,20 +35,22 @@ class RefreshDataWorker(appContext: Context, params: WorkerParameters) : Corouti
             val upcomingByDate = contentMovieUpcomingRepository.getMovieUpcomingByDate(currentDate)
             val listUpcomingMovie: ArrayList<ContentMovieUpcomingEntity> = arrayListOf()
             listUpcomingMovie.clear()
-            listUpcomingMovie.add(upcomingByDate)
+            listUpcomingMovie.addAll(listOf(upcomingByDate))
 
-            for (i in listUpcomingMovie.indices) {
-                val addUpcomingMovieByDate = ContentUpcomingByDateEntity().apply {
-                    id = listUpcomingMovie[i].id
-                    title = listUpcomingMovie[i].title
-                    overview = listUpcomingMovie[i].overview
+            if (listUpcomingMovie.firstOrNull() != null) {
+                for (i in listUpcomingMovie.indices) {
+                    val addUpcomingMovieByDate = ContentUpcomingByDateEntity().apply {
+                        id = listUpcomingMovie[i].id
+                        title = listUpcomingMovie[i].title
+                        overview = listUpcomingMovie[i].overview
+                    }
+                    upcomingMovies.addAll(listOf(addUpcomingMovieByDate))
                 }
-                upcomingMovies.add(addUpcomingMovieByDate)
+                contentMovieUpcomingRepository.update(upcomingMovies)
             }
-            contentMovieUpcomingRepository.update(upcomingMovies)
 
             Result.success()
-        } catch (e: HttpException) {
+        } catch (e: Throwable) {
             Result.retry()
         }
     }

@@ -15,4 +15,6 @@ class Services {
     suspend fun getMovies() = services.getMovieList(TOKEN, EN_LANGUAGE)
     suspend fun getTvShows() = services.getTvShowList(TOKEN, EN_LANGUAGE)
     suspend fun getMovieUpcoming() = services.getMovieUpcoming(TOKEN)
+    suspend fun getSearchMovies(query: String) = services.getSearchMovieList(TOKEN, EN_LANGUAGE, query)
+    suspend fun getSearchTvShows(query: String) = services.getSearchTvShowList(TOKEN, EN_LANGUAGE, query)
 }

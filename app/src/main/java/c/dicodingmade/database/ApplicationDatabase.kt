@@ -4,13 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import c.dicodingmade.database.contentMovie.ContentMovieDao
-import c.dicodingmade.database.contentMovie.ContentMovieEntity
-import c.dicodingmade.database.contentMovieUpcoming.ContentMovieUpcomingDao
-import c.dicodingmade.database.contentMovieUpcoming.ContentMovieUpcomingEntity
-import c.dicodingmade.database.contentMovieUpcoming.ContentUpcomingByDateEntity
-import c.dicodingmade.database.contentTvShow.ContentTvShowDao
-import c.dicodingmade.database.contentTvShow.ContentTvShowEntity
+import c.dicodingmade.database.contentmovie.ContentMovieDao
+import c.dicodingmade.database.contentmovie.ContentMovieEntity
+import c.dicodingmade.database.contentmoviesearch.ContentMovieSearchDao
+import c.dicodingmade.database.contentmoviesearch.ContentMovieSearchEntity
+import c.dicodingmade.database.contentmovieupcoming.ContentMovieUpcomingDao
+import c.dicodingmade.database.contentmovieupcoming.ContentMovieUpcomingEntity
+import c.dicodingmade.database.contentmovieupcoming.ContentUpcomingByDateEntity
+import c.dicodingmade.database.contenttvshow.ContentTvShowDao
+import c.dicodingmade.database.contenttvshow.ContentTvShowEntity
+import c.dicodingmade.database.contenttvshowsearch.ContentTvShowSearchDao
+import c.dicodingmade.database.contenttvshowsearch.ContentTvShowSearchEntity
 import c.dicodingmade.database.favorite.FavoriteDao
 import c.dicodingmade.database.favorite.FavoriteEntity
 
@@ -20,7 +24,9 @@ import c.dicodingmade.database.favorite.FavoriteEntity
         ContentTvShowEntity::class,
         FavoriteEntity::class,
         ContentMovieUpcomingEntity::class,
-        ContentUpcomingByDateEntity::class
+        ContentUpcomingByDateEntity::class,
+        ContentMovieSearchEntity::class,
+        ContentTvShowSearchEntity::class
     ],
     version = 1,
     exportSchema = false
@@ -30,6 +36,8 @@ abstract class ApplicationDatabase : RoomDatabase() {
     abstract fun contentTvShowDao(): ContentTvShowDao
     abstract fun favoriteDao(): FavoriteDao
     abstract fun contentMovieUpcomingDao(): ContentMovieUpcomingDao
+    abstract fun contentMovieSearchDao(): ContentMovieSearchDao
+    abstract fun contentTvShowSearchDao(): ContentTvShowSearchDao
 
     companion object {
         @Volatile

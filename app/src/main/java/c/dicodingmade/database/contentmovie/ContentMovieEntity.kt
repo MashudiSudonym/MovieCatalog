@@ -1,12 +1,12 @@
-package c.dicodingmade.database.contentTvShow
+package c.dicodingmade.database.contentmovie
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import c.dicodingmade.domain.ContentResult
 
-@Entity(tableName = "content_tv_show_table")
-data class ContentTvShowEntity constructor(
+@Entity(tableName = "content_movie_table")
+data class ContentMovieEntity constructor(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "_id")
     val idContentTable: Long = 0L,
@@ -38,7 +38,7 @@ data class ContentTvShowEntity constructor(
     var video: Boolean = false
 )
 
-fun List<ContentTvShowEntity>.asDomainModel(): List<ContentResult> {
+fun List<ContentMovieEntity>.asDomainModel(): List<ContentResult> {
     return map {
         ContentResult(
             backdropPath = it.backdropPath,

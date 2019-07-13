@@ -1,4 +1,4 @@
-package c.dicodingmade.database.contentMovieUpcoming
+package c.dicodingmade.database.contentmovieupcoming
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
