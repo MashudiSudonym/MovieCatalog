@@ -21,10 +21,6 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
     val statusConnectionView: LiveData<ViewStatusConnection>
         get() = _statusConnectionView
 
-    private val _refreshStatus = MutableLiveData<Boolean>()
-    val refreshStatus: LiveData<Boolean>
-        get() = _refreshStatus
-
     init {
         _statusConnectionView.value = ViewStatusConnection.SEARCH
     }
@@ -33,8 +29,8 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
         _statusConnectionView.value = ViewStatusConnection.LOADING
         viewModelScope.launch {
             value?.let {
-                delay(500)
-                if (it.isEmpty()) {
+                delay(300)
+                if (it.isEmpty() || it.isBlank()) {
                     _statusConnectionView.value = ViewStatusConnection.SEARCH
                 } else {
                     contentMovieSearchRepository.getMovieSearch(it)
@@ -44,10 +40,5 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
             }
         }
         return true
-    }
-
-    fun onRefresh() {
-        _refreshStatus.value = false
-        _statusConnectionView.value = ViewStatusConnection.LOADING
     }
 }

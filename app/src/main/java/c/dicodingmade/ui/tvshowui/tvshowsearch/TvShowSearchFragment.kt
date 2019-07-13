@@ -6,16 +6,48 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import c.dicodingmade.R
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import c.dicodingmade.adapter.ContentAdapter
+import c.dicodingmade.databinding.FragmentTvShowSearchBinding
+import c.dicodingmade.ui.baseui.search.SearchFragmentDirections
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TvShowSearchFragment : Fragment() {
+    private val tvShowSearchViewModel: TvShowSearchViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tv_show_search, container, false)
+        val binding = FragmentTvShowSearchBinding.inflate(inflater)
+
+        binding.lifecycleOwner = this
+        binding.tvShowSearchViewModel = tvShowSearchViewModel
+
+        binding.rvTvShowSearch.adapter = ContentAdapter(ContentAdapter.OnClickListener {
+            tvShowSearchViewModel.displayDetail(it)
+        })
+
+        tvShowSearchViewModel.contentTvShow.observe(this, Observer {
+            tvShowSearchViewModel.contentTvShowData(it)
+        })
+        tvShowSearchViewModel.navigateToDetail.observe(this, Observer {
+            if (null != it) {
+                this.findNavController()
+                    .navigate(
+                        SearchFragmentDirections.actionSearchFragmentToDetailFragment(
+                            it.title,
+                            it,
+                            isMovie = false,
+                            isTvShow = true
+                        )
+                    )
+                tvShowSearchViewModel.displayDetailComplete()
+            }
+        })
+
+        return binding.root
     }
 
 

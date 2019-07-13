@@ -17,17 +17,17 @@ data class FavoriteEntity constructor(
     @ColumnInfo(name = "isFavorite")
     var isFavorite: Boolean = false,
     @ColumnInfo(name = "backdrop_path")
-    var backdropPath: String = "",
+    var backdropPath: String? = "",
     @ColumnInfo(name = "id")
     var id: Int = 0,
     @ColumnInfo(name = "overview")
-    var overview: String = "",
+    var overview: String? = "",
     @ColumnInfo(name = "poster_path")
-    var posterPath: String = "",
+    var posterPath: String? = "",
     @ColumnInfo(name = "release_date")
-    var releaseDate: String = "",
+    var releaseDate: String? = "",
     @ColumnInfo(name = "title")
-    var title: String = "",
+    var title: String? = "",
     @ColumnInfo(name = "vote_average")
     var voteAverage: Double = 0.0
 )
@@ -38,12 +38,12 @@ fun List<FavoriteEntity>.asDomainModel(): List<ContentResult> {
             isMovie = it.isMovie,
             isFavorite = it.isFavorite,
             isTvShow = it.isTvShow,
-            backdropPath = it.backdropPath,
+            backdropPath = it.backdropPath.toString(),
             id = it.id,
-            overview = it.overview,
-            posterPath = it.posterPath,
-            releaseDate = it.releaseDate,
-            title = it.title,
+            overview = it.overview.toString(),
+            posterPath = it.posterPath.toString(),
+            releaseDate = it.releaseDate.toString(),
+            title = it.title.toString(),
             voteAverage = it.voteAverage
         )
     }

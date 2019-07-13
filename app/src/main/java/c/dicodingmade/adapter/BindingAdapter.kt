@@ -115,10 +115,12 @@ fun bindApiStatusViewPagerErrorConnection(viewPager: ViewPager, viewStatusConnec
 @SuppressLint("SetTextI18n")
 @BindingAdapter("releaseDate")
 fun bindReleaseDate(textView: TextView, textPath: String?) {
-    textView.text =
-        textView.resources.getString(R.string.movie_tv_show_release_date) + simpleDateFormat(
-            textPath as String
-        )
+    if (textPath != "") {
+        textView.text =
+            textView.resources.getString(R.string.movie_tv_show_release_date) + simpleDateFormat(
+                textPath as String
+            )
+    }
 }
 
 // Converter Text format for rating movie / tv show

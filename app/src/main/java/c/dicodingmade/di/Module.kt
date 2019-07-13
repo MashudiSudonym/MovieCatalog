@@ -5,9 +5,11 @@ import c.dicodingmade.ui.baseui.search.SearchViewModel
 import c.dicodingmade.ui.detail.DetailViewModel
 import c.dicodingmade.ui.movieui.movie.MovieViewModel
 import c.dicodingmade.ui.movieui.moviefavorite.MovieFavoriteViewModel
+import c.dicodingmade.ui.movieui.moviesearch.MovieSearchViewModel
 import c.dicodingmade.ui.setting.SettingsViewModel
 import c.dicodingmade.ui.tvshowui.tvshow.TvShowViewModel
 import c.dicodingmade.ui.tvshowui.tvshowfavorite.TvShowFavoriteViewModel
+import c.dicodingmade.ui.tvshowui.tvshowsearch.TvShowSearchViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -33,5 +35,7 @@ class Module {
         }
         viewModel { SettingsViewModel(get()) }
         viewModel { SearchViewModel(get()) }
+        viewModel { MovieSearchViewModel(get()) }
+        viewModel { TvShowSearchViewModel(get()) }
     }
 }
