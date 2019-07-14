@@ -61,7 +61,7 @@ class MovieFavoriteViewModel(application: Application) : AndroidViewModel(applic
     }
 
     fun onRefresh() {
-        _refreshStatus.value = true
+        _refreshStatus.value = false
         getMovieFavorite()
     }
 }

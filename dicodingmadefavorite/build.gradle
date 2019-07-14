@@ -20,9 +20,7 @@ android {
         // Support vector drawables for unsupported android API
         vectorDrawables.useSupportLibrary = true
         // Base URL for API
-        buildConfigField "String", "BASE_URL_API", "\"https://api.themoviedb.org/3/\""
         buildConfigField "String", "BASE_URL_POSTER", "\"https://image.tmdb.org/t/p/w500\""
-        buildConfigField "String", "TOKEN", "\"9dfbe852b12abc0e1c44183b62a972d2\""
     }
     buildTypes {
         release {
@@ -63,17 +61,6 @@ dependencies {
     implementation "androidx.room:room-ktx:2.1.0"
     implementation "androidx.room:room-runtime:2.1.0"
     kapt "androidx.room:room-compiler:2.1.0"
-    implementation "androidx.work:work-runtime-ktx:2.0.1"
-    implementation 'androidx.preference:preference:1.1.0-rc01'
-    // Network and repository components
-    implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
-    implementation 'com.squareup.retrofit2:retrofit-converters:2.6.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
-    //noinspection GradleDependency
-    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
-    //noinspection GradleDependency
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
     // KOIN Dependency Injection
     implementation 'org.koin:koin-android:2.0.1'
     implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
@@ -87,7 +74,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    androidTestImplementation "androidx.work:work-testing:2.0.1"
     testImplementation "androidx.room:room-testing:2.1.0"
     testImplementation "org.koin:koin-test:2.0.1"
 }

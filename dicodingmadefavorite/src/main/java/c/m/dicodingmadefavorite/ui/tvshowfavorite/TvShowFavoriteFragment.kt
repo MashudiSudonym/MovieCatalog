@@ -1,4 +1,4 @@
-package c.dicodingmade.ui.tvshowui.tvshowfavorite
+package c.m.dicodingmadefavorite.ui.tvshowfavorite
 
 
 import android.os.Bundle
@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import c.dicodingmade.adapter.ContentAdapter
-import c.dicodingmade.databinding.FragmentTvShowFavoriteBinding
-import c.dicodingmade.ui.baseui.favorite.FavoriteFragmentDirections
+import c.m.dicodingmadefavorite.adapter.ContentAdapter
+import c.m.dicodingmadefavorite.databinding.FragmentTvShowFavoriteBinding
+import c.m.dicodingmadefavorite.ui.main.MainFragmentDirections
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class TvShowFavoriteFragment : Fragment() {
     private val tvShowFavoriteViewModel: TvShowFavoriteViewModel by viewModel()
@@ -35,7 +36,7 @@ class TvShowFavoriteFragment : Fragment() {
             if (it != null) {
                 this.findNavController()
                     .navigate(
-                        FavoriteFragmentDirections.actionFavoriteFragmentToDetailFragment(
+                        MainFragmentDirections.actionMainFragmentToDetailFragment(
                             it.title,
                             it,
                             isMovie = false,

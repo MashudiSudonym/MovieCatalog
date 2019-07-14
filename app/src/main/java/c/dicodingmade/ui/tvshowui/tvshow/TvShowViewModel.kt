@@ -46,7 +46,7 @@ class TvShowViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun onRefresh() {
-        _refreshStatus.value = true
+        _refreshStatus.value = false
         getTvShowList()
     }
 

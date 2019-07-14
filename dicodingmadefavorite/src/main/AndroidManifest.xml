@@ -1,24 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="c.m.dicodingmadefavorite">
+          xmlns:tools="http://schemas.android.com/tools" package="c.m.dicodingmadefavorite">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <permission
+            android:name="c.dicodingmade.DicodingMadeApplication.READ_DATABASE"
+            android:protectionLevel="normal"/>
+    <permission
+            android:name="c.dicodingmade.DicodingMadeApplication.WRITE_DATABASE"
+            android:protectionLevel="normal"/>
 
     <application
+            android:name=".DicodingMadeFavoriteApp"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme.NoActionBar" tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-                android:name=".MainActivity"
+                android:name=".ui.MainActivity"
                 android:label="@string/app_name"
-                android:theme="@style/AppTheme.NoActionBar">
+        >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <provider
+                android:name=".provider.DicodingMadeContentProvider"
+                android:authorities="c.dicodingmade.DicodingMadeApplication"
+                android:exported="true"
+                android:syncable="true"
+                android:readPermission="c.dicodingmade.DicodingmadeApplication.READ_DATABASE"
+                android:writePermission="c.dicodingmade.DicodingmadeApplication.WRITE_DATABASE"/>
     </application>
 
 </manifest>

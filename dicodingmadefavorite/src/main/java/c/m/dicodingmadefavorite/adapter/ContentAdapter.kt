@@ -1,12 +1,12 @@
-package c.dicodingmade.adapter
+package c.m.dicodingmadefavorite.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import c.dicodingmade.databinding.ItemListContentBinding
-import c.dicodingmade.domain.ContentResult
+import c.m.dicodingmadefavorite.databinding.ItemListContentBinding
+import c.m.dicodingmadefavorite.domain.ContentResult
 
 class ContentAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<ContentResult, ContentAdapter.ContentViewHolder>(DiffCallback) {

@@ -1,22 +1,22 @@
-package c.dicodingmade.ui.tvshowui.tvshowfavorite
+package c.m.dicodingmadefavorite.ui.moviefavorite
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import c.dicodingmade.database.ApplicationDatabase
-import c.dicodingmade.domain.ContentResult
-import c.dicodingmade.repository.FavoriteRepository
-import c.dicodingmade.util.ViewStatusConnection
+import c.m.dicodingmadefavorite.database.ApplicationDatabase
+import c.m.dicodingmadefavorite.domain.ContentResult
+import c.m.dicodingmadefavorite.repository.FavoriteRepository
+import c.m.dicodingmadefavorite.util.ViewStatusConnection
 
-class TvShowFavoriteViewModel(application: Application) : AndroidViewModel(application) {
+class MovieFavoriteViewModel(application: Application) : AndroidViewModel(application) {
     private val favoriteDao = ApplicationDatabase.getDatabase(application)
     private val favoriteRepository = FavoriteRepository(favoriteDao)
-    lateinit var tvShowFavoriteList: LiveData<List<ContentResult>>
+    lateinit var movieFavoriteList: LiveData<List<ContentResult>>
 
-    private val _tvShowFavorites = MutableLiveData<List<ContentResult>>()
-    val tvShowFavorites: LiveData<List<ContentResult>>
-        get() = _tvShowFavorites
+    private val _movieFavorites = MutableLiveData<List<ContentResult>>()
+    val movieFavorites: LiveData<List<ContentResult>>
+        get() = _movieFavorites
 
     private val _statusConnectionView = MutableLiveData<ViewStatusConnection>()
     val statusConnectionView: LiveData<ViewStatusConnection>
@@ -31,15 +31,15 @@ class TvShowFavoriteViewModel(application: Application) : AndroidViewModel(appli
         get() = _navigateToDetail
 
     init {
-        getTvShowFavorite()
+        getMovieFavorite()
     }
 
-    private fun getTvShowFavorite() {
-        tvShowFavoriteList = favoriteRepository.getAllTvShowFavorite()
+    private fun getMovieFavorite() {
+        movieFavoriteList = favoriteRepository.getAllMovieFavorite()
         _refreshStatus.value = false
     }
 
-    fun tvShowFavoriteData(favorite: List<ContentResult>) {
+    fun movieFavoriteData(favorite: List<ContentResult>) {
         if (favorite.isNullOrEmpty()) {
             _statusConnectionView.value = ViewStatusConnection.LOADING
             _statusConnectionView.value = ViewStatusConnection.ERROR
@@ -48,7 +48,7 @@ class TvShowFavoriteViewModel(application: Application) : AndroidViewModel(appli
             _statusConnectionView.value = ViewStatusConnection.LOADING
             _statusConnectionView.value = ViewStatusConnection.DONE
             _refreshStatus.value = false
-            _tvShowFavorites.value = favorite
+            _movieFavorites.value = favorite
         }
     }
 
@@ -62,6 +62,6 @@ class TvShowFavoriteViewModel(application: Application) : AndroidViewModel(appli
 
     fun onRefresh() {
         _refreshStatus.value = false
-        getTvShowFavorite()
+        getMovieFavorite()
     }
 }

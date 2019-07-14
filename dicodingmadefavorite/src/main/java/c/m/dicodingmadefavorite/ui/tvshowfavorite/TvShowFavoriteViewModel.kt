@@ -1,13 +1,13 @@
-package c.dicodingmade.ui.tvshowui.tvshowfavorite
+package c.m.dicodingmadefavorite.ui.tvshowfavorite
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import c.dicodingmade.database.ApplicationDatabase
-import c.dicodingmade.domain.ContentResult
-import c.dicodingmade.repository.FavoriteRepository
-import c.dicodingmade.util.ViewStatusConnection
+import c.m.dicodingmadefavorite.database.ApplicationDatabase
+import c.m.dicodingmadefavorite.domain.ContentResult
+import c.m.dicodingmadefavorite.repository.FavoriteRepository
+import c.m.dicodingmadefavorite.util.ViewStatusConnection
 
 class TvShowFavoriteViewModel(application: Application) : AndroidViewModel(application) {
     private val favoriteDao = ApplicationDatabase.getDatabase(application)

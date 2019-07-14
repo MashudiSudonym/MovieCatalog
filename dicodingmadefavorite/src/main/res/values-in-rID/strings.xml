@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dicoding MADE Favorit</string>
+    <string name="img_movie_tv_show_poster_description">Poster Film atau Acara TV</string>
+    <string name="title_movie_tv_show_description">Judul Film atau Acara TV</string>
+    <string name="movie_tv_show_release_date_description">Tanggal Rilis Film atau Acara TV</string>
+    <string name="movie_tv_show_overview_description">Ikhtisar Film atau Acara TV</string>
+    <string name="title_movie_tv_show">Judul Film atau Acara TV</string>
+    <string name="movie_tv_show_release_date">"Tanggal Rilis : "</string>
+    <string name="overview">Ikhtisar</string>
+    <string name="choose_language_menu">Pilih Bahasa</string>
+    <string name="title_tab_movie">Film</string>
+    <string name="title_tab_tv_show">Acara TV</string>
+    <string name="img_description">Deskripsi Gambar</string>
+    <string name="rating">0.0</string>
+    <string name="favorite">Favorit</string>
+    <string name="add_to_favorite">Tambah ke Favorit</string>
+    <string name="remove_from_favorite">Hapus dari Favorit</string>
+</resources>
