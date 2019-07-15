@@ -4,10 +4,12 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import c.m.dicodingmadefavorite.database.ApplicationDatabase
 import c.m.dicodingmadefavorite.domain.ContentResult
 import c.m.dicodingmadefavorite.repository.FavoriteRepository
 import c.m.dicodingmadefavorite.util.ViewStatusConnection
+import kotlinx.coroutines.launch
 
 class MovieFavoriteViewModel(application: Application) : AndroidViewModel(application) {
     private val favoriteDao = ApplicationDatabase.getDatabase(application)
@@ -35,6 +37,9 @@ class MovieFavoriteViewModel(application: Application) : AndroidViewModel(applic
     }
 
     private fun getMovieFavorite() {
+        viewModelScope.launch {
+            favoriteRepository.getContentProvider(getApplication())
+        }
         movieFavoriteList = favoriteRepository.getAllMovieFavorite()
         _refreshStatus.value = false
     }

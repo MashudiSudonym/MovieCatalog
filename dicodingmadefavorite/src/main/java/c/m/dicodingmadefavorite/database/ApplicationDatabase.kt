@@ -30,7 +30,7 @@ abstract class ApplicationDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     ApplicationDatabase::class.java,
-                    "Dicoding MADE ApplicationDatabase"
+                    "Dicoding MADE Favorite ApplicationDatabase"
                 ).fallbackToDestructiveMigration()
                     .build()
 

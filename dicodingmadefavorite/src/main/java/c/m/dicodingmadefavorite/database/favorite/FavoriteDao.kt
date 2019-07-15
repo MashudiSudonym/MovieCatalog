@@ -1,22 +1,27 @@
 package c.m.dicodingmadefavorite.database.favorite
 
-import android.database.Cursor
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface FavoriteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(favorite: FavoriteEntity)
 
-    @Query("SELECT * FROM favorite_table ORDER BY _id DESC")
-    fun readFavorite(): List<FavoriteEntity>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertData(favorite: MutableList<FavoriteEntity>)
+
+    @Query("DELETE FROM favorite_table")
+    suspend fun deleteAllFavorite()
+
+    @Transaction
+    suspend fun updateData(favorite: MutableList<FavoriteEntity>) {
+        deleteAllFavorite()
+        insertData(favorite)
+    }
 
     @Query("SELECT * FROM favorite_table ORDER BY _id DESC")
-    fun readFavoriteCursor(): Cursor
+    fun readFavorite(): List<FavoriteEntity>
 
     @Query("SELECT * FROM favorite_table WHERE isMovie = 1 ORDER BY _id DESC")
     fun getAllFavoriteMovie(): LiveData<List<FavoriteEntity>>

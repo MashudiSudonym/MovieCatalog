@@ -4,13 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
-    <permission
-            android:name="c.dicodingmade.DicodingMadeApplication.READ_DATABASE"
-            android:protectionLevel="normal"/>
-    <permission
-            android:name="c.dicodingmade.DicodingMadeApplication.WRITE_DATABASE"
-            android:protectionLevel="normal"/>
+    <uses-permission android:name="c.dicodingmade.provider.READ_DATABASE"/>
+    <uses-permission android:name="c.dicodingmade.provider.WRITE_DATABASE"/>
 
     <application
             android:name=".DicodingMadeFavoriteApp"
@@ -30,14 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <provider
-                android:name=".provider.DicodingMadeContentProvider"
-                android:authorities="c.dicodingmade.DicodingMadeApplication"
-                android:exported="true"
-                android:syncable="true"
-                android:readPermission="c.dicodingmade.DicodingmadeApplication.READ_DATABASE"
-                android:writePermission="c.dicodingmade.DicodingmadeApplication.WRITE_DATABASE"/>
     </application>
 
 </manifest>

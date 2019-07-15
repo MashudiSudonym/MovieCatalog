@@ -53,7 +53,7 @@
                 android:id="@+id/fab_favorite"
                 android:layout_gravity="bottom|end"
                 app:srcCompat="@drawable/ic_favorite_false"
-                app:backgroundTint="@color/colorPrimary"
+                app:backgroundTint="@android:color/white"
                 app:rippleColor="@color/colorAccent"
                 android:layout_margin="16dp"
                 android:layout_width="wrap_content"
