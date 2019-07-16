@@ -6,7 +6,6 @@ import c.dicodingmade.ui.detail.DetailViewModel
 import c.dicodingmade.ui.movieui.movie.MovieViewModel
 import c.dicodingmade.ui.movieui.moviefavorite.MovieFavoriteViewModel
 import c.dicodingmade.ui.movieui.moviesearch.MovieSearchViewModel
-import c.dicodingmade.ui.setting.SettingsViewModel
 import c.dicodingmade.ui.tvshowui.tvshow.TvShowViewModel
 import c.dicodingmade.ui.tvshowui.tvshowfavorite.TvShowFavoriteViewModel
 import c.dicodingmade.ui.tvshowui.tvshowsearch.TvShowSearchViewModel
@@ -33,7 +32,6 @@ class Module {
                 isTvShow
             )
         }
-        viewModel { SettingsViewModel(get()) }
         viewModel { SearchViewModel(get()) }
         viewModel { MovieSearchViewModel(get()) }
         viewModel { TvShowSearchViewModel(get()) }

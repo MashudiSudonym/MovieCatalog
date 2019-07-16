@@ -12,7 +12,7 @@ interface ContentMovieUpcomingDao {
     fun getAllContentMovieUpcoming(): LiveData<List<ContentMovieUpcomingEntity>>
 
     @Query("SELECT * FROM content_movie_upcoming_table WHERE release_date = :today")
-    fun getSingleContentMovieUpcoming(today: String): ContentMovieUpcomingEntity
+    fun getContentMovieUpcoming(today: String): List<ContentMovieUpcomingEntity>
 
     @Query("DELETE FROM content_movie_upcoming_table")
     suspend fun deleteAllContentMovie()
@@ -22,19 +22,4 @@ interface ContentMovieUpcomingDao {
         deleteAllContentMovie()
         insert(*contentMovieUpcoming)
     }
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(contentUpcomingByDateEntity: ArrayList<ContentUpcomingByDateEntity>)
-
-    @Query("DELETE FROM content_upcoming_by_date_table")
-    suspend fun deleteAllContentUpcoming()
-
-    @Transaction
-    suspend fun updateDataContentUpcoming(contentUpcomingByDateEntity: ArrayList<ContentUpcomingByDateEntity>) {
-        deleteAllContentUpcoming()
-        insert(contentUpcomingByDateEntity)
-    }
-
-    @Query("SELECT * FROM content_upcoming_by_date_table ORDER BY _id DESC")
-    fun getAllDataUpcoming(): LiveData<List<ContentUpcomingByDateEntity>>
 }

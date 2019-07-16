@@ -10,7 +10,6 @@ import c.dicodingmade.database.contentmoviesearch.ContentMovieSearchDao
 import c.dicodingmade.database.contentmoviesearch.ContentMovieSearchEntity
 import c.dicodingmade.database.contentmovieupcoming.ContentMovieUpcomingDao
 import c.dicodingmade.database.contentmovieupcoming.ContentMovieUpcomingEntity
-import c.dicodingmade.database.contentmovieupcoming.ContentUpcomingByDateEntity
 import c.dicodingmade.database.contenttvshow.ContentTvShowDao
 import c.dicodingmade.database.contenttvshow.ContentTvShowEntity
 import c.dicodingmade.database.contenttvshowsearch.ContentTvShowSearchDao
@@ -24,7 +23,6 @@ import c.dicodingmade.database.favorite.FavoriteEntity
         ContentTvShowEntity::class,
         FavoriteEntity::class,
         ContentMovieUpcomingEntity::class,
-        ContentUpcomingByDateEntity::class,
         ContentMovieSearchEntity::class,
         ContentTvShowSearchEntity::class
     ],

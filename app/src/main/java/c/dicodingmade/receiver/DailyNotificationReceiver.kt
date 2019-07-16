@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import c.dicodingmade.R
 import c.dicodingmade.util.notificationSetup
 import java.util.*
 
@@ -23,18 +24,23 @@ class DailyNotificationReceiver : BroadcastReceiver() {
         notificationSetup(context, title, content, CHANNEL_ID, DAILY_NOTIFICATION_CHANNEL)
     }
 
-    fun setDailyAlarm(context: Context?, title: String?, content: String?) {
+    fun setDailyAlarm(context: Context?) {
         val alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val dailyDate = Calendar.getInstance().apply {
+        val alarmSchedule = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
             set(Calendar.HOUR_OF_DAY, 7)
             set(Calendar.MINUTE, 0)
             set(Calendar.SECOND, 0)
         }
+        val currentDate = Calendar.getInstance()
+        val title = context.resources.getString(R.string.app_name)
+        val content = context.resources.getString(R.string.notif_daily_body)
         val pendingIntent = pendingIntentService(context, title, content)
 
+        if (alarmSchedule.before(currentDate)) alarmSchedule.add(Calendar.HOUR_OF_DAY, 24)
         alarmManager.setInexactRepeating(
             AlarmManager.RTC_WAKEUP,
-            dailyDate.timeInMillis,
+            alarmSchedule.timeInMillis,
             AlarmManager.INTERVAL_DAY,
             pendingIntent
         )
@@ -53,7 +59,7 @@ class DailyNotificationReceiver : BroadcastReceiver() {
         )
     }
 
-    fun cancelAlarm(context: Context?) {
+    fun cancelAlarmDaily(context: Context?) {
         val alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, DailyNotificationReceiver::class.java)
         val pendingIntent = PendingIntent.getBroadcast(

@@ -6,54 +6,71 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import c.dicodingmade.R
-import c.dicodingmade.database.contentmovieupcoming.ContentUpcomingByDateEntity
+import c.dicodingmade.database.ApplicationDatabase
+import c.dicodingmade.database.contentmovieupcoming.ContentMovieUpcomingEntity
+import c.dicodingmade.repository.ContentMovieUpcomingRepository
 import c.dicodingmade.util.notificationSetup
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 import java.util.*
 
 class ReleaseNotificationReceiver : BroadcastReceiver() {
     companion object {
-        const val RELEASE_REPEATING = 110
-        const val CHANNEL_ID = 123
+        var RELEASE_REPEATING = 110
+        var CHANNEL_ID = 123
         const val RELEASE_NOTIFICATION_CHANNEL = "Release Reminder"
-        const val EXTRA_TITLE = "title"
-        const val EXTRA_CONTENT = "content"
     }
-    private var pendingIntent: PendingIntent? = null
+
+    private var title: String? = ""
+    private var content: String? = ""
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        val title = intent?.getStringExtra(EXTRA_TITLE)
-        val content = intent?.getStringExtra(EXTRA_CONTENT)
-        notificationSetup(context, title, content, CHANNEL_ID, RELEASE_NOTIFICATION_CHANNEL)
+        val applicationDatabase = ApplicationDatabase.getDatabase(context as Context)
+        val contentMovieUpcomingRepository = ContentMovieUpcomingRepository(applicationDatabase)
+        val date = Date()
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val currentDate = dateFormat.format(date)
+        var list: List<ContentMovieUpcomingEntity>
+
+        CoroutineScope(Dispatchers.IO).launch {
+            contentMovieUpcomingRepository.refreshMovieUpcoming()
+            list = contentMovieUpcomingRepository.getMovieUpcomingByDate(currentDate)
+            if (list.isNotEmpty()) {
+                for (i in list.indices) {
+                    RELEASE_REPEATING += i
+                    CHANNEL_ID += i
+                    title = "${context.resources?.getString(R.string.release_Today)} ${list[i].title}"
+                    content = list[i].overview
+                    notificationSetup(context, title, content, CHANNEL_ID, RELEASE_NOTIFICATION_CHANNEL)
+                }
+            }
+        }
     }
 
-    fun setReleaseAlarm(context: Context?, movieUpcomingList: List<ContentUpcomingByDateEntity>) {
+    fun setReleaseAlarm(context: Context?) {
         val alarmManager = context?.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val releaseDate = Calendar.getInstance().apply {
+        val alarmSchedule = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
             set(Calendar.HOUR_OF_DAY, 8)
             set(Calendar.MINUTE, 0)
             set(Calendar.SECOND, 0)
         }
+        val currentDate = Calendar.getInstance()
+        val pendingIntent = pendingIntentService(context)
 
-        movieUpcomingList.forEach {
-            pendingIntent = pendingIntentService(context, it.title, it.overview)
-            alarmManager.setInexactRepeating(
-                AlarmManager.RTC_WAKEUP,
-                releaseDate.timeInMillis,
-                AlarmManager.INTERVAL_DAY,
-                pendingIntent
-            )
-        }
+        if (alarmSchedule.before(currentDate)) alarmSchedule.add(Calendar.HOUR_OF_DAY, 24)
+        alarmManager.setInexactRepeating(
+            AlarmManager.RTC_WAKEUP,
+            alarmSchedule.timeInMillis,
+            AlarmManager.INTERVAL_DAY,
+            pendingIntent
+        )
     }
 
-    private fun pendingIntentService(
-        context: Context?,
-        title: String?,
-        content: String?
-    ): PendingIntent? {
-        val intent = Intent(context, ReleaseNotificationReceiver::class.java).apply {
-            putExtra(EXTRA_TITLE, "${context?.resources?.getString(R.string.release_Today)} $title")
-            putExtra(EXTRA_CONTENT, content)
-        }
+    private fun pendingIntentService(context: Context?): PendingIntent? {
+        val intent = Intent(context, ReleaseNotificationReceiver::class.java)
         return PendingIntent.getBroadcast(
             context,
             RELEASE_REPEATING, intent, 0
