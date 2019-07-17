@@ -4,14 +4,13 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import c.dicodingmade.database.ApplicationDatabase
 import c.dicodingmade.domain.ContentResult
 import c.dicodingmade.repository.ContentMovieSearchRepository
 import c.dicodingmade.util.ViewStatusConnection
+import org.koin.android.ext.android.inject
 
 class MovieSearchViewModel(application: Application) : AndroidViewModel(application) {
-    private val database = ApplicationDatabase.getDatabase(application)
-    private val contentMovieSearchRepository = ContentMovieSearchRepository(database)
+    private val contentMovieSearchRepository: ContentMovieSearchRepository by application.inject()
     var contentMovie: LiveData<List<ContentResult>> = contentMovieSearchRepository.contentMovieSearch
 
     private val _movies = MutableLiveData<List<ContentResult>>()

@@ -4,14 +4,13 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import c.dicodingmade.database.ApplicationDatabase
 import c.dicodingmade.domain.ContentResult
 import c.dicodingmade.repository.FavoriteRepository
 import c.dicodingmade.util.ViewStatusConnection
+import org.koin.android.ext.android.inject
 
 class MovieFavoriteViewModel(application: Application) : AndroidViewModel(application) {
-    private val favoriteDao = ApplicationDatabase.getDatabase(application)
-    private val favoriteRepository = FavoriteRepository(favoriteDao)
+    private val favoriteRepository: FavoriteRepository by application.inject()
     lateinit var movieFavoriteList: LiveData<List<ContentResult>>
 
     private val _movieFavorites = MutableLiveData<List<ContentResult>>()

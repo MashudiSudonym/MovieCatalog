@@ -1,6 +1,8 @@
 package c.dicodingmade.di
 
+import c.dicodingmade.database.ApplicationDatabase
 import c.dicodingmade.domain.ContentResult
+import c.dicodingmade.repository.*
 import c.dicodingmade.ui.baseui.search.SearchViewModel
 import c.dicodingmade.ui.detail.DetailViewModel
 import c.dicodingmade.ui.movieui.movie.MovieViewModel
@@ -9,17 +11,12 @@ import c.dicodingmade.ui.movieui.moviesearch.MovieSearchViewModel
 import c.dicodingmade.ui.tvshowui.tvshow.TvShowViewModel
 import c.dicodingmade.ui.tvshowui.tvshowfavorite.TvShowFavoriteViewModel
 import c.dicodingmade.ui.tvshowui.tvshowsearch.TvShowSearchViewModel
+import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 class Module {
-    /*
-    * Note:
-    * Need more learning about dependency injection using KOIN
-    * while currently used to overcome "View Model and View Model Factory"
-    * check the branch "submission-4" which still doesn't use KOIN to see the difference
-    * */
-    val appModule = module {
+    val viewModelModule = module {
         viewModel { MovieViewModel(get()) }
         viewModel { TvShowViewModel(get()) }
         viewModel { MovieFavoriteViewModel(get()) }
@@ -35,5 +32,14 @@ class Module {
         viewModel { SearchViewModel(get()) }
         viewModel { MovieSearchViewModel(get()) }
         viewModel { TvShowSearchViewModel(get()) }
+    }
+
+    val repositoryModule = module {
+        single { ContentMovieRepository(ApplicationDatabase.getDatabase(androidApplication())) }
+        single { ContentMovieSearchRepository(ApplicationDatabase.getDatabase(androidApplication())) }
+        single { ContentMovieUpcomingRepository(ApplicationDatabase.getDatabase(androidApplication())) }
+        single { ContentTvShowRepository(ApplicationDatabase.getDatabase(androidApplication())) }
+        single { ContentTvShowSearchRepository(ApplicationDatabase.getDatabase(androidApplication())) }
+        single { FavoriteRepository(ApplicationDatabase.getDatabase(androidApplication())) }
     }
 }

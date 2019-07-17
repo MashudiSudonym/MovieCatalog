@@ -4,14 +4,13 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import c.dicodingmade.database.ApplicationDatabase
 import c.dicodingmade.domain.ContentResult
 import c.dicodingmade.repository.ContentTvShowSearchRepository
 import c.dicodingmade.util.ViewStatusConnection
+import org.koin.android.ext.android.inject
 
 class TvShowSearchViewModel(application: Application) : AndroidViewModel(application) {
-    private val database = ApplicationDatabase.getDatabase(application)
-    private val contentTvShowSearchRepository = ContentTvShowSearchRepository(database)
+    private val contentTvShowSearchRepository: ContentTvShowSearchRepository by application.inject()
     var contentTvShow: LiveData<List<ContentResult>> = contentTvShowSearchRepository.contentTvShowSearch
 
     private val _tvShows = MutableLiveData<List<ContentResult>>()

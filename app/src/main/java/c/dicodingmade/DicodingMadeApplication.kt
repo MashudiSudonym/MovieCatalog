@@ -27,7 +27,7 @@ class DicodingMadeApplication : Application() {
         val repeatingRequest = PeriodicWorkRequestBuilder<RefreshDataWorker>(12, TimeUnit.HOURS)
             .build()
 
-        WorkManager.getInstance().enqueueUniquePeriodicWork(
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork(
             RefreshDataWorker.WORK_NAME,
             ExistingPeriodicWorkPolicy.KEEP,
             repeatingRequest
@@ -41,7 +41,14 @@ class DicodingMadeApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@DicodingMadeApplication)
-            modules(Module().appModule)
+            modules(
+                with(Module()) {
+                    listOf(
+                        viewModelModule,
+                        repositoryModule
+                    )
+                }
+            )
         }
     }
 }

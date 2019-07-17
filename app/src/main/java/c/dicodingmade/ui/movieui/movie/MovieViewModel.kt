@@ -6,15 +6,14 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import c.dicodingmade.database.ApplicationDatabase
 import c.dicodingmade.domain.ContentResult
 import c.dicodingmade.repository.ContentMovieRepository
 import c.dicodingmade.util.ViewStatusConnection
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 class MovieViewModel(application: Application) : AndroidViewModel(application) {
-    private val database = ApplicationDatabase.getDatabase(application)
-    private val contentMovieRepository = ContentMovieRepository(database)
+    private val contentMovieRepository: ContentMovieRepository by application.inject()
     var contentMovie: LiveData<List<ContentResult>> = contentMovieRepository.contentMovie
 
     private val _movies = MutableLiveData<List<ContentResult>>()
