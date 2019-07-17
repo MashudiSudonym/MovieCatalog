@@ -43,18 +43,17 @@ class FavoriteWidget : AppWidgetProvider() {
     }
 
     override fun onReceive(context: Context, intent: Intent) {
-        super.onReceive(context, intent)
         if (intent.action == TOAST_ACTION) {
             val appWidgetId =
                 intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
             val viewIndex = intent.getIntExtra(EXTRA_ITEM, 0)
-            val appWidgetManager = AppWidgetManager.getInstance(context.applicationContext)
-            val thisWidget = ComponentName(context, FavoriteWidget::class.java)
-            val appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget)
-
-            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.stack_view)
-
-            Toast.makeText(context, "$viewIndex, $appWidgetId $appWidgetIds", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "$viewIndex, $appWidgetId", Toast.LENGTH_SHORT).show()
         }
+        val appWidgetManager = AppWidgetManager.getInstance(context)
+        val thisWidget = ComponentName(context, FavoriteWidget::class.java)
+        val appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget)
+
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.stack_view)
+        super.onReceive(context, intent)
     }
 }
