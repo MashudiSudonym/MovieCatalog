@@ -1,3 +1,67 @@
 <resources>
     <string name="app_name">Dicoding MADE</string>
+    <string name="img_movie_tv_show_poster_description">Poster Movie or TV Show</string>
+    <string name="title_movie_tv_show_description">Title Movie or TV Show</string>
+    <string name="movie_tv_show_release_date_description">Movie or TV Show Release Date</string>
+    <string name="movie_tv_show_overview_description">Movie or TV Show Overview</string>
+    <string name="title_movie_tv_show">Title Movie or TV Show</string>
+    <string name="movie_tv_show_release_date">"Release Date : "</string>
+    <string name="lorem" translatable="false">lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor
+        sit amet lorem ipsum
+        dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet. lorem ipsum dolor sit amet lorem ipsum
+        dolor sit amet lorem ipsum dolor sit amet. lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum
+        dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet. lorem ipsum
+        dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet. lorem ipsum dolor sit amet lorem ipsum
+        dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum
+        dolor sit amet. lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet. lorem ipsum
+        dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor
+        sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit
+        amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet
+        lorem ipsum dolor sit amet lorem ipsum dolor
+        sit amet lorem ipsum
+        dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet. lorem ipsum dolor sit amet lorem ipsum
+        dolor sit amet lorem ipsum dolor sit amet. lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum
+        dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet. lorem ipsum
+        dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet. lorem ipsum dolor sit amet lorem ipsum
+        dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum
+        dolor sit amet. lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet. lorem ipsum
+        dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor
+        sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit
+        amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet
+        lorem ipsum dolor sit amet lorem ipsum dolor
+        sit amet lorem ipsum
+        dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet. lorem ipsum dolor sit amet lorem ipsum
+        dolor sit amet lorem ipsum dolor sit amet. lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum
+        dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet. lorem ipsum
+        dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet. lorem ipsum dolor sit amet lorem ipsum
+        dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum
+        dolor sit amet. lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet. lorem ipsum
+        dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor
+        sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit
+        amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet lorem ipsum dolor sit amet
+    </string>
+    <string name="overview">Overview</string>
+    <string name="choose_language_menu">Choose Language</string>
+    <string name="title_tab_movie">Movies</string>
+    <string name="title_tab_tv_show">TV Show</string>
+    <string name="img_description">Image Description</string>
+    <string name="rating">0.0</string>
+    <string name="favorite">Favorite</string>
+
+    <string name="add_to_favorite">Add to Favorite</string>
+    <string name="remove_from_favorite">Remove from Favorite</string>
+    <string name="settings">Settings</string>
+    <string name="search">Search</string>
+
+    <string name="title_release_reminder">Release Reminder</string>
+    <string name="description_release_reminder">Reminder showing the movie that released today</string>
+    <string name="title_daily_reminder">Daily Reminder</string>
+    <string name="description_daily_reminder">Reminder for return to application</string>
+    <string name="reminder_setting">Reminder Setting</string>
+    <string name="language_setting">Language Setting</string>
+    <string name="notif_daily_body">Hi, check your list of your favorite movies and TV shows in the Dicoding MADE
+        Application.
+    </string>
+    <string name="release_Today">Release Today :</string>
+    <string name="search_movie_tv_show">Search Movie TV Show</string>
 </resources>
