@@ -11,4 +11,4 @@ Belum fix :
 * ...
 
 Repository yang ada pada github ini cuma hasil mirror dari repository asli yang ada di gitlab, silahkan cek di [Gitlab/masrobot](https://gitlab.com/masrobot/dicoding-made)
-Pada repository asli ada contoh untuk setiap submission.
+Pada repository asli ada contoh untuk setiap submission..
